@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		https://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		
+	<beans:bean id="LoginCheck" class="com.fridgeCare.fri.interceptor.LoginCheck"/>
+	<interceptors>
+		<interceptor>
+			<mapping path="/**/*.fri"/>
+			<exclude-mapping path="/hh/main.fri"/>
+			<exclude-mapping path="/hh/joinpage.fri"/>
+			<exclude-mapping path="/hh/idCheck.fri"/>
+			<exclude-mapping path="/hh/mailcheck.fri"/>
+			<exclude-mapping path="/hh/joinproc.fri"/>
+			<exclude-mapping path="/hh/logincheck.fri"/>
+			<exclude-mapping path="/hh/logout.fri"/>
+			
+			<exclude-mapping path="/juhyun/recipe/resipiPage.fri"/>
+			<exclude-mapping path="/juhyun/recipe/resipiReply.fri"/>
+			<exclude-mapping path="/juhyun/recipe/resipiLikeCount.fri"/>
+			<exclude-mapping path="/juhyun/partner/partner.fri"/>
+			<exclude-mapping path="/juhyun/partner/partnerCnt.fri"/>
+			<beans:ref bean="LoginCheck"/>
+		</interceptor>
+	</interceptors>
+</beans:beans>
