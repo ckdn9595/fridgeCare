@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 
 import com.fridgeCare.fri.juhyun.PageUtil;
 
-public class ResipiVO {
+public class ResipiVO { 
 	private int bno,  bmno, mno, cnt, lcount, time, lcnt;
 	private String id, title, video, bdate, ingred, body, dir;
 	private char isshow;

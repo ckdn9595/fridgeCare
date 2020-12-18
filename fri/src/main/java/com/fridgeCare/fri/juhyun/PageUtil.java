@@ -5,7 +5,7 @@ package com.fridgeCare.fri.juhyun;
  *  만들어진 유틸리티적인 클래스
  * @author	전은석
  * @since	2020.11.09
- * @version	v.1.0
+ * @version	v.1.0 
  *
  */
 public class PageUtil {

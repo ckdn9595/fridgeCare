@@ -3,7 +3,7 @@ package com.fridgeCare.fri.juhyun.vo;
 import java.sql.*;
 import java.text.*;
 
-public class FileVO {
+public class FileVO { 
 	private int fno, bno, fcount;
 	private long len;
 	private String id, oriname, savename, dir, sdate;

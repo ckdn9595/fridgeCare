@@ -3,7 +3,7 @@ package com.fridgeCare.fri.juhyun.vo;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 
-public class PartnerVO {
+public class PartnerVO { 
 	private int cnt, lcount, bno;
 	private String id, title, bdate, bdir, mdir;
 	private Date wdate;
