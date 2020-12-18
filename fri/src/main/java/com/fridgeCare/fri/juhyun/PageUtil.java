@@ -4,7 +4,7 @@ package com.fridgeCare.fri.juhyun;
  *  이 클래스는 페이지 이동 기능에 필요한 정보를 계산하고 저장하기 위해서
  *  만들어진 유틸리티적인 클래스
  * @author	전은석
- * @since	2020.11.09
+ * @since	2020.11.09 
  * @version	v.1.0 
  *
  */
