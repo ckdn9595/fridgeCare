@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="pSQL">
+	<select id="getBoardInfo" resultType="pVO" parameterType="page">
+		SELECT
+		    *
+		FROM
+		    (
+		        SELECT
+		            rownum rno, b.*
+		        FROM
+		            (SELECT 
+		                title, bdate, lcount, cnt, id, m.dir mdir, b.dir bdir, bno 
+		            FROM 
+		                board, member, thumb m , thumb b 
+		            WHERE 
+		                bmno = mno 
+		                AND b.tno = m.tno 
+		                AND mno = m.tmno 
+		                AND grade = 1
+		            ORDER BY
+		                bno ASC
+		            ) b
+		    )
+		WHERE
+		    rno BETWEEN #{startCont} AND #{endCont}
+	</select>
+	
+	<select id="getBoardCnt" resultType="int">
+		SELECT 
+		    count(*) 
+		FROM 
+		    board, member
+		WHERE 
+		    bmno = mno 
+		    AND grade = 1
+	</select>
+	
+	<update id="addCnt">
+		UPDATE 
+		    board 
+		SET 
+		    cnt = cnt + 1 
+		WHERE 
+		    bno = #{bno}
+	</update>
+	
+</mapper>

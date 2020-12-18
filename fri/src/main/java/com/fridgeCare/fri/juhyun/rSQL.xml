@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="rSQL">
+
+	<sql id="getMno">
+		SELECT
+			mno
+		FROM
+			member
+		WHERE
+			id = #{id}
+	</sql>
+	
+	<sql id="getLikeCnt">
+		SELECT
+			COUNT(*) lcnt
+		FROM
+			userlike
+		WHERE
+			lmno = (<include refid="getMno"/>)
+    		AND lbno = #{bno}
+	</sql>
+	
+	<select id="getResipiInfo" resultType="rVO" parameterType="rVO">
+		SELECT
+		    dir, title, video, bmno, bdate, lcount, cnt, time, bno, mno, lcnt
+		FROM
+		    board b, thumb t, 
+		    (<include refid="getMno" />) m,
+		    (<include refid="getLikeCnt" />)
+		WHERE
+		    b.tno = t.tno
+		    AND bno = #{bno}
+	</select>
+	
+	<select id="getIngred" resultType="String" parameterType="int">
+		SELECT
+		    ingred
+		FROM
+		    board
+		WHERE
+		    bno = #{bno}
+	</select>
+	
+	<select id="getBody" resultType="rVO" parameterType="int">
+		SELECT
+		    body, CONCAT(dir, savename) dir
+		FROM
+		    boardpart
+		WHERE
+		    bno = #{bno}
+	</select>
+	
+	<select id="getReply" resultType="rVO" parameterType="rVO">
+		SELECT
+		    *
+		FROM
+		    (
+		        SELECT
+		            rownum rno, re.*
+		        FROM
+		            (SELECT
+		                body, id ,redate bdate
+		            FROM
+		                reply, member, board
+		            WHERE
+		                bno = #{bno}
+		                AND remno = mno
+		                AND rebno = bno
+		            ORDER BY
+		                redate DESC) re
+		    )
+		WHERE
+		    rno BETWEEN #{page.startCont} AND #{page.endCont}
+	</select>
+	
+	<select id="getAllCnt" resultType="int">
+		SELECT
+		    COUNT(*) cnt
+		FROM
+		    reply, board
+		WHERE
+		    rebno = bno
+		    AND bno = #{bno}
+	</select>
+	
+	<select id="getReplyCnt" resultType="int" parameterType="rVO">
+		SELECT
+		    COUNT(*) cnt
+		FROM
+		    member, reply, board
+		WHERE
+		    mno = remno
+		    AND rebno = bno
+		    AND bno = #{bno}
+		    AND id = #{id}
+	</select>
+	
+	<select id="getOther" resultType="rVO" parameterType="String">
+		SELECT
+		    *
+		FROM
+		   (SELECT
+		       rownum bono, b.*
+		   FROM
+		       (SELECT
+		           title, t.dir, bno
+		        FROM 
+		            board b, thumb t
+		        WHERE 
+		           b.tno = t.tno
+		            AND ingred LIKE '%' || #{ingred} || '%'
+		        ORDER BY
+		           title DESC) b)
+		WHERE
+		    bono  BETWEEN 1 AND 5
+	</select>
+	
+	
+	<update id="addLikeCnt" parameterType="int">
+		UPDATE
+		    board
+		SET
+		    lcount = lcount + 1
+		WHERE
+		    bno = #{bno}
+	</update>
+	
+	<insert id="addUserLikeCnt" parameterType="rVO">
+		INSERT INTO 
+		    userlike(lno, lmno, lbno, ldate)
+		VALUES(
+		    (SELECT NVL(MAX(lno) + 1, 10001) FROM userlike),
+		    #{mno}, #{bno}, sysdate
+		)
+	</insert>
+	
+	<insert id="addReply" parameterType="rVO">
+		INSERT INTO
+		    reply(reno, rebno, body, remno, redate)
+		VALUES(
+		    (SELECT NVL(MAX(reno) + 1, 10001) FROM reply),
+		    #{bno} , #{body} , #{mno}, sysdate
+		)
+	</insert>
+	
+</mapper>
