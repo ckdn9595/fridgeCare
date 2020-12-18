@@ -24,7 +24,7 @@ public class PageUtil {
 	
 	public PageUtil() {
 		nowPage = 1;
-	}
+	} 
 
 	/*
 	public PageUtil(int nowPage, int totalCount) {
