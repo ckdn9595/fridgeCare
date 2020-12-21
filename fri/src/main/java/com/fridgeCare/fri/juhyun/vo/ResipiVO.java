@@ -5,14 +5,14 @@ import java.text.SimpleDateFormat;
 
 import com.fridgeCare.fri.juhyun.PageUtil;
 
-public class ResipiVO { 
+public class ResipiVO {
 	private int bno,  bmno, mno, cnt, lcount, time, lcnt;
-	private String id, title, video, bdate, ingred, body, dir;
+	private String id, title, video, bdate, ingred, body, dir, search;
 	private char isshow;
 	private Date wdate;
 	private Time wtime;
 	
-	private PageUtil page; 
+	private PageUtil page;
 	
 	
 	public int getLcnt() {
@@ -56,6 +56,12 @@ public class ResipiVO {
 	}
 	public void setLcount(int lcount) {
 		this.lcount = lcount;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
 	}
 	public String getDir() {
 		return dir;

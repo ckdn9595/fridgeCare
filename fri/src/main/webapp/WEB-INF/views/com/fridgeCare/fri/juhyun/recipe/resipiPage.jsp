@@ -194,8 +194,7 @@ div.dimension8{
 			</div>
 			<form method="POST" action="/fri/juhyun/recipe/resipiLikeCount.fri" id="lfrm">
 				<input type="hidden" name="bno" value="${RESIPI.bno}">
-				<input type="hidden" name="mno" value="${RESIPI.mno}">
-				<input type="hidden" name="lcnt" value="${RESIPI.lcnt}">
+				<input type="hidden" name="mno" value="${MNO}">
 			</form>
 			<div class="w3-col w3-border">
 				<h4 class="w3-col">한줄 리뷰를 해주세요</h4>

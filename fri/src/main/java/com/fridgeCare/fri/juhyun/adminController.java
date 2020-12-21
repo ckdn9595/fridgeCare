@@ -15,7 +15,6 @@ public class adminController {
 	// 관리자 계정 로그인 폼 보기 함수
 	@RequestMapping("/admin.fri")
 	public ModelAndView adminLogin(ModelAndView mv) {
-		
 		mv.setViewName("juhyun/admin/admin");
 		return mv;
 	}

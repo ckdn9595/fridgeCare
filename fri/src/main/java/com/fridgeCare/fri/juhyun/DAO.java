@@ -21,6 +21,10 @@ public class DAO {
 	public ResipiVO getResipiInfo(ResipiVO rVO) {
 		return sqlSession.selectOne("rSQL.getResipiInfo", rVO);
 	}
+	// 아이디로 회원번호 가져오기 처리 함수
+	public int getMno(String id) {
+		return sqlSession.selectOne("rSQL.getMno",id);
+	}
 	// 재료 설명 가져오기 전담 처리함수
 	public List<ResipiVO> getBody(int bno){
 		return sqlSession.selectList("rSQL.getBody", bno);
@@ -38,8 +42,8 @@ public class DAO {
 		return sqlSession.selectOne("rSQL.getReplyCnt", rVO);
 	}
 	// 선택 재료로 가능한 레시피 불러오기 전담 처리 함수
-	public List<ResipiVO> getOther(String ingred){
-		return sqlSession.selectList("rSQL.getOther", ingred);
+	public List<ResipiVO> getOther(String search){
+		return sqlSession.selectList("rSQL.getOther", search);
 	}
 	// 보드 테이블 좋아요 카운트 증가 처리 함수
 	public int addLikeCnt(int bno) {
