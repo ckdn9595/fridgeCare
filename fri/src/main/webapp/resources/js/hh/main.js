@@ -10,6 +10,9 @@ $(function(){
 	$('#logoutbtn').click(function(){
 		$(location).attr('href' , '/fri/hh/logout.fri');
 	});
+	$('#myinfobtn').click(function(){
+		$(location).attr('href' , '/fri/hh/myinfo.fri');
+	});
 	$('#luvoform').click(function(){
 		$(this).submit();
 	});
