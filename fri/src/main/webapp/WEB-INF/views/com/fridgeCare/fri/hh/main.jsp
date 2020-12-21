@@ -148,7 +148,7 @@ body{
     <!-- Middle Column -->
     <div class="w3-col m7">
       
-      <form class="w3-container w3-card w3-round w3-margin-bottom w3-margin-left w3-margin-right clickable latelyuploadbtn" method="get" action="/fri/juhyun/recipe/resipiPage.fri?bno=${LUVO.bno}"><br>
+      <form class="w3-container w3-card w3-round w3-margin-bottom w3-margin-left w3-margin-right clickable latelyuploadbtn" method="get" action="/fri/juhyun/recipe/resipiPage.fri?bno=${LUVO.bno}" id="luvoform"><br>
       	<input type="hidden" name="bno" value="${LUVO.bno}">
         <img src="/fri/img/avatar/${LUVO.tname}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <span class="w3-right w3-opacity">${LUVO.sdate}</span>
