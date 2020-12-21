@@ -23,17 +23,18 @@
 		<typeAlias alias="luvo" type="com.fridgeCare.fri.hh.vo.LatelyUploadVO"/>
 		<typeAlias alias="srvo" type="com.fridgeCare.fri.hh.vo.SideRankVO"/>
 		
-		<!-- <typeAlias alias="rVO" type="com.fridgeCare.fri.juhyun.vo.ResipiVO"/>
+		<typeAlias alias="rVO" type="com.fridgeCare.fri.juhyun.vo.ResipiVO"/>
 		<typeAlias alias="pVO" type="com.fridgeCare.fri.juhyun.vo.PartnerVO"/>
-		<typeAlias alias="page" type="com.fridgeCare.fri.juhyun.PageUtil"/> -->
+		<typeAlias alias="aVO" type="com.fridgeCare.fri.juhyun.vo.AdminVO"/>
+		<typeAlias alias="page" type="com.fridgeCare.fri.juhyun.PageUtil"/>
 	</typeAliases>
 	
 	<!-- 매퍼로 등록된 xml들은 위에 등록된 타입들의 변수명을 인식할수 있게 된다 -->
 	<mappers><!-- 매퍼등록시 주의할점은 자바와 다르게 .이아니고 /로 경로안쪽으로 들어간다 -->
 		<mapper resource="com/fridgeCare/fri/hh/sql.xml"/>
-		
-		<!-- <mapper resource="com/fridgeCare/fri/juhyun/rSQL.xml"/>
-		<mapper resource="com/fridgeCare/fri/juhyun/pSQL.xml"/> -->
+		<mapper resource="com/fridgeCare/fri/juhyun/rSQL.xml"/>
+		<mapper resource="com/fridgeCare/fri/juhyun/pSQL.xml"/>
+		<mapper resource="com/fridgeCare/fri/juhyun/aSQL.xml"/>
 	</mappers>
 	
 </configuration>
