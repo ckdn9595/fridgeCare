@@ -14,9 +14,6 @@ public class DAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	@Autowired
-	FileUtil futil;
-	
 	// 레시피 정보 가져오기 전담 처리 함수
 	public ResipiVO getResipiInfo(ResipiVO rVO) {
 		return sqlSession.selectOne("rSQL.getResipiInfo", rVO);
@@ -61,6 +58,10 @@ public class DAO {
 	public String getIngred(int bno) {
 		return sqlSession.selectOne("rSQL.getIngred", bno);
 	}
+	public int getLikeCnt(ResipiVO rVO) {
+		return sqlSession.selectOne("rSQL.getLikeCnt", rVO);
+	}
+	
 	
 	// 파트너 보드 리스트 전담 처리 함수
 	public List<PartnerVO> getBoardInfo(PageUtil page){

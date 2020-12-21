@@ -185,7 +185,7 @@ div.dimension8{
 			</div>
 			
 			
-			<iframe width="480" height="320" src="${RESIPI.video}"></iframe>
+			<iframe width="480" height="320" src="https://www.youtube.com/embed/${RESIPI.video}"></iframe>
 			<div class="w3-col w3-margin-top w3-margin-bottom">
 				<div class="w3-col m2 w3-border w3-center w3-button" id="lbtn" style="margin-left: 315px;">추천</div>
 			</div>
@@ -195,6 +195,7 @@ div.dimension8{
 			<form method="POST" action="/fri/juhyun/recipe/resipiLikeCount.fri" id="lfrm">
 				<input type="hidden" name="bno" value="${RESIPI.bno}">
 				<input type="hidden" name="mno" value="${MNO}">
+				<input type="hidden" name="lcnt" value="${LCNT}">
 			</form>
 			<div class="w3-col w3-border">
 				<h4 class="w3-col">한줄 리뷰를 해주세요</h4>

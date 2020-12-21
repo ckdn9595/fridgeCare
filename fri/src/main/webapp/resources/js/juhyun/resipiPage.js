@@ -22,12 +22,17 @@ $(document).ready(function(){
 */		
 		var lcnt = $('#lfrm').children().last().val();
 		
+		alert(lcnt);
 		if(lcnt == '1'){
 			alert('이미 추천한 게시글입니다.');
 			return;
+		}else if(lcnt == ''){
+			alert('로그인을 해주세요.');
+			return;
+		}else{
+			$('#lfrm').submit();
 		}
 		
-		$('#lfrm').submit();
 	});
 	
 	$('.other').click(function(){
