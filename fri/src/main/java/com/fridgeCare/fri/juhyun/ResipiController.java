@@ -39,7 +39,11 @@ public class ResipiController {
 			
 			mno = rDao.getMno(rVO.getId());
 			
+			rVO.setMno(mno);
 			mv.addObject("MNO",mno);
+			
+			int like = rDao.getLikeCnt(rVO);
+			mv.addObject("LCNT",like);
 		}
 		
 		

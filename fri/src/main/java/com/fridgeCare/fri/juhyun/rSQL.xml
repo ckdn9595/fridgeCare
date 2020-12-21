@@ -5,19 +5,19 @@
 <mapper namespace="rSQL">
 
 	
-	<!-- <sql id="getLikeCnt">
+	<select id="getLikeCnt" resultType="int" parameterType="rVO">
 		SELECT
 			COUNT(*) lcnt
 		FROM
 			userlike
 		WHERE
-			lmno = (<include refid="getMno"/>)
+			lmno = #{mno}
     		AND lbno = #{bno}
-	</sql> -->
+	</select>
 	
 	<select id="getResipiInfo" resultType="rVO" parameterType="rVO">
 		SELECT
-		    dir, title, video, bmno, bdate, lcount, cnt, time, bno
+		    dir, title, SUBSTR(video,INSTR(video,'v=')+2) video , bmno, bdate, lcount, cnt, time, bno
 		FROM
 		    board b, thumb t 
 		WHERE
