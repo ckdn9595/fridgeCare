@@ -27,7 +27,21 @@ public class ResipiController {
 	//@RequestMapping("/resipiPage.fri")
 	public ModelAndView resipiPage(ModelAndView mv , PageUtil page, ResipiVO rVO, 
 									HttpSession session) {
-		rVO.setId((String)session.getAttribute("SID"));
+		
+		int count = 0;
+		int mno;
+		
+		System.out.println("bno : "+rVO.getBno());
+		
+		if(session.getAttribute("SID") != null) {
+			rVO.setId((String)session.getAttribute("SID"));
+			count = rDao.getReplyCnt(rVO);
+			
+			mno = rDao.getMno(rVO.getId());
+			
+			mv.addObject("MNO",mno);
+		}
+		
 		
 		int total = rDao.getAllCnt(rVO.getBno());
 		
@@ -41,11 +55,9 @@ public class ResipiController {
 		String ingred = rDao.getIngred(rVO.getBno());
 		String[] ingredient = ingred.split("/");
 		
-		int count = rDao.getReplyCnt(rVO);
 		ResipiVO info = rDao.getResipiInfo(rVO);
 		List<ResipiVO> list = rDao.getBody(rVO.getBno());
 		List<ResipiVO> reply = rDao.getReply(rVO);
-		List<ResipiVO> other = rDao.getOther(ingred);
 		
 		mv.addObject("RESIPI",info);
 		mv.addObject("BODY",list);
@@ -53,7 +65,10 @@ public class ResipiController {
 		mv.addObject("INGRED",ingredient);
 		mv.addObject("CNT",count);
 		mv.addObject("PAGE",page);
-		mv.addObject("OTHER",other);
+		if(rVO.getSearch() != null) {
+			List<ResipiVO> other = rDao.getOther(rVO.getSearch());
+			mv.addObject("OTHER",other);
+		}
 		
 		mv.setViewName("juhyun/recipe/resipiPage");
 		return mv;
