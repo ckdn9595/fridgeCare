@@ -6,6 +6,8 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,7 @@ import com.fridgeCare.fri.hh.vo.ThumbVO;
 @RequestMapping("/hh")
 public class HController {
 	int cnt;
+	static Logger logger = LoggerFactory.getLogger(HController.class);
 	@Autowired
 	DAO hdao;
 	@RequestMapping("/main.fri")
@@ -99,6 +102,7 @@ public class HController {
 			rv.setUrl("/fri/hh/joinpage.fri");
 		}else {
 			s.setAttribute("SID", ivo.getInputid());
+			logger.info("new member " + ivo.getInputid() + "has join");
 		}
 		if(!inputavt.getOriginalFilename().equals("")) {
 			Fileuploader uploader = new Fileuploader(inputavt);
@@ -108,6 +112,9 @@ public class HController {
 				f = thumb.make(100, 100);
 			}
 			f = uploader.export_avt(f, ivo.getInputid());
+			if(f.exists()) {
+				logger.info(ivo.getInputid() + "has make " + f.getName());
+			}
 			ThumbVO tvo = new ThumbVO();
 			tvo.setDir(f.getPath());
 			tvo.setTname(f.getName());
@@ -130,6 +137,8 @@ public class HController {
 		if(cnt == 0) {
 			System.out.println("edit fail");
 			rv.setUrl("/fri/hh/myinfo.fri");
+		}else {
+			logger.info(sid + " has edit member info");
 		}
 		if(!inputavt.getOriginalFilename().equals("")) {
 			Fileuploader uploader = new Fileuploader(inputavt);
@@ -139,6 +148,9 @@ public class HController {
 				f = thumb.make(100, 100);
 			}
 			f = uploader.export_avt(f, sid);
+			if(f.exists()) {
+				logger.info(sid + " has make " + f.getName());
+			}
 			ThumbVO tvo = new ThumbVO();
 			tvo.setDir(f.getPath());
 			tvo.setTname(f.getName());

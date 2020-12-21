@@ -64,6 +64,9 @@ body{
 .change05bgc{
 	transition: background-color .5s;
 }
+img{
+	
+}
 </style>
 </head>
 
@@ -249,7 +252,7 @@ body{
 		<div class="w3-col m10 w3-margin-left" style="min-width:660px">
 			<div class="dimension1 w3-padding floatleft w3-right-align">프로필사진</div>
 			<div>
-				<img alt="using avt" src="/fri/img/avatar/${AVT}">
+				<img alt="using avt" src="/fri/img/avatar/${AVT}" id="imgpreview" style="height:106px;width:106px">
 			</div>
 			<input name="inputavt" class="floatleft dimension1" type="file" accept="image/*" onchange="sizecheck(this)" id="inputnewavt">
 		</div>
@@ -258,7 +261,6 @@ body{
 			<input class="w3-light-blue w3-round-large w3-center w3-padding w3-button w3-hover-cyan change05bgc margin8" type="submit" id="submitbtn" value="수정">
 		</div>
       </form>
-      
       
     <!-- End Middle Column -->
     </div>
