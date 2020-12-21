@@ -17,6 +17,12 @@
 		)
 	</select>
 	
+	<select id="updatemember" parameterType="ivo">
+		update member set
+		tel = #{inputtel} , age = #{inputage} , local = #{inputloc}
+		where id = #{inputid}
+	</select>
+	
 	<select id="logincheck" parameterType="ivo" resultType="int">
 		select count(*) from member
 		where id = #{inputid} and pw = #{inputpw}
@@ -32,6 +38,12 @@
 		tno , dir , tname , tmno) VALUES(
 		(select max(tno) from thumb)+1 , #{dir} , #{tname} ,
 		(select mno from member where id = #{id}))
+	</select>
+	
+	<select id="updateavt" parameterType="tvo">
+		update thumb set
+		dir = #{dir} , tname = #{tname}
+		where tmno = (select mno from member where id = #{id})
 	</select>
 	
 	<select id="getLUVO" resultType="luvo">
@@ -66,5 +78,9 @@
 	
 	<select id="getmemberinfo" parameterType="string" resultType="mvo">
 		select * from member where id = 'test'
+	</select>
+	
+	<select id="submitcondate" parameterType="string">
+		update member set condate = sysdate where id = #{sid}
 	</select>
 </mapper>

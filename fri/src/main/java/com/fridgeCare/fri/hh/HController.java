@@ -63,6 +63,12 @@ public class HController {
 		String sid = (String) s.getAttribute("SID");
 		MemberVO mvo = hdao.getmvo(sid);
 		mv.addObject("MVO", mvo);
+		String tname = hdao.getThumb(sid);
+		if(tname == null) {
+			s.setAttribute("AVT", "noimage.jpg");
+		}else {
+			s.setAttribute("AVT", tname);
+		}
 		return mv;
 	}
 	@RequestMapping("/idCheck.fri")
@@ -114,6 +120,40 @@ public class HController {
 		mv.setView(rv);
 		return mv;
 	}
+	@RequestMapping("/infoedit.fri")
+	public ModelAndView infoedit(ModelAndView mv , RedirectView rv , HttpSession s , MultipartFile inputavt , InputVO ivo) {
+		rv.setUrl("/fri/hh/myinfo.fri?edit");
+		String sid = (String) s.getAttribute("SID");
+		ivo.setInputid(sid);
+		File f;
+		cnt = hdao.infoedit(ivo);
+		if(cnt == 0) {
+			System.out.println("edit fail");
+			rv.setUrl("/fri/hh/myinfo.fri");
+		}
+		if(!inputavt.getOriginalFilename().equals("")) {
+			Fileuploader uploader = new Fileuploader(inputavt);
+			f = uploader.upload();
+			if(inputavt.getSize() > 6000) {
+				Thumbnail thumb = new Thumbnail(f.getPath());
+				f = thumb.make(100, 100);
+			}
+			f = uploader.export_avt(f, sid);
+			ThumbVO tvo = new ThumbVO();
+			tvo.setDir(f.getPath());
+			tvo.setTname(f.getName());
+			tvo.setId(sid);
+			cnt = hdao.editAvt(tvo);
+			if(cnt == 0) {
+				cnt = hdao.setAvt(tvo);
+				if(cnt == 0) {
+					System.out.println("edit avt fail");
+				}
+			}
+		}
+		mv.setView(rv);
+		return mv;
+	}
 	@RequestMapping("/logincheck.fri")
 	public ModelAndView logincheck(ModelAndView mv , RedirectView rv , HttpSession s , InputVO ivo) {
 		rv.setUrl("/fri/");
@@ -122,6 +162,10 @@ public class HController {
 			rv.setUrl("/fri/hh/main.fri?fail");
 		}else {
 			s.setAttribute("SID", ivo.getInputid());
+			cnt = hdao.submitCondate(ivo.getInputid());
+			if(cnt == 0) {
+				System.out.println("submit condate fail");
+			}
 		}
 		mv.setView(rv);
 		return mv;

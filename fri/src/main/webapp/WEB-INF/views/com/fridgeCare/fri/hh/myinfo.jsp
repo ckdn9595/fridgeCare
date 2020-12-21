@@ -13,7 +13,7 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-<script type="text/javascript" src="/fri/js/hh/joinpage.js"></script>
+<script type="text/javascript" src="/fri/js/hh/myinfo.js"></script>
 <style>
 div.dimension1{
 	width:110px;
@@ -109,7 +109,7 @@ body{
     <!-- Middle Column --> <!-- 작업할 곳 -->
     <div class="w3-col m9" style="min-width:700px">
       
-      <form class="w3-container w3-card w3-round w3-margin-bottom w3-margin-left w3-margin-right w3-padding" method="post" action="/fri/hh/joinproc.fri" encType="multipart/form-data">
+      <form class="w3-container w3-card w3-round w3-margin-bottom w3-margin-left w3-margin-right w3-padding" method="post" action="/fri/hh/infoedit.fri" encType="multipart/form-data">
 		<div class="w3-col m10 w3-margin-left" style="min-width:660px">
 			<div class="dimension1 w3-padding floatleft w3-right-align">ID</div>
 			<input name="inputid" class="floatleft dimension1" id="inputid" disabled value="${MVO.id}">
@@ -117,53 +117,145 @@ body{
 			<div class="w3-light-blue w3-round-large w3-center w3-padding-small w3-button w3-hover-cyan change05bgc margin8 w3-hide" id="idresetbtn">아이디 변경</div> -->
 		</div>
 		<div class="w3-col m10 w3-margin-left" style="min-width:660px">
-			<div class="dimension1 w3-padding floatleft w3-right-align inline">성별</div>
-			<div class="inline w3-margin-right">
-			<input name="inputgen" class="floatleft w3-radio" type="radio" value="M" required><div class="w3-padding inline">남</div>
-			</div>
-			<div class="inline w3-margin-left">
-			<input name="inputgen" class="floatleft w3-radio" type="radio" value="F"><div class="w3-padding inline">여</div>
-			</div>
-		</div>
-		<div class="w3-col m10 w3-margin-left" style="min-width:660px">
 			<div class="dimension1 w3-padding floatleft w3-right-align">이메일</div>
-			<input name="inputmail" class="floatleft dimension1" required id="inputmail">
-			<div class="w3-light-blue w3-round-large w3-center w3-padding-small w3-button w3-hover-cyan change05bgc margin8" id="mailcheckbtn">중복확인</div>
+			<input name="inputmail" class="floatleft dimension1" disabled id="inputmail" value="${MVO.mail}">
+			<!-- <div class="w3-light-blue w3-round-large w3-center w3-padding-small w3-button w3-hover-cyan change05bgc margin8" id="mailcheckbtn">중복확인</div> -->
 		</div>
 		<div class="w3-col m10 w3-margin-left" style="min-width:660px">
 			<div class="dimension1 w3-padding floatleft w3-right-align">전화번호</div>
-			<input name="inputtel" class="floatleft dimension1">
+			<input name="inputtel" class="floatleft dimension1" value="${MVO.tel}">
 			<div class="w3-padding floatleft w3-right-align"></div>
 		</div>
 		<div class="w3-col m10 w3-margin-left" style="min-width:660px">
 			<div class="dimension1 w3-padding floatleft w3-right-align">연령대</div>
-			<select name="inputage" class="dimension1">
-				<option value="10">10대
-				<option value="20">20대
-				<option value="30">30대
-				<option value="40">40대 이상
-			</select>
+			<c:if test="${MVO.age == 10}">
+				<select name="inputage" class="dimension1">
+					<option value="10">10대
+					<option value="20">20대
+					<option value="30">30대
+					<option value="40">40대 이상
+				</select>
+			</c:if>
+			<c:if test="${MVO.age == 20}">
+				<select name="inputage" class="dimension1">
+					<option value="10">10대
+					<option value="20" selected>20대
+					<option value="30">30대
+					<option value="40">40대 이상
+				</select>
+			</c:if>
+			<c:if test="${MVO.age == 30}">
+				<select name="inputage" class="dimension1">
+					<option value="10">10대
+					<option value="20">20대
+					<option value="30" selected>30대
+					<option value="40">40대 이상
+				</select>
+			</c:if>
+			<c:if test="${MVO.age == 40}">
+				<select name="inputage" class="dimension1">
+					<option value="10">10대
+					<option value="20">20대
+					<option value="30">30대
+					<option value="40" selected>40대 이상
+				</select>
+			</c:if>
 		</div>
 		<div class="w3-col m10 w3-margin-left" style="min-width:660px">
 			<div class="dimension1 w3-padding floatleft w3-right-align">거주지역</div>
 			<select name="inputloc" class="dimension1">
-				<option value="1">서울/경기
-				<option value="2">강원도
-				<option value="3">충청남도
-				<option value="4">충청북도
-				<option value="5">경상북도
-				<option value="6">경상남도
-				<option value="7">전남/제주
-				<option value="8">전라북도
+				<c:if test="${MVO.local == 1}">
+					<option value="1">서울/경기
+					<option value="2">강원도
+					<option value="3">충청남도
+					<option value="4">충청북도
+					<option value="5">경상북도
+					<option value="6">경상남도
+					<option value="7">전남/제주
+					<option value="8">전라북도
+				</c:if>
+				<c:if test="${MVO.local == 2}">
+					<option value="1">서울/경기
+					<option value="2" selected>강원도
+					<option value="3">충청남도
+					<option value="4">충청북도
+					<option value="5">경상북도
+					<option value="6">경상남도
+					<option value="7">전남/제주
+					<option value="8">전라북도
+				</c:if>
+				<c:if test="${MVO.local == 3}">
+					<option value="1">서울/경기
+					<option value="2">강원도
+					<option value="3" selected>충청남도
+					<option value="4">충청북도
+					<option value="5">경상북도
+					<option value="6">경상남도
+					<option value="7">전남/제주
+					<option value="8">전라북도
+				</c:if>
+				<c:if test="${MVO.local == 4}">
+					<option value="1">서울/경기
+					<option value="2">강원도
+					<option value="3">충청남도
+					<option value="4" selected>충청북도
+					<option value="5">경상북도
+					<option value="6">경상남도
+					<option value="7">전남/제주
+					<option value="8">전라북도
+				</c:if>
+				<c:if test="${MVO.local == 5}">
+					<option value="1">서울/경기
+					<option value="2">강원도
+					<option value="3">충청남도
+					<option value="4">충청북도
+					<option value="5" selected>경상북도
+					<option value="6">경상남도
+					<option value="7">전남/제주
+					<option value="8">전라북도
+				</c:if>
+				<c:if test="${MVO.local == 6}">
+					<option value="1">서울/경기
+					<option value="2">강원도
+					<option value="3">충청남도
+					<option value="4">충청북도
+					<option value="5">경상북도
+					<option value="6" selected>경상남도
+					<option value="7">전남/제주
+					<option value="8">전라북도
+				</c:if>
+				<c:if test="${MVO.local == 7}">
+					<option value="1">서울/경기
+					<option value="2">강원도
+					<option value="3">충청남도
+					<option value="4">충청북도
+					<option value="5">경상북도
+					<option value="6">경상남도
+					<option value="7" selected>전남/제주
+					<option value="8">전라북도
+				</c:if>
+				<c:if test="${MVO.local == 8}">
+					<option value="1">서울/경기
+					<option value="2">강원도
+					<option value="3">충청남도
+					<option value="4">충청북도
+					<option value="5">경상북도
+					<option value="6">경상남도
+					<option value="7">전남/제주
+					<option value="8" selected>전라북도
+				</c:if>
 			</select>
 		</div>
 		<div class="w3-col m10 w3-margin-left" style="min-width:660px">
 			<div class="dimension1 w3-padding floatleft w3-right-align">프로필사진</div>
-			<input name="inputavt" class="floatleft dimension1" type="file" accept="image/*" onchange="sizecheck(this)">
+			<div>
+				<img alt="using avt" src="/fri/img/avatar/${AVT}">
+			</div>
+			<input name="inputavt" class="floatleft dimension1" type="file" accept="image/*" onchange="sizecheck(this)" id="inputnewavt">
 		</div>
 		
 		<div class="w3-col m10 w3-center" style="min-width:660px">
-			<input class="w3-light-blue w3-round-large w3-center w3-padding w3-button w3-hover-cyan change05bgc margin8" type="submit" id="submitbtn" disabled>
+			<input class="w3-light-blue w3-round-large w3-center w3-padding w3-button w3-hover-cyan change05bgc margin8" type="submit" id="submitbtn" value="수정">
 		</div>
       </form>
       

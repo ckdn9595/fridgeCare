@@ -21,6 +21,9 @@ public class DAO {
 	public int joinproc(InputVO ivo) {
 		return sqlSession.insert("hsql.insertmember", ivo);
 	}
+	public int infoedit(InputVO ivo) {
+		return sqlSession.update("hsql.updatemember", ivo);
+	}
 	public int logincheck(InputVO ivo) {
 		return sqlSession.selectOne("hsql.logincheck", ivo);
 	}
@@ -29,6 +32,9 @@ public class DAO {
 	}
 	public int setAvt(ThumbVO tvo) {
 		return sqlSession.insert("hsql.insertavt", tvo);
+	}
+	public int editAvt(ThumbVO tvo) {
+		return sqlSession.update("hsql.updateavt", tvo);
 	}
 	public LatelyUploadVO getLUVO() {
 		return sqlSession.selectOne("hsql.getLUVO");
@@ -41,5 +47,8 @@ public class DAO {
 	}
 	public MemberVO getmvo(String sid) {
 		return sqlSession.selectOne("hsql.getmemberinfo", sid);
+	}
+	public int submitCondate(String sid) {
+		return sqlSession.update("hsql.submitcondate", sid);
 	}
 }
