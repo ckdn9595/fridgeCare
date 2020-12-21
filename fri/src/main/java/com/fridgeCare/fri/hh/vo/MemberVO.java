@@ -1,11 +1,19 @@
 package com.fridgeCare.fri.hh.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MemberVO {
 	int mno , age , local , grade;
 	Date joindate;
-	String id , pw , mail , gen , tel , isshow , admin;
+	String id , pw , mail , gen , tel , isshow , admin , date;
+	public String getDate() {
+		return date;
+	}
+	public void setDate() {
+		SimpleDateFormat f = new SimpleDateFormat("yy/MM/dd");
+		date = f.format(joindate);
+	}
 	public int getMno() {
 		return mno;
 	}
@@ -35,6 +43,7 @@ public class MemberVO {
 	}
 	public void setJoindate(Date joindate) {
 		this.joindate = joindate;
+		setDate();
 	}
 	public String getId() {
 		return id;

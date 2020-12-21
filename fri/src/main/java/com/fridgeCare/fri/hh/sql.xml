@@ -63,4 +63,8 @@
 		order by lcount desc)
 		where rownum = 1
 	</select>
+	
+	<select id="getmemberinfo" parameterType="string" resultType="mvo">
+		select * from member where id = 'test'
+	</select>
 </mapper>

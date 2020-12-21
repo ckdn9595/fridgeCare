@@ -22,6 +22,7 @@
 			<exclude-mapping path="/hh/joinproc.fri"/>
 			<exclude-mapping path="/hh/logincheck.fri"/>
 			<exclude-mapping path="/hh/logout.fri"/>
+			<exclude-mapping path="/hh/myinfo.fri"/>
 			
 			<exclude-mapping path="/juhyun/recipe/resipiPage.fri"/>
 			<exclude-mapping path="/juhyun/recipe/resipiReply.fri"/>

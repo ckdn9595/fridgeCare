@@ -18,6 +18,7 @@ import com.fridgeCare.fri.hh.util.Fileuploader;
 import com.fridgeCare.fri.hh.util.Thumbnail;
 import com.fridgeCare.fri.hh.vo.InputVO;
 import com.fridgeCare.fri.hh.vo.LatelyUploadVO;
+import com.fridgeCare.fri.hh.vo.MemberVO;
 import com.fridgeCare.fri.hh.vo.SideRankVO;
 import com.fridgeCare.fri.hh.vo.ThumbVO;
 @Controller
@@ -55,6 +56,14 @@ public class HController {
 	public String joinpage() {
 		
 		return "hh/joinpage";
+	}
+	@RequestMapping("/myinfo.fri")
+	public ModelAndView myinfo(ModelAndView mv , RedirectView rv , HttpSession s) {
+		mv.setViewName("hh/myinfo");
+		String sid = (String) s.getAttribute("SID");
+		MemberVO mvo = hdao.getmvo(sid);
+		mv.addObject("MVO", mvo);
+		return mv;
 	}
 	@RequestMapping("/idCheck.fri")
 	@ResponseBody

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fridgeCare.fri.hh.vo.InputVO;
 import com.fridgeCare.fri.hh.vo.LatelyUploadVO;
+import com.fridgeCare.fri.hh.vo.MemberVO;
 import com.fridgeCare.fri.hh.vo.SideRankVO;
 import com.fridgeCare.fri.hh.vo.ThumbVO;
 
@@ -37,5 +38,8 @@ public class DAO {
 	}
 	public SideRankVO getMR() {
 		return sqlSession.selectOne("hsql.getmonthrank");
+	}
+	public MemberVO getmvo(String sid) {
+		return sqlSession.selectOne("hsql.getmemberinfo", sid);
 	}
 }
