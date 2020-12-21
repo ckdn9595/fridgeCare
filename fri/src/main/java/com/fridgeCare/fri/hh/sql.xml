@@ -51,7 +51,7 @@
 		where bmno = mno and board.tno = thumb.tno and
 		bdate between sysdate-7 and sysdate
 		order by lcount desc)
-		where rownum = 1 and id = 'hhh'
+		where rownum = 1
 	</select>
 	
 	<select id="getmonthrank" resultType="srvo">
