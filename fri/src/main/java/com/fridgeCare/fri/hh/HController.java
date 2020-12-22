@@ -2,8 +2,8 @@ package com.fridgeCare.fri.hh;
 
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
-
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -82,6 +82,13 @@ public class HController {
 		if(cnt == 0) {
 			view = "{\"result\" : \"OK\"}";
 		}
+		return view;
+	}
+	@RequestMapping("/ajaxtest.fri")
+	@ResponseBody
+	public String ajaxtest(String[] ajaxdata) {
+		String view = "{\"result\" : \"NO\"}";
+		System.out.println(ajaxdata[0]);
 		return view;
 	}
 	@RequestMapping("/mailcheck.fri")

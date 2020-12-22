@@ -22,4 +22,23 @@ $(function(){
 	$('#mvoform').click(function(){
 		$(this).submit();
 	});
+	$('#ajaxtest').click(function(){
+		var Situat = ['aa' , 'ab' , 'bb'];
+		var stringdata = 'abc';
+		$.ajax({
+			url:'/fri/hh/ajaxtest.fri' ,
+			type:'POST' ,
+			dataType:'json' ,
+			traditional:true ,
+			data:{
+				ajaxdata:Situat
+			} ,
+			success:function(data){
+				alert(Situat);
+			} ,
+			error:function(){
+				alert('잠시후 다시 시도해주십시오');
+			}
+		})
+	});
 });
