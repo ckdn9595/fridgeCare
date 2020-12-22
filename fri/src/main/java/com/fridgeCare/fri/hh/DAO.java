@@ -51,4 +51,7 @@ public class DAO {
 	public int submitCondate(String sid) {
 		return sqlSession.update("hsql.submitcondate", sid);
 	}
+	public int transtest(Object transdata) {
+		return sqlSession.insert("transtest" , transdata);
+	}
 }

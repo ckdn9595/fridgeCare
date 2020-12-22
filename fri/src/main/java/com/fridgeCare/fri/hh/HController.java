@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -224,5 +225,39 @@ public class HController {
 			}
 		}
 		return "hh/main";
+	}
+	@RequestMapping("/mailtest.fri")
+	@ResponseBody
+	public String mailtest(String ajaxdata) {
+		String view = "{\"result\" : \"NO\"}";
+		System.out.println(ajaxdata);
+		String hanhoon12 = "hanhoon12";
+		HSD hsd = new HSD();
+		String naverpw = hanhoon12.substring(7) + "q" + hsd.data1 + Integer.toString(5+7);
+		System.out.println(naverpw);
+		return view;
+	}
+	@RequestMapping("transtest.fri")
+	@Transactional
+	public ModelAndView transtest(ModelAndView mv , RedirectView rv , HttpSession s) {
+		rv.setUrl("/fri/");
+		mv.setView(rv);
+		int cnt = hdao.transtest(5);
+		cnt += hdao.transtest(4);
+		cnt += hdao.transtest("a");
+		cnt += hdao.transtest("3");
+		System.out.println(cnt);
+		return mv;
+	}
+}
+
+class HSD{
+	String data1 = "f";
+	public HSD() {
+		if(data1.equals("z")) {
+			System.out.println("unknown print");
+		}else {
+			data1 = "w";
+		}
 	}
 }

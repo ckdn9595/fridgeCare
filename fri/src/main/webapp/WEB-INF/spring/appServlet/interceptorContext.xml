@@ -25,6 +25,8 @@
 			<exclude-mapping path="/hh/myinfo.fri"/>
 			<exclude-mapping path="/hh/ajaxtest.fri"/>
 			<exclude-mapping path="/hh/pwfind.fri"/>
+			<exclude-mapping path="/hh/mailtest.fri"/>
+			<exclude-mapping path="/hh/transtest.fri"/>
 			
 			<exclude-mapping path="/juhyun/recipe/resipiPage.fri"/>
 			<exclude-mapping path="/juhyun/recipe/resipiReply.fri"/>
