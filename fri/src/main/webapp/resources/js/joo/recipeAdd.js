@@ -3,6 +3,11 @@ $(document).ready(function(){
 		$('#second').css('display', 'block');
 	});
 	$('#sabtn2').click(function(){
+		var tmp = $('#thumb').val();
+		if(!tmp){
+			alert('썸네일이 등록되지 않았습니다.');
+			return;
+		}
 		$('#frm').submit();
 	});
 	
