@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>fridgeCare</title>
+<title>project</title>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
@@ -13,13 +13,12 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-<script type="text/javascript" src="/fri/js/hh/main.js"></script>
-
+<script type="text/javascript" src="/fri/js/hh/leftbar.js"></script>
+<script type="text/javascript" src="/fri/js/hh/pwfind.js"></script>
 <style>
-html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 div.dimension1{
-	height:320px;
-	word-wrap:break;
+	width:110px;
+	height:50px;
 }
 div.dimension2{
 	width:200px;
@@ -37,7 +36,9 @@ div.dimension8{
 	margin-bottom:5px;
 }
 input.dimension1{
-	width:100%;
+	width:300px;
+	height:34px;
+	margin:8px;
 }
 input.dimension2{
 	width:140px;
@@ -50,16 +51,25 @@ input.dimension3{
 a.dimension2{
 	width:200px;
 }
+select.dimension1{
+	width:200px;
+	height:34px;
+	margin:8px;
+}
+
 
 .clickable:hover{
 	background-color:beige;
 	cursor:pointer;
 }
-.h240{
-	height:240px;
+.floatleft{
+	float:left;
 }
 body{
-	min-width:1020px;
+	min-width:900px;
+}
+.margin8{
+	margin:8px;
 }
 .inline{
 	display:inline-block;
@@ -69,30 +79,21 @@ body{
 }
 </style>
 </head>
+
 <body class="">
+<c:if test="${not empty sessionScope.SID}">
+	<c:redirect url="/"></c:redirect>
+</c:if>
 <!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:20px">
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:20px; min-width:800px;">    
 	<div class="w3-col w3-card w3-margin-bottom w3-round">
 		<h1><a href="/fri/hh/main.fri">냉장고를 부탁해!</a></h1>
 	</div>
   <!-- The Grid -->
-  <div class="w3-row" style="min-width:1000px">
+  <div class="w3-row">
     <!-- Left Column -->
-    <div class="w3-col m3" style="max-width:1400px; min-width:240px">
+    <div class="w3-col m3">
       <!-- Profile -->
-      <c:if test="${not empty SID}">
-	      <div class="w3-card w3-round w3-white">
-	        <div class="w3-container">
-	         <h4 class="w3-center">My Profile</h4>
-	         <p class="w3-center"><img src="/fri/img/avatar/${AVT}" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-	         <hr>
-	         <p><i class="fa fa-id-badge fa-fw w3-margin-right w3-text-theme"></i>${SID}</p>
-	         <p class="w3-btn w3-border w3-hover-blue change05bgc" id="myinfobtn"><i class="fa fa-info fa-fw w3-margin-right w3-text-theme"></i> 내 정보 보기</p>
-	         <p class="w3-btn w3-border w3-hover-blue change05bgc" id="logoutbtn"><i class="fa fa-sign-out fa-fw w3-margin-right w3-text-theme"></i> 로그아웃</p>
-	        </div>
-	      </div>
-      </c:if>
-      <br>
       <!-- 로그인 안했을때 -->
       <c:if test="${empty SID}">
 	      <div class="w3-card w3-round w3-white">
@@ -111,10 +112,6 @@ body{
 	         <a class="w3-btn w3-border w3-hover-blue change05bgc dimension2" id="joinbtn" href="/fri/hh/joinpage.fri">
 	         	<i class="fa fa-user-plus fa-fw w3-margin-right w3-text-theme"></i> 회원가입
 	         </a>
-	         <a class="w3-btn w3-border w3-hover-blue change05bgc dimension2" id="pwfindbtn" href="/fri/hh/pwfind.fri">
-	         	<i class="fa fa-user-plus fa-fw w3-margin-right w3-text-theme"></i> 비밀번호 찾기/변경
-	         </a>
-	         <div class="w3-btn w3-hide" id="ajaxtest">test</div>
 	        </form>
 	      </div>
       </c:if>
@@ -140,72 +137,34 @@ body{
 		<div class="w3-teal w3-round-large w3-center dimension7 w3-padding w3-margin-top w3-button w3-hover-cyan change05bgc">Feedback / Q &amp; A</div>
       </div>
       <br>
-      
-    
-    <!-- End Left Column -->
     </div>
     
-    <!-- Middle Column -->
-    <div class="w3-col m7">
+    
+    <!-- Middle Column --> <!-- 작업할 곳 -->
+    <div class="w3-col m9" style="min-width:700px">
       
-      <form class="w3-container w3-card w3-round w3-margin-bottom w3-margin-left w3-margin-right clickable latelyuploadbtn" method="get" action="/fri/juhyun/recipe/resipiPage.fri" id="luvoform"><br>
-      	<input type="hidden" name="bno" value="${LUVO.bno}">
-        <img src="/fri/img/avatar/${LUVO.tname}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <span class="w3-right w3-opacity">${LUVO.sdate}</span>
-        <h4>${LUVO.title}</h4><br>
-        <hr class="w3-clear">
-        <p>${LUVO.id}</p>
-          <div class="w3-row-padding" style="margin:0 -16px">
-            <div class="w3-col">
-              <img src="/fri/upload/${LUVO.savename}" style="width:100%" alt="thumbsnail" class="w3-margin-bottom">
-            </div>
-        </div>
+      <form class="w3-container w3-card w3-round w3-margin-bottom w3-margin-left w3-margin-right w3-padding" method="get" action="/fri/hh/pwfindproc.fri">
+      	<h2>비밀번호 찾기/변경</h2>
+		<div class="w3-col m10 w3-margin-left" style="min-width:660px">
+			<div class="dimension1 w3-padding floatleft w3-right-align">ID</div>
+			<input name="inputid" class="floatleft dimension1" id="inputid" required>
+		</div>
+		<div class="w3-col m10 w3-margin-left" style="min-width:660px">
+			<div class="dimension1 w3-padding floatleft w3-right-align">이메일</div>
+			<input name="inputmail" class="floatleft dimension1" required id="inputmail">
+		</div>
+		<div class="w3-col w3-center">
+			<div class="w3-button w3-light-blue w3-round-large w3-hover-cyan change05bgc" id="checkbtn">인증메일 보내기</div>
+		</div>
+		<div class="w3-col m10 w3-center w3-hide" style="min-width:660px">
+			<input class="w3-light-blue w3-round-large w3-center w3-padding w3-button w3-hover-cyan change05bgc margin8" type="submit" id="submitbtn">
+		</div>
       </form>
-      
       
       
     <!-- End Middle Column -->
     </div>
     
-    <!-- Right Column -->
-    <div class="w3-col m2">
-      <div class="w3-card w3-round w3-white w3-center w3-light-gray">
-        <form class="w3-container w3-btn w3-white" method="get" action="/fri/juhyun/recipe/resipiPage.fri" id="wvoform">
-        	<input type="hidden" name="bno" value="${WVO.bno}">
-          <p>주간 인기 레시피</p>
-          <img src="/fri/img/thumb/${WVO.tname}" alt="Thumb" style="width:100%;">
-          <p><strong>${WVO.title}</strong></p>
-          <p>${WVO.id}</p>
-        </form>
-      </div>
-      <br>
-      
-      <div class="w3-card w3-round w3-white w3-center w3-light-gray">
-        <form class="w3-container w3-btn w3-white" method="get" action="/fri/juhyun/recipe/resipiPage.fri" id="mvoform">
-        	<input type="hidden" name="bno" value="${MVO.bno}">
-          <p>월간 인기 레시피</p>
-          <img src="/fri/img/thumb/${MVO.tname}" alt="Thumb" style="width:100%;">
-          <p><strong>${MVO.title}</strong></p>
-          <p>${MVO.id}</p>
-        </form>
-      </div>
-      <br>
-      
-      
-      <div class="w3-card w3-round w3-white dimension1 w3-hide">
-        <div class="w3-container">
-        	<div class="w3-red h240 w3-margin-bottom">
-	        	<p>채팅내용 w3-red 는 기능 구현후 지울거임
-        	</div>
-        	<input class="dimension1">
-        </div>
-      </div>
-      <br>
-      
-      
-      
-    <!-- End Right Column -->
-    </div>
     
   <!-- End Grid -->
   </div>
@@ -216,13 +175,12 @@ body{
 
 <!-- Footer -->
 <footer class="w3-container w3-theme-d3 w3-padding-16">
-	<a href="/fri/hh/noticelist.fri">공지사항</a>
+  <h5>Footer</h5>
 </footer>
 
 <footer class="w3-container w3-theme-d5">
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
- 
 
 </body>
 </html>
