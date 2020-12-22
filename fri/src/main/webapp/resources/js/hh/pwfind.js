@@ -1,37 +1,21 @@
 $(function(){
 	$('#checkbtn').click(function(){
 		var inputid = $('#inputid').val();
-		var inputmail = $('#inputid').val(); // 여기서부터
-		if(!idrule.test(sid)){
-			alert('아이디는 3~8자 영어여야 합니다')
-			return;
-		}
+		var inputmail = $('#inputmail').val();
 		$.ajax({
-			url:'/fri/hh/idCheck.fri' ,
+			url:'/fri/hh/sendpwfindmail.fri' ,
 			type:'POST' ,
 			dataType:'json' ,
 			data:{
-				id:sid
+				id:inputid ,
+				mail:inputmail
 			} ,
 			success:function(data){
-				if(data.result == 'OK'){
-					var c = confirm('사용가능한 아이디입니다\n사용하시겠습니까?');
-					if(c){
-						$('#idcheckbtn').addClass('w3-hide');
-						$('#idresetbtn').removeClass('w3-hide');
-						$('#inputid').attr('readonly' , true);
-						$('#submitbtn').attr('disabled' , false);
-					}else{
-						$('#submitbtn').attr('disabled' , true);
-					}
-				}else{
-					alert('이미 사용중인 아이디입니다');
-					$('#submitbtn').attr('disabled' , true);
-				}
+				alert(data.result);
 			} ,
 			error:function(){
 				alert('잠시후 다시 시도해주십시오');
-			}
+			} // 아직 테스트 안해봄
 		})
 	});
 	$('#idresetbtn').click(function(){

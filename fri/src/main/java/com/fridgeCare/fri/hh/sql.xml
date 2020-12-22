@@ -83,4 +83,8 @@
 	<select id="submitcondate" parameterType="string">
 		update member set condate = sysdate where id = #{sid}
 	</select>
+	
+	<select id="transtest">
+		insert INTO transtest VALUES(#{transdata})
+	</select>
 </mapper>

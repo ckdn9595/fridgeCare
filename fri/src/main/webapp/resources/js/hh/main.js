@@ -41,4 +41,20 @@ $(function(){
 			}
 		})
 	});
+	$('#test2').click(function(){
+		$.ajax({
+			url:'/fri/hh/mailtest.fri' ,
+			type:'POST' ,
+			dataType:'json' ,
+			data:{
+				ajaxdata:'call'
+			} ,
+			success:function(data){
+				alert(data.result);
+			} ,
+			error:function(){
+				alert('잠시후 다시 시도해주십시오');
+			}
+		})
+	});
 });
