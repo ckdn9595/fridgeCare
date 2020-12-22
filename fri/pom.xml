@@ -239,7 +239,18 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-				
+		
+		<!-- 메일 기능 api -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>javax.mail-api</artifactId>
+		    <version>1.4.7</version>
+		</dependency>  
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.5.6</version>
+		</dependency> 
 	</dependencies>
     <build>
         <plugins>

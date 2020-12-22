@@ -16,6 +16,9 @@ public class AdminService {
 	@Autowired
 	DAO bDao;
 	
+	@Autowired
+	DAO aDao;
+	
 	// 게시글 등록 처리함수
 	@Transactional
 	public void deleteMemb(ModelAndView mv, AdminVO aVO, DAO aDao) {
@@ -47,6 +50,37 @@ public class AdminService {
 		}
 		
 		mv.setViewName("juhyun/admin/deletePageProc");
+		
+		return;
+	}
+	
+	@Transactional
+	public void deleteMemb(AdminVO aVO) {
+		try{
+			
+			System.out.println("mno : " + aVO.getMno());
+			aDao.deleteThumb(aVO.getMno());
+			aDao.deleteReply(aVO.getMno());
+			List<AdminVO> list = aDao.getBnoList(aVO.getMno());
+			
+			aDao.deleteUserLike(aVO.getMno());
+			
+			for(int i = 0 ; i < list.size(); i++) {
+				System.out.println("list i bno : " + list.get(i).getBno());
+				
+				aDao.deleteBoardPart(list.get(i).getBno());
+				aDao.deleteBoardReply(list.get(i).getBno());
+				aDao.deleteLikeBno(list.get(i).getBno());
+			}
+			aDao.deleteBoard(aVO.getMno());
+			aDao.deleteMemb(aVO.getMno());
+			
+			System.out.println("### 계정 삭제 성공 ###");
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("### 계정 삭제 실패 ####");
+		}
+		
 		
 		return;
 	}

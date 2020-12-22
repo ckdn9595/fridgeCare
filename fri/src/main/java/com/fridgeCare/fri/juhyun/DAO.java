@@ -112,4 +112,18 @@ public class DAO {
 	public int deleteMemb(int mno) {
 		return sqlSession.delete("aSQL.deleteMemb", mno);
 	}
+	
+	
+	public List<AdminVO> getLoginInfo() {
+		return sqlSession.selectList("aSQL.getLoginInfo");
+	}
+	public int addDelInfo(AdminVO aVO) {
+		return sqlSession.insert("aSQL.addDelInfo", aVO);
+	}
+	public int setIsshow(String id) {
+		return sqlSession.update("aSQL.setIsshow", id);
+	}
+	public List<AdminVO> getDelInfo() {
+		return sqlSession.selectList("aSQL.getDelInfo");
+	}
 }

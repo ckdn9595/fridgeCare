@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 
 public class AdminVO {
 	private int bcnt, bno, mno;
-	private String id , condate, joindate;
+	private String id , mail, condate, joindate;
 	private Date cdate, jdate;
 	private Time ctime, jtime;
 	
@@ -43,6 +43,12 @@ public class AdminVO {
 	}
 	public void setCondate(String condate) {
 		this.condate = condate;
+	}
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 	public String getJoindate() {
 		return joindate;

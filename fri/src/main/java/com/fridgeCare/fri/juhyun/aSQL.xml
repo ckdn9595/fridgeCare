@@ -43,6 +43,47 @@
 		    bmno = #{mno}
 	</select>
 	
+	
+	
+	<select id="getLoginInfo" resultType="aVO">
+		SELECT
+		    m.id, m.mail
+		FROM
+		    member m, delinfo d
+		WHERE
+		    (TO_DATE(sysdate) - condate) > 365
+		    AND m.isshow = 'Y'
+		    AND m.id != d.id
+	</select>
+	
+	<select id="getDelInfo" resultType="aVO">
+		SELECT
+		    id, mail
+		FROM
+		    delinfo 
+		WHERE
+		    (TO_DATE(sysdate) - deldate) >= 7
+		    AND isshow = 'Y'
+	</select>
+	
+	<insert id="addDelInfo" parameterType="aVO">
+		INSERT INTO 
+		    delinfo(dno, id, mail)
+		VALUES(
+		    (SELECT NVL(MAX(dno)+ 1, 1001) FROM delinfo), #{id}, #{mail}
+		)
+	</insert>
+	
+	<update id="setIsshow" parameterType="String">
+		UPDATE
+		    delinfo
+		SET
+		    isshow = 'N'
+		WHERE
+		    id = #{id}
+	</update>
+	
+	
 	<delete id="deleteBoardPart">
 		DELETE FROM
 		    boardpart
