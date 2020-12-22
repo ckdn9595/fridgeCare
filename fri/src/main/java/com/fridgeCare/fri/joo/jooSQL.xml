@@ -21,9 +21,9 @@
 	
 	<insert id="addThumb" parameterType="jtVO">
 		<selectKey keyProperty="tno" resultType="int" order="BEFORE">
-			select
+			SELECT
 				NVL(MAX(tno) + 1, 1001)
-			from
+			FROM
 				thumb
 		</selectKey>
 		insert into
