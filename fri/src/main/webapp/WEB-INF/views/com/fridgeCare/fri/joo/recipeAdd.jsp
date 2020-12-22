@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" type="text/css" href="/fri/css/cls.css">
-<script type="text/javascript" src="/fri/js/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/fri/js/joo/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/fri/js/joo/recipeAdd.js"></script>
 
 <style>
@@ -43,7 +43,7 @@ div.dimension8{
 <body class="">
 
 
-<!-- Page Container -->
+<!-- Page  Container -->
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:20px">    
 	<div class="w3-col w3-card w3-margin-bottom w3-round">
 		<h1><a href="/fridgeCare/">냉장고를 부탁해!</a></h1>
