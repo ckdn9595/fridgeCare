@@ -166,7 +166,7 @@ body{
     <!-- Right Column -->
     <div class="w3-col m2">
       <div class="w3-card w3-round w3-white w3-center w3-light-gray">
-        <form class="w3-container w3-btn w3-white" method="get" action="/fri/resipiPage.fri">
+        <form class="w3-container w3-btn w3-white" method="get" action="/fri/juhyun/recipe/resipiPage.fri" id="wvoform">
         	<input type="hidden" name="bno" value="${WVO.bno}">
           <p>주간 인기 레시피</p>
           <img src="/fri/img/thumb/${WVO.tname}" alt="Thumb" style="width:100%;">
@@ -177,7 +177,7 @@ body{
       <br>
       
       <div class="w3-card w3-round w3-white w3-center w3-light-gray">
-        <form class="w3-container w3-btn w3-white" method="get" action="/fri/resipiPage.fri">
+        <form class="w3-container w3-btn w3-white" method="get" action="/fri/juhyun/recipe/resipiPage.fri" id="mvoform">
         	<input type="hidden" name="bno" value="${MVO.bno}">
           <p>월간 인기 레시피</p>
           <img src="/fri/img/thumb/${MVO.tname}" alt="Thumb" style="width:100%;">
