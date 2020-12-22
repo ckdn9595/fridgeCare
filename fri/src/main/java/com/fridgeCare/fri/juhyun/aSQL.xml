@@ -56,6 +56,12 @@
 		where
 		    lmno = #{mno}
 	</delete>
+	<delete id="deleteLikeBno">
+		delete from
+		    userlike
+		where
+		    lbno = #{bno}
+	</delete>
 	<delete id="deleteBoardReply">
 		delete from
 		    reply

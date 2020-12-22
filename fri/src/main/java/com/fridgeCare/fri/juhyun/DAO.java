@@ -100,6 +100,9 @@ public class DAO {
 	public int deleteUserLike(int mno) {
 		return sqlSession.delete("aSQL.deleteUserLike", mno);
 	}
+	public int deleteLikeBno(int bno) {
+		return sqlSession.delete("aSQL.deleteLikeBno", bno);
+	}
 	public int deleteBoard(int mno) {
 		return sqlSession.delete("aSQL.deleteBoard", mno);
 	}

@@ -215,6 +215,31 @@
 		    <artifactId>jackson-annotations</artifactId>
 		    <version>2.11.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+		<!-- 쿼츠 -->
+		<!-- <dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>1.8.6</version>
+		</dependency> -->
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>2.3.2</version>
+		</dependency>
+		<!-- 스프링 프레임워크 서포트 -->
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-context-support</artifactId>
+		  <version>${org.springframework-version}</version>
+		</dependency>
+		<!-- spring-tx -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+				
 	</dependencies>
     <build>
         <plugins>

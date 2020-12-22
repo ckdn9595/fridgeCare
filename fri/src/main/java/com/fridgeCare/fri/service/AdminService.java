@@ -33,11 +33,13 @@ public class AdminService {
 				
 				aDao.deleteBoardPart(list.get(i).getBno());
 				aDao.deleteBoardReply(list.get(i).getBno());
+				aDao.deleteLikeBno(list.get(i).getBno());
 			}
 			aDao.deleteBoard(aVO.getMno());
 			aDao.deleteMemb(aVO.getMno());
 			
 			mv.addObject("VIEW", "/fri/juhyun/admin/deletePage.fri");
+			System.out.println("### 글 삭제 성공 ###");
 		} catch(Exception e) {
 			e.printStackTrace();
 			mv.addObject("VIEW", "/fri/juhyun/admin/deletePage.fri");

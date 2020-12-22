@@ -135,16 +135,12 @@ span.activepage{
     </div>
     <!-- Middle Column --> <!-- 작업할 곳 -->
     <div class="w3-col m8 w3-margin-left"><!-- 특정 회원 삭제 -->
-   		<form method="POST" action="/fri/juhyun/admin/deletePageProc.fri" id="frm" class="w3-col w3-center w3-round-large w3-margin-top">
+   		<form method="POST" id="frm" class="w3-col w3-center w3-round-large w3-margin-top">
 	    	<label class="w3-col m5 w3-gray w3-padding">회원 검색</label>
 	    	<input class="w3-col m5 w3-padding" id="id" name="id">
 	    	<div class="w3-col m2 w3-padding w3-button w3-gray" id="sbtn">조회</div>
    		</form>
-   		
-    	<form method="POST" action="/fri/juhyun/admin/delete.fri" id="dfrm">
-    		<input type="hidden" value="${INFO.id}">
-    	</form>
-   		
+
    		<div class="w3-col w3-center w3-margin-top">
    			<label class="w3-col m3 w3-border-left">아이디</label>
    			<label class="w3-col m3 w3-border-left">게시글수</label>
@@ -152,7 +148,7 @@ span.activepage{
    			<label class="w3-col m3 w3-border-left">가입일</label>
    		</div>
    		<div class="w3-col w3-center w3-margin-top">
-   			<div class="w3-col m3 w3-border-left w3-border-top format">${INFO.id}</div>
+   			<div class="w3-col m3 w3-border-left w3-border-top format id">${INFO.id}</div>
    			<div class="w3-col m3 w3-border-left w3-border-top format">${INFO.bcnt}</div>
    			<div class="w3-col m3 w3-border-left w3-border-top format">${INFO.condate}</div>
    			<div class="w3-col m3 w3-border-left w3-border-top format">${INFO.joindate}</div>

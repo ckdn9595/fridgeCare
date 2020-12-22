@@ -19,6 +19,7 @@ public class adminController {
 	@Autowired
 	AdminService aSrvc;
 	
+	
 	// 관리자 계정 로그인 폼 보기 함수
 	@RequestMapping("/admin.fri")
 	public ModelAndView adminLogin(ModelAndView mv) {
@@ -65,8 +66,7 @@ public class adminController {
 	public ModelAndView delete(ModelAndView mv,AdminVO aVO) {
 		
 		
-		//aVO.setMno(aDao.getMno(aVO.getId()));
-		aVO.setMno(aDao.getMno("jiwoo"));
+		aVO.setMno(aDao.getMno(aVO.getId()));
 		
 		System.out.println("mno : " + aVO.getMno());
 		
