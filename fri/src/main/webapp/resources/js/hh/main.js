@@ -16,4 +16,10 @@ $(function(){
 	$('#luvoform').click(function(){
 		$(this).submit();
 	});
+	$('#wvoform').click(function(){
+		$(this).submit();
+	});
+	$('#mvoform').click(function(){
+		$(this).submit();
+	});
 });
