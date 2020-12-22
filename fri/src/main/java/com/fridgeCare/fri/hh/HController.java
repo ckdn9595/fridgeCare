@@ -2,7 +2,6 @@ package com.fridgeCare.fri.hh;
 
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
@@ -59,6 +58,11 @@ public class HController {
 	public String joinpage() {
 		
 		return "hh/joinpage";
+	}
+	@RequestMapping("/pwfind.fri")
+	public String pwfind() {
+		
+		return "hh/pwfind";
 	}
 	@RequestMapping("/myinfo.fri")
 	public ModelAndView myinfo(ModelAndView mv , RedirectView rv , HttpSession s) {
