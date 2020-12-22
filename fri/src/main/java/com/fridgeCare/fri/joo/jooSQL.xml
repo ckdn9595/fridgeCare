@@ -27,16 +27,9 @@
 				thumb
 		</selectKey>
 		insert into
-		    thumb(tmno, tno, dir, tname)
+		    thumb(tno, dir, tname)
 		values(
-			(select
-				mno 
-			from 
-				member
-			where
-				id = #{id}
-			),
-		    #{tno}, '/img/thumb/', #{tname}
+		    #{tno}, '/fri/img/thumb/', #{tname}
 		)
 	</insert>
 	
@@ -49,4 +42,15 @@
 		    #{oriname}, #{savename}, '/img/upload/'
 		)
 	</insert>
+	
+	<select id="getThumb" resultType="String" parameterType="int">
+		SELECT
+			tname
+		FROM
+			thumb
+		WHERE
+			fisshow = 'Y'
+			AND tno = #{tno}
+	</select>
+	
 </mapper>
