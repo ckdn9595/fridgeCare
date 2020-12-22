@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jSQL">
+	<select id="getInList" resultType="String">
+		SELECT 
+			INAME 
+		FROM 
+			INGREDIENT
+	</select>
+	
+	<insert id="addRecipe" parameterType="jVO">
+		INSERT INTO
+		    board(bno, bmno, tno, title, category, ingred, video, time, situat)
+		VALUES(
+		    (SELECT NVL(MAX(bno) + 1, 1001) FROM board),
+		    (select mno from member where id= #{id}),
+		    #{tno}, #{title}, #{category}, #{inbox}, #{video}, #{time}, #{situat}
+		)
+	</insert>
+	
+	<insert id="addThumb" parameterType="jtVO">
+		<selectKey keyProperty="tno" resultType="int" order="BEFORE">
+			select
+				NVL(MAX(tno) + 1, 1001)
+			from
+				thumb
+		</selectKey>
+		insert into
+		    thumb(tmno, tno, dir, tname)
+		values(
+			(select
+				mno 
+			from 
+				member
+			where
+				id = #{id}
+			),
+		    #{tno}, '/img/thumb/', #{tname}
+		)
+	</insert>
+	
+	<insert id="addRecipeDetail" parameterType="jrVO">
+		insert into
+		    boardpart(bpno, body, bno, oriname, savename, dir)
+		values(
+		    (select NVL(MAX(bpno) + 1, 1001) from boardpart),
+		    #{body}, (select MAX(bno) from board),
+		    #{oriname}, #{savename}, '/img/upload/'
+		)
+	</insert>
+</mapper>
