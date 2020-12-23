@@ -120,6 +120,15 @@ public class DAO {
 	public int addDelInfo(AdminVO aVO) {
 		return sqlSession.insert("aSQL.addDelInfo", aVO);
 	}
+	public List<AdminVO> getSevenLogin() {
+		return sqlSession.selectList("aSQL.getSevenLogin");
+	}
+	public int getIsshow(String id) {
+		return sqlSession.selectOne("aSQL.getIsshow", id);
+	}
+	public int deleteDelInfo(String id) {
+		return sqlSession.delete("aSQL.deleteDelInfo", id);
+	}
 	public int setIsshow(String id) {
 		return sqlSession.update("aSQL.setIsshow", id);
 	}

@@ -47,13 +47,13 @@
 	
 	<select id="getLoginInfo" resultType="aVO">
 		SELECT
-		    m.id, m.mail
+		    id, mail
 		FROM
-		    member m, delinfo d
+		    member m
 		WHERE
-		    (TO_DATE(sysdate) - condate) > 365
-		    AND m.isshow = 'Y'
-		    AND m.id != d.id
+		    (sysdate - condate) > 365
+		    AND isshow = 'Y'
+		    AND id NOT IN(SELECT id FROM delinfo)
 	</select>
 	
 	<select id="getDelInfo" resultType="aVO">
@@ -62,9 +62,40 @@
 		FROM
 		    delinfo 
 		WHERE
-		    (TO_DATE(sysdate) - deldate) >= 7
+		    (sysdate - deldate) >= 7
 		    AND isshow = 'Y'
 	</select>
+	
+	<select id="getIsshow" resultType="int" parameterType="String">
+		SELECT
+		    COUNT(*)
+		FROM
+		    delinfo
+		WHERE
+		    isshow = 'N'
+		    AND id = #{id}
+	</select>
+	
+	<select id="getSevenLogin" resultType="aVO">
+		SELECT
+		    id, mail
+		FROM
+		    delinfo d
+		WHERE
+		    id NOT IN(SELECT
+		                m.id
+		            FROM
+		                member m
+		            WHERE
+		                (sysdate - condate) > 365)
+	</select>
+	
+	<delete id="deleteDelInfo" parameterType="String">
+		DELETE FROM
+			delinfo
+		WHERE
+			id = #{id}
+	</delete>
 	
 	<insert id="addDelInfo" parameterType="aVO">
 		INSERT INTO 
