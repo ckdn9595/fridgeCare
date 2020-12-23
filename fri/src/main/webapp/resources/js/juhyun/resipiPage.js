@@ -42,7 +42,13 @@ $(document).ready(function(){
 	});
 	
 	$('#rbtn').click(function(){
-		$('#rfrm').submit();
+		var body = $('#body').val();
+		if(body != ''){
+			$('#rfrm').submit();
+		}else{
+			alert('내용을 입력해주세요.');
+			return;
+		}
 	});
 	
 	$('#firstpagebtn').click(function(){
