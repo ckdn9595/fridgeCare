@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fridgeCare.fri.joo.vo.JooVO;
@@ -40,7 +41,7 @@ public class JooController {
 	
 	@RequestMapping("/joo/recipeAddProc.fri")
 	public ModelAndView addRecipeProc(ModelAndView mv, JooVO jVO, JTumbVO jtVO) {
-		//System.out.println("########################jVO id" + jVO.getId());
+		
 		jSrvc.addAll(mv, jVO, jtVO);
 		return mv;
 	}

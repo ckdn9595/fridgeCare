@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class JRecipeVO {
 	private int bpno, bno;
 	private String body, oriname, savename, dir;
+	private String[] fname;
 	private MultipartFile[] image;
 	
 	public MultipartFile[] getImage() {
@@ -48,6 +49,12 @@ public class JRecipeVO {
 	}
 	public void setDir(String dir) {
 		this.dir = dir;
+	}
+	public String[] getFname() {
+		return fname;
+	}
+	public void setFname(String[] fname) {
+		this.fname = fname;
 	}
 	
 }

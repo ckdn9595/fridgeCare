@@ -35,24 +35,29 @@ public class JFileUtil {
 		path = path.substring(0, path.indexOf("/WEB-INF")) + "/resources" + dir;
 		
 		for (int i = 0; i < file.length; i++) {
-			JRecipeVO jtVO = new JRecipeVO();
-			String oriName = file[i].getOriginalFilename();
+			JRecipeVO jrVO = new JRecipeVO();
+			String oriName = "";
+			oriName = file[i].getOriginalFilename();
+			String savename = "";
+			try{
+				savename = rename(path, oriName);
+			} catch(Exception e) {
+				System.out.println("############### error");
+			}
+			
 			if(oriName == null || oriName.length() == 0) {
-				continue;
+			} else {
+				jrVO.setOriname(oriName);
+				jrVO.setSavename(savename);
+				jrVO.setDir(dir);
+				File tmp = new File(path, savename);
+				file[i].transferTo(tmp);
 			}
 		
-		String savename = rename(path, oriName);
-		jtVO.setOriname(oriName);
-		jtVO.setSavename(savename);
-		jtVO.setDir(dir);
-		
-		File tmp = new File(path, savename);
-		file[i].transferTo(tmp);
-		
-		list.add(jtVO);
+			list.add(jrVO);
 		}
 		
-	return list;
+		return list;
 	}
 	
 	public JTumbVO saveProc(MultipartFile file, String dir) throws Exception{

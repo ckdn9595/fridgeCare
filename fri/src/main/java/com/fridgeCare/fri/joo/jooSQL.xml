@@ -10,10 +10,13 @@
 	</select>
 	
 	<insert id="addRecipe" parameterType="jVO">
+		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+			(SELECT NVL(MAX(bno) + 1, 1001) FROM board)
+		</selectKey>
 		INSERT INTO
 		    board(bno, bmno, tno, title, category, ingred, video, time, situat)
 		VALUES(
-		    (SELECT NVL(MAX(bno) + 1, 1001) FROM board),
+		    #{bno},
 		    (select mno from member where id= #{id}),
 		    #{tno}, #{title}, #{category}, #{inbox}, #{video}, #{time}, #{situat}
 		)
@@ -35,14 +38,40 @@
 	
 	<insert id="addRecipeDetail" parameterType="jrVO">
 		insert into
-		    boardpart(bpno, body, bno, oriname, savename, dir)
+		    boardpart(
+	    <if test="oriname != null">
+		    	bpno, body, bno, oriname, savename, dir
+	    </if>
+	    <if test="oriname == null">
+		    	bpno, body, bno
+	    </if>
+		    )
 		values(
+		<if test="oriname != null">
 		    (select NVL(MAX(bpno) + 1, 1001) from boardpart),
-		    #{body}, (select MAX(bno) from board),
-		    #{oriname}, #{savename}, '/img/upload/'
+		    #{body}, #{bno},
+		    #{oriname}, #{savename}, '/fri/img/upload/'
+		</if>	
+		<if test="oriname == null">
+		    (select NVL(MAX(bpno) + 1, 1001) from boardpart),
+		    #{body}, #{bno}
+		</if>
 		)
 	</insert>
 	
+	<!-- 
+	<insert id="addRecipeDetailNoImage" parameterType="jrVO">
+		insert into
+		    boardpart(
+		    	bpno, body, bno
+		    )
+		values(
+		    (select NVL(MAX(bpno) + 1, 1001) from boardpart),
+		    #{body}, #{bno}
+		)
+	</insert>
+	 -->
+
 	<select id="getThumb" resultType="String" parameterType="int">
 		SELECT
 			tname

@@ -9,9 +9,16 @@ public class JooVO {
 	private String id, title, category, video, situat, inbox;
 	private String[] inboxList;
 	private String[] body;
-	
+	private String[] fname;
 	private MultipartFile[] image;
 	
+	
+	public String[] getFname() {
+		return fname;
+	}
+	public void setFname(String[] fname) {
+		this.fname = fname;
+	}
 	public int getBpno() {
 		return bpno;
 	}
