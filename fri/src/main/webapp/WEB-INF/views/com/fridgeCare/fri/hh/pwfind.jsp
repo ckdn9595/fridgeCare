@@ -155,12 +155,29 @@ body{
 		</div>
 		<div class="w3-col w3-center">
 			<div class="w3-button w3-light-blue w3-round-large w3-hover-cyan change05bgc" id="checkbtn">인증메일 보내기</div>
+			<!-- <div class="w3-button w3-light-blue w3-round-large w3-hover-cyan change05bgc" id="checkbtn2">인증메일 보내기</div> -->
 		</div>
-		<div class="w3-col m10 w3-center w3-hide" style="min-width:660px">
-			<input class="w3-light-blue w3-round-large w3-center w3-padding w3-button w3-hover-cyan change05bgc margin8" type="submit" id="submitbtn">
+		<div class="w3-col w3-hide w3-margin-top" id="ANdiv">
+			<div class="w3-col m10 w3-margin-left" style="min-width:660px">
+				<div class="dimension1 w3-padding floatleft w3-right-align">인증번호</div>
+				<input name="inputAN" class="floatleft dimension1" id="inputAN" required>
+			</div>
+			<div class="w3-col m10 w3-center" style="min-width:660px">
+				<input class="w3-light-blue w3-round-large w3-center w3-padding w3-button w3-hover-cyan change05bgc margin8" type="submit" id="submitbtn">
+			</div>
 		</div>
       </form>
-      
+      <div id="nottest" class="w3-hide">
+      	<span id="sonic" class="w3-hide ntc"></span>
+      	<span id="hh" class="ntc">
+      		<span>takethis1</span>
+      	</span>
+      	<span id="mario" class="w3-hide ntc"></span>
+      	<span id="good" class="ntc">
+      		<span>takethis2</span>
+      	</span>
+      	<span id="saedam" class="w3-hide ntc"></span>
+      </div>
       
     <!-- End Middle Column -->
     </div>

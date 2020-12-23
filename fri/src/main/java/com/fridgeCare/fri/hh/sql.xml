@@ -87,4 +87,13 @@
 	<select id="transtest">
 		insert INTO transtest VALUES(#{transdata})
 	</select>
+	
+	<select id="membercheck" resultType="int" parameterType="ivo">
+		select count(*) from member where id = #{inputid} and
+		mail = #{inputmail} and isshow = 'Y'
+	</select>
+	
+	<select id="updateAN" parameterType="int">
+		update authentication set newdata = #{AN}
+	</select>
 </mapper>

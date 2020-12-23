@@ -116,7 +116,7 @@ body{
 	         </a>
 	         <div class="w3-btn w3-hide" id="ajaxtest">test</div>
 	         <div class="w3-btn w3-hide" id="test2">mail test</div>
-	         <a class="w3-btn" href="/fri/hh/transtest.fri">trans test</a>
+	         <a class="w3-btn w3-hide" href="/fri/hh/transtest.fri">trans test</a>
 	        </form>
 	      </div>
       </c:if>
@@ -131,7 +131,7 @@ body{
 		</form>
 		<c:if test="${not empty SID}">
 			<div class="w3-blue w3-round-large w3-center dimension7 w3-padding w3-margin-top">Our refri</div>
-			<form action="/fri/recipeAdd.fri" method="get">
+			<form action="/fri/joo/recipeAdd.fri" method="get">
 				<input class="w3-gray w3-round-large w3-center dimension3 w3-padding-small inline w3-button w3-hover-cyan change05bgc" type="submit" value="내 레시피 작성">
 			</form>
 		</c:if>
