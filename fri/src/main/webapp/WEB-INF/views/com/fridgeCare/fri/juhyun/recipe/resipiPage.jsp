@@ -256,8 +256,8 @@ div.dimension8{
 					<img class="w3-col" src="${other.dir}" id="" style="height: 100px;">
 					<h6 class="w3-col" id="">${other.title}</h6>
 				</div>
-				<form method="POST" action="/fri/resipiPage.fri" id="${other.bno}">
-					<input type="hidden" name="${other.bno}">
+				<form method="GET" action="/fri/juhyun/recipe/resipiPage.fri" id="${other.bno}">
+					<input type="hidden" name="bno" value="${other.bno}">
 				</form>
 				</c:forEach>
 			</div>
