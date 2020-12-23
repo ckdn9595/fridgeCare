@@ -32,7 +32,7 @@
 	    <typeAlias alias="jrvo" type="com.fridgeCare.fri.joo.vo.JRecipeVO"/>
 	    <typeAlias alias="jtvo" type="com.fridgeCare.fri.joo.vo.JTumbVO"/>
 	</typeAliases>
-	
+
 	<!-- 매퍼로 등록된 xml들은 위에 등록된 타입들의 변수명을 인식할수 있게 된다 -->
 	<mappers><!-- 매퍼등록시 주의할점은 자바와 다르게 .이아니고 /로 경로안쪽으로 들어간다 -->
 		<mapper resource="com/fridgeCare/fri/hh/sql.xml"/>

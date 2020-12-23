@@ -16,7 +16,7 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
-		<!-- Spring -->
+		<!-- Spring --><!-- 커밋을위해 달아보는 주석 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
