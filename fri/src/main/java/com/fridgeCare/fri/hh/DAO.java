@@ -54,4 +54,10 @@ public class DAO {
 	public int transtest(Object transdata) {
 		return sqlSession.insert("transtest" , transdata);
 	}
+	public int membercheck(InputVO ivo) {
+		return sqlSession.selectOne("membercheck" , ivo);
+	}
+	public int newAN(int AN) {
+		return sqlSession.update("updateAN", AN);
+	}
 }

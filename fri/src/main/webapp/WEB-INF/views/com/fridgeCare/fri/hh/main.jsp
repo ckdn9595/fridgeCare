@@ -116,7 +116,7 @@ body{
 	         </a>
 	         <div class="w3-btn w3-hide" id="ajaxtest">test</div>
 	         <div class="w3-btn w3-hide" id="test2">mail test</div>
-	         <a class="w3-btn" href="/fri/hh/transtest.fri">trans test</a>
+	         <a class="w3-btn w3-hide" href="/fri/hh/transtest.fri">trans test</a>
 	        </form>
 	      </div>
       </c:if>

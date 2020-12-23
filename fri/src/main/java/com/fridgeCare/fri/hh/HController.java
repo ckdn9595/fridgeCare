@@ -3,6 +3,17 @@ package com.fridgeCare.fri.hh;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -17,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.fridgeCare.fri.hh.util.Fileuploader;
+import com.fridgeCare.fri.hh.util.Navermail;
 import com.fridgeCare.fri.hh.util.Thumbnail;
 import com.fridgeCare.fri.hh.vo.InputVO;
 import com.fridgeCare.fri.hh.vo.LatelyUploadVO;
@@ -231,10 +243,31 @@ public class HController {
 	public String mailtest(String ajaxdata) {
 		String view = "{\"result\" : \"NO\"}";
 		System.out.println(ajaxdata);
-		String hanhoon12 = "hanhoon12";
+		String hanhoon12 = "hanhoon12@naver.com";
 		HSD hsd = new HSD();
 		String naverpw = hanhoon12.substring(7) + "q" + hsd.data1 + Integer.toString(5+7);
-		System.out.println(naverpw);
+		Properties prop = new Properties();
+		prop.put("mail.smtp.host", "smtp.naver.com");
+		prop.put("mail.smtp.port", 587);
+		prop.put("mail.smtp.auth", "true");
+		Session session = Session.getDefaultInstance(prop, new Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(hanhoon12, naverpw);
+			}
+		});
+		MimeMessage message = new MimeMessage(session);
+		try {
+			message.setFrom(new InternetAddress(hanhoon12));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress("hanpawu@gmail.com"));
+			message.setSubject("test title");
+			message.setText("test body");
+			Transport.send(message);
+			System.out.println("Let's check");
+		} catch (AddressException e) {
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
 		return view;
 	}
 	@RequestMapping("transtest.fri")
@@ -249,6 +282,30 @@ public class HController {
 		System.out.println(cnt);
 		return mv;
 	}
+	@RequestMapping(value="/sendpwfindmail.fri" , produces="application/json;charset=utf8")
+	@ResponseBody
+	public String sendPWfindmail(String id , String mail) {
+		String view = "{\"result\" : \"OK\"}";
+		InputVO ivo = new InputVO();
+		ivo.setInputid(id);
+		ivo.setInputmail(mail);
+		cnt = hdao.membercheck(ivo);
+		if(cnt == 0) {
+			view = "{\"result\" : \"그런회원은 없다\"}";
+		}else {
+			int AN = (int) (9999 - Math.random()*5000);
+			cnt = hdao.newAN(AN);
+			if(cnt == 0) {
+				view = "{\"result\" : \"잠시후 다시 시도해라\"}";
+				System.out.println("error occur");
+			}else {
+				Navermail nm = new Navermail();
+				nm.send("hanpawu@gmail.com", AN);
+			}
+		}
+		return view;
+	}
+	//pwfindproc 만들어야됨
 }
 
 class HSD{
