@@ -106,6 +106,12 @@ public class DAO {
 	public int deleteBoard(int mno) {
 		return sqlSession.delete("aSQL.deleteBoard", mno);
 	}
+	public List<AdminVO> getBoardThumb(int mno) {
+		return sqlSession.selectList("aSQL.getBoardThumb", mno);
+	}
+	public int deleteBoardThumb(int tno) {
+		return sqlSession.delete("aSQL.deleteBoardThumb", tno);
+	}
 	public int deleteBoardReply(int bno) {
 		return sqlSession.delete("aSQL.deleteBoardReply", bno);
 	}

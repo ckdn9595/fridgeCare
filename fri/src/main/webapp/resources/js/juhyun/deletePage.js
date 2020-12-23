@@ -14,14 +14,20 @@ $(document).ready(function(){
 		alert('초기화 되었습니다.');
 	});
 	$('#dbtn').click(function(){
-		var access = confirm('정말 삭제 하시겠습니까?');
-		
-		if(access == true){
-			$('#id').val($('.id').html());
-			$('#frm').attr('action','/fri/juhyun/admin/delete.fri');
-			$('#frm').submit();
+		var cnt1 = $('#id').val();
+		var cnt2 = $('.id').html();
+		if(cnt1 != '' || cnt2 != ''){
+			var access = confirm('정말 삭제 하시겠습니까?');
+			
+			if(access == true){
+				$('#id').val($('.id').html());
+				$('#frm').attr('action','/fri/juhyun/admin/delete.fri');
+				$('#frm').submit();
+			}else{
+				return;
+			}
 		}else{
-			return;
+			alert('아이디를 입력해주세요.');
 		}
 	});
 });

@@ -5,19 +5,21 @@
 <mapper namespace="aSQL">
 	<select id="getMemb" resultType="aVO" parameterType="String">
 		SELECT
-			id, (
-				SELECT
-					COUNT(*)
-				FROM
-					board
-				WHERE
-					bmno = mno
-					) bcnt, condate, joindate
+		    id, NVL(b, 0) bcnt, condate, joindate
 		FROM
-			member m
-			
+		    member m, 
+		    (
+		        SELECT
+		            bmno, COUNT(*) b
+		        FROM
+		            board
+		        GROUP BY
+		            bmno
+		    ) 
+		    
 		WHERE
-			id = #{id}
+		    mno = bmno(+)
+		    AND id = #{id}
 	</select>
 	
 	<delete id="deleteThumb">
@@ -145,6 +147,25 @@
 		    board
 		WHERE
 		    bmno = #{mno}
+	</delete>
+	<select id="getBoardThumb" resultType="aVO" parameterType="int">
+		SELECT
+		    tno
+		FROM
+		    thumb
+		WHERE
+		    tno = ANY( SELECT
+		                tno
+		            FROM
+		                board
+		            WHERE
+		                bmno = #{mno})
+	</select>
+	<delete id="deleteBoardThumb">
+		DELETE FROM
+		    thumb
+		WHERE
+		    tno = #{tno}
 	</delete>
 	<delete id="deleteMemb">
 		DELETE FROM

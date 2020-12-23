@@ -38,15 +38,20 @@ public class AdminService {
 				aDao.deleteBoardReply(list.get(i).getBno());
 				aDao.deleteLikeBno(list.get(i).getBno());
 			}
+			List<AdminVO> thumb = aDao.getBoardThumb(aVO.getMno());
 			aDao.deleteBoard(aVO.getMno());
+			for(int i = 0; i < thumb.size(); i++) {
+				System.out.println("삭제 tno : " + thumb.get(i).getTno());
+				aDao.deleteBoardThumb(thumb.get(i).getTno());
+			}
 			aDao.deleteMemb(aVO.getMno());
 			
 			mv.addObject("VIEW", "/fri/juhyun/admin/deletePage.fri");
-			System.out.println("### 글 삭제 성공 ###");
+			System.out.println("### 계정 삭제 성공 ###");
 		} catch(Exception e) {
 			e.printStackTrace();
 			mv.addObject("VIEW", "/fri/juhyun/admin/deletePage.fri");
-			System.out.println("### 글 등록 실패 ####");
+			System.out.println("### 계정 삭제 실패 ####");
 		}
 		
 		mv.setViewName("juhyun/admin/deletePageProc");
@@ -73,6 +78,11 @@ public class AdminService {
 				aDao.deleteLikeBno(list.get(i).getBno());
 			}
 			aDao.deleteBoard(aVO.getMno());
+			List<AdminVO> thumb = aDao.getBoardThumb(aVO.getMno());
+			for(int i = 0; i < thumb.size(); i++) {
+				System.out.println("삭제 tno : " + thumb.get(i).getTno());
+				aDao.deleteBoardThumb(thumb.get(i).getTno());
+			}
 			aDao.deleteMemb(aVO.getMno());
 			
 			System.out.println("### 계정 삭제 성공 ###");
@@ -83,5 +93,15 @@ public class AdminService {
 		
 		
 		return;
+	}
+	
+	public void cencerBoard(List<AdminVO> list) {
+		try {
+			
+			System.out.println("게시글 검열 성공");
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("게시글 검열 실패");
+		}
 	}
 }

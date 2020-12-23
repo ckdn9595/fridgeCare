@@ -54,8 +54,8 @@ public class adminController {
 	@RequestMapping("/deletePageProc.fri")
 	public ModelAndView deletePageProc(ModelAndView mv, HttpSession session, AdminVO aVO) {
 		
+		System.out.println("id : " + aVO.getId());
 		AdminVO info = aDao.getMemb(aVO.getId());
-		
 		mv.addObject("INFO",info);
 		
 		mv.setViewName("juhyun/admin/deletePage");
@@ -64,14 +64,13 @@ public class adminController {
 	
 	@RequestMapping("/delete.fri")
 	public ModelAndView delete(ModelAndView mv,AdminVO aVO) {
-		
-		
-		aVO.setMno(aDao.getMno(aVO.getId()));
-		
-		System.out.println("mno : " + aVO.getMno());
-		
-		aSrvc.deleteMemb(mv, aVO, aDao);
-		
+		try {
+			aVO.setMno(aDao.getMno(aVO.getId()));
+			
+			System.out.println("mno : " + aVO.getMno());
+			
+			aSrvc.deleteMemb(mv, aVO, aDao);
+		}catch(Exception e) {}
 		mv.setViewName("juhyun/admin/deletePage");
 		return mv;
 	}

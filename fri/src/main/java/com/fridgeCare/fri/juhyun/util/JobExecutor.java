@@ -25,7 +25,7 @@ public class JobExecutor{
 	@Autowired
 	AdminService aSrvc;
 	
-	@Scheduled(cron="0 59 23 * * ?")
+	@Scheduled(cron="0 19 14 * * ?")
 	@Transactional
 	public void jobScheduler(){
 		// 메일을 보낼 사람들의 아이디 메일을 리스트에 담는다

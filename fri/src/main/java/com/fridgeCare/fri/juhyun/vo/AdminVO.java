@@ -4,11 +4,17 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 
 public class AdminVO {
-	private int bcnt, bno, mno;
+	private int bcnt, bno, mno, tno;
 	private String id , mail, condate, joindate;
 	private Date cdate, jdate;
 	private Time ctime, jtime;
 	
+	public int getTno() {
+		return tno;
+	}
+	public void setTno(int tno) {
+		this.tno = tno;
+	}
 	public int getMno() {
 		return mno;
 	}
