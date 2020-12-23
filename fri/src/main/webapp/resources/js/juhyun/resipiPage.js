@@ -22,7 +22,6 @@ $(document).ready(function(){
 */		
 		var lcnt = $('#lfrm').children().last().val();
 		
-		alert(lcnt);
 		if(lcnt == '1'){
 			alert('이미 추천한 게시글입니다.');
 			return;
@@ -43,8 +42,14 @@ $(document).ready(function(){
 	
 	$('#rbtn').click(function(){
 		var body = $('#body').val();
+		var mno = $('#mno').val();
 		if(body != ''){
-			$('#rfrm').submit();
+			if(mno != ''){
+				$('#rfrm').submit();
+			}else{
+				alert('로그인을 해주세요.');
+				return;
+			}
 		}else{
 			alert('내용을 입력해주세요.');
 			return;

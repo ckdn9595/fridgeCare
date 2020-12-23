@@ -204,7 +204,7 @@ div.dimension8{
 				<form method="POST" action="/fri/juhyun/recipe/resipiReply.fri" class="w3-col w3-border-bottom w3-padding w3-margin-top" id="rfrm">
 					<input class="w3-col m8" style="height: 40px;" id="body" name="body">
 					<input type="hidden" name="bno" value="${RESIPI.bno}">
-					<input type="hidden" name="mno" value="${RESIPI.mno}">
+					<input type="hidden" id="mno" name="mno" value="${MNO}">
 					<div class="w3-col m4 w3-button w3-border" id="rbtn">작성</div>
 				</form>
 				</c:if>
