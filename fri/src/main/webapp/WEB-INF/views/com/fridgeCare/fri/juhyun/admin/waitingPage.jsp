@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="/fri/css/my.css">
 <link rel="stylesheet" type="text/css" href="/fri/css/w3.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="/fri/js/juhyun/admin.js"></script>
+<script type="text/javascript" src="/fri/js/juhyun/partnerBoard.js"></script>
 
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
@@ -135,21 +135,7 @@ span.activepage{
     </div>
     <!-- Middle Column --> <!-- 작업할 곳 -->
     <div class="w3-col m9">
-	    <form method="POST" action="" id="bfrm">
-		</form>
     
-    	<div class="w3-col m5 w3-margin">
-	    	<div class="w3-col m5 w3-center w3-red w3-button w3-round-large" style="margin-left: 100px;" id="wbtn">삭제 요청 확인란</div>
-    	</div>
-    	<div class="w3-col m5 w3-margin">
-	    	<div class="w3-col m5 w3-center w3-blue w3-button w3-round-large" style="margin-left: 100px;" id="cbtn">게시글 검열</div>
-    	</div>
-    	<div class="w3-col m5 w3-margin">
-	    	<div class="w3-col m5 w3-center w3-purple w3-button w3-round-large" style="margin-left: 100px;" id="dbtn">삭제 예정 메일 전송</div>
-    	</div>
-    	<div class="w3-col m5 w3-margin">
-	    	<div class="w3-col m5 w3-center w3-purple w3-button w3-round-large" style="margin-left: 100px;" id="cdbtn">특정 회원글 삭제</div>
-    	</div>
     <!-- End Middle Column -->
     </div>
     

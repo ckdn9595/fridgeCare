@@ -69,6 +69,7 @@ public class ResipiController {
 		mv.addObject("INGRED",ingredient);
 		mv.addObject("CNT",count);
 		mv.addObject("PAGE",page);
+		rVO.setSearch("김치/밥/");
 		if(rVO.getSearch() != null) {
 			List<ResipiVO> other = rDao.getOther(rVO.getSearch());
 			mv.addObject("OTHER",other);

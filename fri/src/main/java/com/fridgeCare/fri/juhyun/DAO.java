@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fridgeCare.fri.juhyun.vo.PartnerVO;
-import com.fridgeCare.fri.juhyun.vo.ResipiVO;
+import com.fridgeCare.fri.juhyun.vo.*;
 
 public class DAO {
 	@Autowired
@@ -76,5 +75,75 @@ public class DAO {
 	// 보드 조회수 추가 전담 처리 함수
 	public int addCnt(int bno) {
 		return sqlSession.update("pSQL.addCnt", bno);
+	}
+	
+	// 관리자 계정 
+	
+	// 삭제할 회원 정보 조회 처리 함수
+	public AdminVO getMemb(String id) {
+		return sqlSession.selectOne("aSQL.getMemb", id);
+	}
+	
+	// 회원 정보 삭제 처리 함수들
+	public int deleteThumb(int mno) {
+		return sqlSession.delete("aSQL.deleteThumb", mno);
+	}
+	public int deleteReply(int mno) {
+		return sqlSession.delete("aSQL.deleteReply", mno);
+	}
+	public List<AdminVO> getBnoList(int mno){
+		return sqlSession.selectList("aSQL.getBnoList", mno);
+	}
+	public int deleteBoardPart(int bno) {
+		return sqlSession.delete("aSQL.deleteBoardPart", bno);
+	}
+	public int deleteUserLike(int mno) {
+		return sqlSession.delete("aSQL.deleteUserLike", mno);
+	}
+	public int deleteLikeBno(int bno) {
+		return sqlSession.delete("aSQL.deleteLikeBno", bno);
+	}
+	public int deleteBoard(int mno) {
+		return sqlSession.delete("aSQL.deleteBoard", mno);
+	}
+	public List<AdminVO> getBoardThumb(int mno) {
+		return sqlSession.selectList("aSQL.getBoardThumb", mno);
+	}
+	public int deleteBoardThumb(int tno) {
+		return sqlSession.delete("aSQL.deleteBoardThumb", tno);
+	}
+	public int deleteBoardReply(int bno) {
+		return sqlSession.delete("aSQL.deleteBoardReply", bno);
+	}
+	public int deleteMemb(int mno) {
+		return sqlSession.delete("aSQL.deleteMemb", mno);
+	}
+	
+	
+	public List<AdminVO> getLoginInfo() {
+		return sqlSession.selectList("aSQL.getLoginInfo");
+	}
+	public int addDelInfo(AdminVO aVO) {
+		return sqlSession.insert("aSQL.addDelInfo", aVO);
+	}
+	public List<AdminVO> getSevenLogin() {
+		return sqlSession.selectList("aSQL.getSevenLogin");
+	}
+	public int getIsshow(String id) {
+		return sqlSession.selectOne("aSQL.getIsshow", id);
+	}
+	public int deleteDelInfo(String id) {
+		return sqlSession.delete("aSQL.deleteDelInfo", id);
+	}
+	public int setIsshow(String id) {
+		return sqlSession.update("aSQL.setIsshow", id);
+	}
+	public List<AdminVO> getDelInfo() {
+		return sqlSession.selectList("aSQL.getDelInfo");
+	}
+	
+	
+	public int addCencer(String body) {
+		return sqlSession.insert("aSQL.addCencer" + body);
 	}
 }
