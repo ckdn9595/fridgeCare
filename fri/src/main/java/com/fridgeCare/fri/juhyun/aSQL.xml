@@ -173,4 +173,14 @@
 		WHERE
 		    mno = #{mno}
 	</delete>
+	
+	<!-- 검열단어 등록 -->
+	<insert id="addCencer" parameterType="String">
+		INSERT INTO
+			cencer(cno, body, cdate)
+		VALUES(
+			(SELECT NVL(MAX(cno) + 1, 1001) FROM cencer),
+			#{body}, sysdate
+		)
+	</insert>
 </mapper>

@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 
 public class AdminVO {
 	private int bcnt, bno, mno, tno;
-	private String id , mail, condate, joindate;
+	private String id , mail, condate, joindate, body;
 	private Date cdate, jdate;
 	private Time ctime, jtime;
 	
@@ -32,6 +32,12 @@ public class AdminVO {
 	}
 	public void setBcnt(int bcnt) {
 		this.bcnt = bcnt;
+	}
+	public String getBody() {
+		return body;
+	}
+	public void setBody(String body) {
+		this.body = body;
 	}
 	public String getId() {
 		return id;

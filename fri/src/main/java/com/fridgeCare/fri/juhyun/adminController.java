@@ -1,5 +1,7 @@
 package com.fridgeCare.fri.juhyun;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,23 +29,38 @@ public class adminController {
 		return mv;
 	}
 	
+	
+	
+	
 	@RequestMapping("/waitingPage.fri")
 	public ModelAndView waitingPage(ModelAndView mv) {
 		mv.setViewName("juhyun/admin/waitingPage");
 		return mv;
 	}
 	
+	
+	
+	
 	@RequestMapping("/wordCencerPage.fri")
 	public ModelAndView wordCencerPage(ModelAndView mv) {
+		
+		
+		mv.setViewName("juhyun/admin/wordCencerPage");
+		return mv;
+	}
+	@RequestMapping("/addCencerProc.fri")
+	public ModelAndView addCencerProc(ModelAndView mv,AdminVO aVO) {
+		
+		System.out.println("body : " + aVO.getBody());
+		aDao.addCencer(aVO.getBody());
+		
+		aSrvc.cencerAll();
 		mv.setViewName("juhyun/admin/wordCencerPage");
 		return mv;
 	}
 	
-	@RequestMapping("/schedulerPage.fri")
-	public ModelAndView schedulerPage(ModelAndView mv) {
-		mv.setViewName("juhyun/admin/schedulerPage");
-		return mv;
-	}
+	
+	
 	
 	@RequestMapping("/deletePage.fri")
 	public ModelAndView deletePage(ModelAndView mv) {

@@ -141,4 +141,9 @@ public class DAO {
 	public List<AdminVO> getDelInfo() {
 		return sqlSession.selectList("aSQL.getDelInfo");
 	}
+	
+	
+	public int addCencer(String body) {
+		return sqlSession.insert("aSQL.addCencer" + body);
+	}
 }

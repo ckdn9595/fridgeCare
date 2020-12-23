@@ -46,11 +46,9 @@ public class AdminService {
 			}
 			aDao.deleteMemb(aVO.getMno());
 			
-			mv.addObject("VIEW", "/fri/juhyun/admin/deletePage.fri");
 			System.out.println("### 계정 삭제 성공 ###");
 		} catch(Exception e) {
 			e.printStackTrace();
-			mv.addObject("VIEW", "/fri/juhyun/admin/deletePage.fri");
 			System.out.println("### 계정 삭제 실패 ####");
 		}
 		
@@ -95,9 +93,18 @@ public class AdminService {
 		return;
 	}
 	
-	public void cencerBoard(List<AdminVO> list) {
+	public void cencerAll() {
 		try {
 			
+			System.out.println("게시글 검열 성공");
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("게시글 검열 실패");
+		}
+	}
+	
+	public void cencerAll(List<AdminVO> list) {
+		try {
 			System.out.println("게시글 검열 성공");
 		} catch(Exception e) {
 			e.printStackTrace();
