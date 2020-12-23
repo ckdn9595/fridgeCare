@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fridgeCare.fri.joo.vo.*;
@@ -29,25 +30,29 @@ public class JooService {
 			jDao.addThumb(jtVO);
 			jVO.setTno(jtVO.getTno());
 			jDao.addRecipe(jVO);
-
-			ArrayList<JRecipeVO> list = jfUtil.saveProc(jVO.getImage(), "/img/upload");
 			
-			//System.out.println("### list size : " + list.size());
+			MultipartFile[] file = jVO.getImage();
+			
+			ArrayList<JRecipeVO> list = jfUtil.saveProc(file, "/img/upload");
+			System.out.println("@@@@@@@@@@list size : "+ list.size());
 			
 			for (int i = 0; i < list.size(); i++) {
+	
+				list.get(i).setBno(jVO.getBno());
 				list.get(i).setBody(jVO.getBody()[i]);
 				jDao.addRecipeDetail(list.get(i));
+			
 			}
 			
-			mv.setViewName("joo/recipeAddClear");
+			mv.setViewName("/juhyun/recipe/resipiPage");
 		} catch (Exception e) {
 			mv.setViewName("joo/recipeAddError");
 			
 			e.printStackTrace();
 		}
 		
-		
 	}
+
 	//재료 문자열 정리 전담 함수
 	public String editInbox(String[] arrInbox) {
 		String str = arrInbox[0];

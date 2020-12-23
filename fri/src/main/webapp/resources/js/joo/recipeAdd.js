@@ -18,17 +18,32 @@ $(document).ready(function(){
 		);
 	});
 	
+	var txt2 = $('#reci').html();
 	$('#rebtn').click(function(){
-		var txt2 = $('#reci').html();
 		$('#reci').append(
 			txt2
 		);
+		$('.image').off();
+		$('.image').change(function(e){
+			var ipath = URL.createObjectURL(e.target.files[0]);
+			$(this).next().next().attr('src', ipath);
+			var tmp2 = $(this).val();
+			tmp2 = tmp2.substring(tmp2.lastIndexOf('\\') + 1);
+			$(this).next().val(tmp2);
+		});
 	});
 	
-	/*
-	$('#image').change(function(e){
+	$('#thumb').change(function(e){
 		var ipath = URL.createObjectURL(e.target.files[0]);
-		$('#iImg').attr('src', ipath);
+		$('#tImg').attr('src', ipath);
 	});
-	*/
+	
+	$('.image').change(function(e){
+		var ipath = URL.createObjectURL(e.target.files[0]);
+		$(this).next().next().attr('src', ipath);
+		var tmp2 = $(this).val();
+		tmp2 = tmp2.substring(tmp2.lastIndexOf('\\') + 1);
+		$(this).next().val(tmp2);
+	});
+	
 });

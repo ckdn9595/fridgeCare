@@ -35,5 +35,14 @@ public class JooDao {
 		return sqlSession.insert("addRecipeDetail", jrVO);
 	}
 	
-
+	//3번 사진없는 상세 레시피
+	/*
+	 * public int addRecipeDetailNoImage(JRecipeVO jrVO) { return
+	 * sqlSession.insert("addRecipeDetailNoImage", jrVO); }
+	 */
+	
+	//썸네일가져오기
+	public String getThumb(int bno) {
+		return sqlSession.selectOne("jSQL.getThumb", bno);
+	}
 }

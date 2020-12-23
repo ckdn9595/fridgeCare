@@ -153,7 +153,8 @@ div.dimension8{
 	         </div>
 	         <div class="m6 w3-col w3-padding w3-margin-bottom">
 	         	<div class="m3 w3-margin w3-padding">
-		     		<input type="file" id="thumb" name="thumb" value="썸내일 선택">
+		     		<input type="file" id="thumb" name="thumb">
+		     		<img src="/fri/img/thumb/noimage.jpg" id="tImg" style="width:300px; height:200px; padding-top:10px;">
 		     	</div>
 	         </div>
 		     <div class="w3-col w3-padding w3-margin-top">
@@ -193,8 +194,9 @@ div.dimension8{
 								<textarea class="w3-col w3-border w3-input w3-margin-bottom" rows="8" name="body" placeholder="조리과정 설명" style="overflow: auto; resize: none;"></textarea>
 				     		</div>
 				     		<div class="w3-col m4">
-					     		<input type="file" id="image" name="image">
-					     		<img src="" id="iImg" style="width: 200px; height: 165px;">
+					     		<input type="file" name="image" class="image">
+					     		<input type="hidden" name="fname" value="noimage.jpg">
+					     		<img src="/fri/img/upload/noimage.jpg" style="width: 200px; height: 165px;">
 				     		</div>
 			     		</div>
 			     	</div>
