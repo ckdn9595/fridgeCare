@@ -58,6 +58,8 @@ $(document).ready(function(){
     });
 	
 	
+	
+	
 	/* 버튼 누르면 모든 데이터 가져오는 함수*/
 	$('#sbtn').click(function(){
 		var getIng = $('.sList').not('.w3-hide').children('span').get();
