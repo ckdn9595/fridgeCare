@@ -148,6 +148,12 @@
 		WHERE
 		    bmno = #{mno}
 	</delete>
+	<delete id="deleteBoardBno">
+		DELETE FROM
+		    board
+		WHERE
+		    bno = #{bno}
+	</delete>
 	<select id="getBoardThumb" resultType="aVO" parameterType="int">
 		SELECT
 		    tno
@@ -160,6 +166,15 @@
 		                board
 		            WHERE
 		                bmno = #{mno})
+	</select>
+	<select id="getBnoThumb" resultType="int" parameterType="int">
+		SELECT
+		    t.tno
+		FROM
+		    board b, thumb t
+		WHERE
+		    bno =  #{bno}
+		    AND b.tno = t.tno
 	</select>
 	<delete id="deleteBoardThumb">
 		DELETE FROM
@@ -183,4 +198,77 @@
 			#{body}, sysdate
 		)
 	</insert>
+	<select id="getCencerCnt" resultType="int" parameterType="String">
+		SELECT
+			COUNT(*) cnt
+		FROM
+			cencer
+		WHERE
+			isshow = 'Y'
+			AND body = #{body}
+	</select>
+	<select id="getCencerList" resultType="aVO">
+		SELECT
+			body
+		FROM
+			cencer
+		WHERE
+			isshow = 'Y'
+	</select>
+	<select id="getBoardMno" resultType="int">
+		SELECT
+		   	bmno
+		FROM
+		    board
+		WHERE
+		    bno = #{bno}
+	</select>
+	<select id="getCencerBoard" resultType="int">
+		SELECT
+		    bno
+		FROM
+		    board
+		WHERE
+		    title LIKE '%' || #{body} || '%'
+	</select>
+	<select id="getCencerBoardPart" resultType="int">
+		SELECT
+		    bpno
+		FROM
+		    boardpart
+		WHERE
+		    body LIKE '%' || #{body} || '%'
+		
+	</select>
+	<select id="getCencerReply" resultType="int">
+		SELECT
+		    reno
+		FROM
+		    reply
+		WHERE
+		    body LIKE '%' || #{body} || '%'
+		
+	</select>
+	<select id="getCencerMember" resultType="int">
+		SELECT
+		    mno
+		FROM
+		    member
+		WHERE
+		    id LIKE '%' || #{body} || '%'
+	</select>
+	<delete id="deleteCencerBoardPart">
+		DELETE FROM
+			boardpart
+		WHERE
+			bpno = #{bpno}
+	</delete>
+	<delete id="deleteCencerReply">
+		DELETE FROM
+			reply
+		WHERE
+			reno = #{reno}
+	</delete>
+	
+	
 </mapper>

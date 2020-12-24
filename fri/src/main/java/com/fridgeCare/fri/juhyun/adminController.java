@@ -21,7 +21,6 @@ public class adminController {
 	@Autowired
 	AdminService aSrvc;
 	
-	
 	// 관리자 계정 로그인 폼 보기 함수
 	@RequestMapping("/admin.fri")
 	public ModelAndView adminLogin(ModelAndView mv) {
@@ -43,18 +42,12 @@ public class adminController {
 	
 	@RequestMapping("/wordCencerPage.fri")
 	public ModelAndView wordCencerPage(ModelAndView mv) {
-		
-		
 		mv.setViewName("juhyun/admin/wordCencerPage");
 		return mv;
 	}
 	@RequestMapping("/addCencerProc.fri")
 	public ModelAndView addCencerProc(ModelAndView mv,AdminVO aVO) {
-		
-		System.out.println("body : " + aVO.getBody());
-		aDao.addCencer(aVO.getBody());
-		
-		aSrvc.cencerAll();
+		System.out.println("인터셉터 작동 완료");
 		mv.setViewName("juhyun/admin/wordCencerPage");
 		return mv;
 	}
