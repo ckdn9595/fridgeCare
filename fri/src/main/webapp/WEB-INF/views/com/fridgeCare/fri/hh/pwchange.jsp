@@ -143,41 +143,22 @@ body{
     <!-- Middle Column --> <!-- 작업할 곳 -->
     <div class="w3-col m9" style="min-width:700px">
       
-      <form class="w3-container w3-card w3-round w3-margin-bottom w3-margin-left w3-margin-right w3-padding" method="get" action="/fri/hh/pwfindproc.fri">
-      	<h2>비밀번호 찾기/변경</h2>
+      <form class="w3-container w3-card w3-round w3-margin-bottom w3-margin-left w3-margin-right w3-padding" method="get" action="/fri/hh/pwchangeproc.fri">
+      	<h2>새로운 비밀번호 설정</h2>
 		<div class="w3-col m10 w3-margin-left" style="min-width:660px">
-			<div class="dimension1 w3-padding floatleft w3-right-align">ID</div>
-			<input name="inputid" class="floatleft dimension1" id="inputid" required>
+			<div class="dimension1 w3-padding floatleft w3-right-align">PW</div>
+			<input name="inputpw" class="floatleft dimension1" id="inputpw" required type="password">
+			<div class="w3-padding floatleft w3-right-align" id="pwcheck">6자 이상의 대소문자 포함</div>
 		</div>
 		<div class="w3-col m10 w3-margin-left" style="min-width:660px">
-			<div class="dimension1 w3-padding floatleft w3-right-align">이메일</div>
-			<input name="inputmail" class="floatleft dimension1" required id="inputmail">
+			<div class="dimension1 w3-padding floatleft w3-right-align">PW확인</div>
+			<input class="floatleft dimension1" required id="inputpwre" type="password">
+			<div class="w3-padding floatleft w3-right-align" id="pwrecheck"></div>
 		</div>
-		<div class="w3-col w3-center">
-			<div class="w3-button w3-light-blue w3-round-large w3-hover-cyan change05bgc" id="checkbtn">인증메일 보내기</div>
-			<!-- <div class="w3-button w3-light-blue w3-round-large w3-hover-cyan change05bgc" id="checkbtn2">인증메일 보내기</div> -->
-		</div>
-		<div class="w3-col w3-hide w3-margin-top" id="ANdiv">
-			<div class="w3-col m10 w3-margin-left" style="min-width:660px">
-				<div class="dimension1 w3-padding floatleft w3-right-align">인증번호</div>
-				<input name="inputAN" class="floatleft dimension1" id="inputAN" required>
-			</div>
-			<div class="w3-col w3-center">
-				<div class="w3-button w3-light-blue w3-round-large w3-hover-cyan change05bgc" id="ANcheckbtn">확인</div>
-			</div>
+		<div class="w3-col m10 w3-center" style="min-width:660px">
+			<input class="w3-light-blue w3-round-large w3-center w3-padding w3-button w3-hover-cyan change05bgc margin8" type="submit" id="submitbtn" disabled>
 		</div>
       </form>
-      <div id="nottest" class="w3-hide">
-      	<span id="sonic" class="w3-hide ntc"></span>
-      	<span id="hh" class="ntc">
-      		<span>takethis1</span>
-      	</span>
-      	<span id="mario" class="w3-hide ntc"></span>
-      	<span id="good" class="ntc">
-      		<span>takethis2</span>
-      	</span>
-      	<span id="saedam" class="w3-hide ntc"></span>
-      </div>
       
     <!-- End Middle Column -->
     </div>

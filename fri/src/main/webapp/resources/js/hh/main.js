@@ -4,6 +4,10 @@ $(function(){
 	if(parameter == 'fail'){
 		alert('회원정보가 맞지 않습니다');
 	}
+	switch(parameter){
+		case 'pwchange':alert('비밀번호가 변경되었습니다');
+		break;
+	}
 	$('#loginbtn').click(function(){
 		$('#loginform').submit();
 	});
