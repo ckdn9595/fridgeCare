@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fridgeCare.fri.hyunuk.util.PageUtil;
 import com.fridgeCare.fri.hyunuk.vo.GetVO;
 import com.fridgeCare.fri.hyunuk.vo.IngredVO;
 import com.fridgeCare.fri.hyunuk.vo.SearchVO;
@@ -30,7 +29,7 @@ public class HyunukController {
 	
 	// 페이지 요청
 	@RequestMapping("/search.fri")
-	public ModelAndView getList(ModelAndView mv, PageUtil page, SearchVO sVO, IngredVO inVO, HttpSession session) {
+	public ModelAndView getList(ModelAndView mv, SearchVO sVO, IngredVO inVO, HttpSession session) {
 		mv.setViewName("hyunuk/search");
 				
 		List<IngredVO> ingred = sDao.getIngredient(inVO);
@@ -92,4 +91,5 @@ public class HyunukController {
 		map2.put("sLIST",sLIST);
 		return map2;
 	}
+	
 }
