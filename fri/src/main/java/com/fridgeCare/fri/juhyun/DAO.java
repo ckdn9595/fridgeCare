@@ -106,8 +106,14 @@ public class DAO {
 	public int deleteBoard(int mno) {
 		return sqlSession.delete("aSQL.deleteBoard", mno);
 	}
+	public int deleteBoardBno(int bno) {
+		return sqlSession.delete("aSQL.deleteBoardBno", bno);
+	}
 	public List<AdminVO> getBoardThumb(int mno) {
 		return sqlSession.selectList("aSQL.getBoardThumb", mno);
+	}
+	public int getBnoThumb(int bno) {
+		return sqlSession.selectOne("aSQL.getBnoThumb", bno);
 	}
 	public int deleteBoardThumb(int tno) {
 		return sqlSession.delete("aSQL.deleteBoardThumb", tno);
@@ -143,7 +149,43 @@ public class DAO {
 	}
 	
 	
+	public int getBoardMno(int bno) {
+		return sqlSession.selectOne("aSQL.getBoardMno", bno);
+	}
+	public List<Integer> getCencerBoard(String body) {
+		return sqlSession.selectList("aSQL.getCencerBoard", body);
+	}
+	public List<Integer> getCencerBoardPart(String body) {
+		return sqlSession.selectList("aSQL.getCencerBoardPart", body);
+	}
+	public int getCencerAll() {
+		return sqlSession.selectOne("aSQL.getCencer");
+	}
+	public int getCencerCnt(String body) {
+		return sqlSession.selectOne("aSQL.getCencerCnt", body);
+	}
+	public List<AdminVO> getCencerList() {
+		return sqlSession.selectList("aSQL.getCencerList");
+	}
 	public int addCencer(String body) {
-		return sqlSession.insert("aSQL.addCencer" + body);
+		return sqlSession.insert("aSQL.addCencer", body);
+	}
+	public List<AdminVO> getCencerBoard() {
+		return sqlSession.selectList("aSQL.getCencerBoard");
+	}
+	public List<AdminVO> getCencerBoardPart() {
+		return sqlSession.selectList("aSQL.getCencerBoardPart");
+	}
+	public List<Integer> getCencerReply(String body) {
+		return sqlSession.selectList("aSQL.getCencerReply", body);
+	}
+	public List<AdminVO> getCencerMember(String body) {
+		return sqlSession.selectList("aSQL.getCencerMember", body);
+	}
+	public int deleteCencerBoardPart(int bpno) {
+		return sqlSession.delete("aSQL.deleteCencerBoardPart", bpno);
+	}
+	public int deleteCencerReply(int reno) {
+		return sqlSession.delete("aSQL.deleteCencerReply", reno);
 	}
 }

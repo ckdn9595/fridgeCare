@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="/fri/css/my.css">
 <link rel="stylesheet" type="text/css" href="/fri/css/w3.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="/fri/js/juhyun/partnerBoard.js"></script>
+<script type="text/javascript" src="/fri/js/juhyun/wordCencerPage.js"></script>
 
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
@@ -135,7 +135,13 @@ span.activepage{
     </div>
     <!-- Middle Column --> <!-- 작업할 곳 -->
     <div class="w3-col m9">
-    
+    	<div class="w3-col w3-border w3-round-large">
+    		<form method="POST" action="/fri/juhyun/admin/addCencerProc.fri" class="w3-col m11 w3-gray" id="frm">
+    			<label class="w3-col m2 w3-center w3-padding w3-margin-left w3-margin-top w3-margin-bottom">검열 단어</label>
+    			<input class="w3-col m6 w3-large w3-margin-top w3-margin-bottom" id="body" name="body">
+    			<div class="w3-col m2 w3-button w3-red w3-margin-left w3-margin-top w3-margin-bottom" id="abtn">등록</div>
+    		</form>
+    	</div>
     <!-- End Middle Column -->
     </div>
     
