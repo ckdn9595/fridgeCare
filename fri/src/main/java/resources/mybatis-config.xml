@@ -32,6 +32,7 @@
 	    <typeAlias alias="jfvo" type="com.fridgeCare.fri.joo.vo.JFileVO"/>
 	    <typeAlias alias="jrvo" type="com.fridgeCare.fri.joo.vo.JRecipeVO"/>
 	    <typeAlias alias="jtvo" type="com.fridgeCare.fri.joo.vo.JTumbVO"/>
+	    <typeAlias alias="jnvo" type="com.fridgeCare.fri.joo.vo.JNoticeVO"/>
 	    
 	    <typeAlias alias="inVO" type="com.fridgeCare.fri.hyunuk.vo.IngredVO"/>
      	<typeAlias alias="sVO" type="com.fridgeCare.fri.hyunuk.vo.SearchVO"/>
