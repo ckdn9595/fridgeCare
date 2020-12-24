@@ -47,13 +47,18 @@ public class HController {
 		String sid = (String) s.getAttribute("SID");
 		LatelyUploadVO luvo = hdao.getLUVO();
 		SideRankVO srvo = hdao.getWR();
-		if(luvo.getTname() == null) {
-			luvo.setTname("noimage.jpg");
+		try {
+			if(luvo.getTname() == null) {
+				luvo.setTname("noimage.jpg");
+			}
+			if(luvo.getSavename() == null) {
+				luvo.setSavename("noimage.jpg");
+			}
+			s.setAttribute("LUVO", luvo);
+		}catch(NullPointerException e) {
+//			e.printStackTrace();
+			System.out.println("no any board or boardpart");
 		}
-		if(luvo.getSavename() == null) {
-			luvo.setSavename("noimage.jpg");
-		}
-		s.setAttribute("LUVO", luvo);
 		s.setAttribute("WVO", srvo);
 		srvo = hdao.getMR();
 		s.setAttribute("MVO", srvo);
@@ -126,7 +131,7 @@ public class HController {
 			rv.setUrl("/fri/hh/joinpage.fri");
 		}else {
 			s.setAttribute("SID", ivo.getInputid());
-			logger.info("new member " + ivo.getInputid() + "has join");
+			logger.info("new member " + ivo.getInputid() + " has join");
 		}
 		if(!inputavt.getOriginalFilename().equals("")) {
 			Fileuploader uploader = new Fileuploader(inputavt);
@@ -284,7 +289,7 @@ public class HController {
 	}
 	@RequestMapping(value="/sendpwfindmail.fri" , produces="application/json;charset=utf8")
 	@ResponseBody
-	public String sendPWfindmail(String id , String mail) {
+	public String sendPWfindmail(String id , String mail , HttpSession s) {
 		String view = "{\"result\" : \"OK\"}";
 		InputVO ivo = new InputVO();
 		ivo.setInputid(id);
@@ -299,13 +304,41 @@ public class HController {
 				view = "{\"result\" : \"잠시후 다시 시도해라\"}";
 				System.out.println("error occur");
 			}else {
+				s.setAttribute("changer", id);
 				Navermail nm = new Navermail();
-				nm.send("hanpawu@gmail.com", AN);
+				nm.send(mail, AN);
 			}
 		}
 		return view;
 	}
-	//pwfindproc 만들어야됨
+	@RequestMapping("/pwfindproc.fri")
+	@ResponseBody
+	public String pwfindproc(String AN) {
+		String view = "{\"result\" : \"OK\"}";
+		cnt = hdao.pwfindproc(AN);
+		if(cnt == 0) {
+			view = "{\"result\" : \"NO\"}";
+		}
+		return view;
+	}
+	@RequestMapping("/pwchange.fri")
+	public String pwchange(HttpSession s) {
+		return "hh/pwchange";
+	}
+	@RequestMapping("/pwchangeproc.fri")
+	public ModelAndView pwchangeproc(ModelAndView mv , RedirectView rv , HttpSession s , String inputpw) {
+		rv.setUrl("/fri/hh/main.fri?pwchange");
+		String changer = (String) s.getAttribute("changer");
+		MemberVO mvo = new MemberVO();
+		mvo.setId(changer);
+		mvo.setPw(inputpw);
+		cnt = hdao.pwchangeproc(mvo);
+		if(cnt == 0) {
+			rv.setUrl("/fri/hh/pwfind.fri?fail");
+		}
+		mv.setView(rv);
+		return mv;
+	}
 }
 
 class HSD{

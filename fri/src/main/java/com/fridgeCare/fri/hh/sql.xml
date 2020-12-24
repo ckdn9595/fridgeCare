@@ -96,4 +96,12 @@
 	<select id="updateAN" parameterType="int">
 		update authentication set newdata = #{AN}
 	</select>
+	
+	<select id="pwfindproc" resultType="int" parameterType="string">
+		select count(*) from authentication where newdata = #{AN}
+	</select>
+	
+	<select id="updatepw" parameterType="mvo">
+		UPDATE member set pw = #{pw} where id = #{id}
+	</select>
 </mapper>
