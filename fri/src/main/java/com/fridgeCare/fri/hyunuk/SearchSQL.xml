@@ -24,7 +24,7 @@
 	</select>
 	
 	<!-- 몇개의 레시피가 있는지 조회 -->
-	<select id="getData" resultType="int" parameterType="gVO">
+	<select id="getTotal" resultType="int" parameterType="gVO">
 		SELECT count(*) FROM board
 			WHERE
 		    CATEGORY LIKE #{category}
