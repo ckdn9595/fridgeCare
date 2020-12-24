@@ -11,9 +11,12 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="/fri/css/hh.css">
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script type="text/javascript" src="/fri/js/hh/main.js"></script>
+<script type="text/javascript" src="/fri/js/hh/login.js"></script>
 
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
@@ -99,7 +102,14 @@ body{
 	        <form class="w3-container w3-padding" method="get" action="/fri/hh/logincheck.fri" id="loginform">
 	        <div class="w3-padding">
 	        	<div class="inline dimension3">ID</div>
-	        	<input name="inputid" class="dimension2">
+	        	<input name="inputid" class="dimension2" value="${cookie.RID.value}">
+	        	<span class="pt8 w3-margin-left">ID 기억</span>
+	        	<c:if test="${empty cookie.RID}">
+		        	<input type="checkbox" class="w3-check" name="idcookie">
+	        	</c:if>
+	        	<c:if test="${not empty cookie.RID}">
+		        	<input type="checkbox" class="w3-check" name="idcookie" checked>
+	        	</c:if>
 	        </div>
 	        <div class="w3-padding">
 	        	<div class="inline dimension3">PW</div>
