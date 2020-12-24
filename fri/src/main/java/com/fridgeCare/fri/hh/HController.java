@@ -2,7 +2,12 @@ package com.fridgeCare.fri.hh;
 
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -32,7 +37,7 @@ public class HController {
 	@Autowired
 	DAO hdao;
 	@RequestMapping("/main.fri")
-	public String getMain(HttpSession s) {
+	public String getMain(HttpSession s , HttpServletRequest request) {
 		String sid = (String) s.getAttribute("SID");
 		LatelyUploadVO luvo = hdao.getLUVO();
 		SideRankVO srvo = hdao.getWR();
@@ -185,8 +190,8 @@ public class HController {
 		return mv;
 	}
 	@RequestMapping("/logincheck.fri")
-	public ModelAndView logincheck(ModelAndView mv , RedirectView rv , HttpSession s , InputVO ivo) {
-		rv.setUrl("/fri/");
+	public ModelAndView logincheck(ModelAndView mv , RedirectView rv , HttpSession s , InputVO ivo , String idcookie) {
+		rv.setUrl("/fri/hh/main.fri?setrid=" + ivo.getInputid());
 		cnt = hdao.logincheck(ivo);
 		if(cnt == 0) {
 			rv.setUrl("/fri/hh/main.fri?fail");
@@ -195,6 +200,9 @@ public class HController {
 			cnt = hdao.submitCondate(ivo.getInputid());
 			if(cnt == 0) {
 				System.out.println("submit condate fail");
+			}
+			if(idcookie == null) {
+				rv.setUrl("/fri/hh/main.fri");
 			}
 		}
 		mv.setView(rv);
@@ -298,7 +306,7 @@ public class HController {
 		mv.setView(rv);
 		return mv;
 	}
-	@RequestMapping("/secession") // fri 안붙여도 되나 테스트
+	@RequestMapping("/secession") // fri 안붙여도 잘 되네 개꿀
 	public ModelAndView secession(ModelAndView mv , RedirectView rv , HttpSession s) {
 		rv.setUrl("/fri/hh/main.fri?secession");
 		String sid = (String) s.getAttribute("SID");

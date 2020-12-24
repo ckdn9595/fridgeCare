@@ -11,6 +11,10 @@ $(function(){
 		break;
 	}
 	$('#loginbtn').click(function(){
+		var inputid = $('input[name="inputid"]').val();
+		if(inputid == ''){
+			return;
+		}
 		$('#loginform').submit();
 	});
 	$('#logoutbtn').click(function(){
