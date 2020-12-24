@@ -259,6 +259,7 @@ img{
 		
 		<div class="w3-col m10 w3-center" style="min-width:660px">
 			<input class="w3-light-blue w3-round-large w3-center w3-padding w3-button w3-hover-cyan change05bgc margin8" type="submit" id="submitbtn" value="수정">
+			<div class="w3-light-blue w3-round-large w3-center w3-padding w3-button w3-hover-cyan change05bgc margin8" id="secessionbtn">탈퇴</div>
 		</div>
       </form>
       

@@ -66,4 +66,7 @@ public class DAO {
 	public int pwchangeproc(MemberVO mvo) {
 		return sqlSession.update("updatepw", mvo);
 	}
+	public int secession(String sid) {
+		return sqlSession.update("secession", sid);
+	}
 }

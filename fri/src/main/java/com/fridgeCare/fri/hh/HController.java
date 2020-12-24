@@ -3,17 +3,6 @@ package com.fridgeCare.fri.hh;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.Properties;
-
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -243,38 +232,6 @@ public class HController {
 		}
 		return "hh/main";
 	}
-	@RequestMapping("/mailtest.fri")
-	@ResponseBody
-	public String mailtest(String ajaxdata) {
-		String view = "{\"result\" : \"NO\"}";
-		System.out.println(ajaxdata);
-		String hanhoon12 = "hanhoon12@naver.com";
-		HSD hsd = new HSD();
-		String naverpw = hanhoon12.substring(7) + "q" + hsd.data1 + Integer.toString(5+7);
-		Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smtp.naver.com");
-		prop.put("mail.smtp.port", 587);
-		prop.put("mail.smtp.auth", "true");
-		Session session = Session.getDefaultInstance(prop, new Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(hanhoon12, naverpw);
-			}
-		});
-		MimeMessage message = new MimeMessage(session);
-		try {
-			message.setFrom(new InternetAddress(hanhoon12));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("hanpawu@gmail.com"));
-			message.setSubject("test title");
-			message.setText("test body");
-			Transport.send(message);
-			System.out.println("Let's check");
-		} catch (AddressException e) {
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-		return view;
-	}
 	@RequestMapping("transtest.fri")
 	@Transactional
 	public ModelAndView transtest(ModelAndView mv , RedirectView rv , HttpSession s) {
@@ -335,19 +292,24 @@ public class HController {
 		cnt = hdao.pwchangeproc(mvo);
 		if(cnt == 0) {
 			rv.setUrl("/fri/hh/pwfind.fri?fail");
+		}else {
+			logger.info(changer + " has change pw to " + inputpw);
 		}
 		mv.setView(rv);
 		return mv;
 	}
-}
-
-class HSD{
-	String data1 = "f";
-	public HSD() {
-		if(data1.equals("z")) {
-			System.out.println("unknown print");
+	@RequestMapping("/secession") // fri 안붙여도 되나 테스트
+	public ModelAndView secession(ModelAndView mv , RedirectView rv , HttpSession s) {
+		rv.setUrl("/fri/hh/main.fri?secession");
+		String sid = (String) s.getAttribute("SID");
+		cnt = hdao.secession(sid);
+		if(cnt == 0) {
+			rv.setUrl("/fri/hh/myinfo.fri?secessionfail");
 		}else {
-			data1 = "w";
+			s.removeAttribute("SID");
+			logger.info(sid + "has leave fri");
 		}
+		mv.setView(rv);
+		return mv;
 	}
 }

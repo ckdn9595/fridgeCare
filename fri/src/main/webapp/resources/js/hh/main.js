@@ -7,6 +7,8 @@ $(function(){
 	switch(parameter){
 		case 'pwchange':alert('비밀번호가 변경되었습니다');
 		break;
+		case 'secession':alert('탈퇴 성공');
+		break;
 	}
 	$('#loginbtn').click(function(){
 		$('#loginform').submit();
@@ -26,9 +28,9 @@ $(function(){
 	$('#mvoform').click(function(){
 		$(this).submit();
 	});
+	
 	$('#ajaxtest').click(function(){
 		var Situat = ['aa' , 'ab' , 'bb'];
-		var stringdata = 'abc';
 		$.ajax({
 			url:'/fri/hh/ajaxtest.fri' ,
 			type:'POST' ,
@@ -37,7 +39,7 @@ $(function(){
 			data:{
 				ajaxdata:Situat
 			} ,
-			success:function(data){
+			success:function(){
 				alert(Situat);
 			} ,
 			error:function(){

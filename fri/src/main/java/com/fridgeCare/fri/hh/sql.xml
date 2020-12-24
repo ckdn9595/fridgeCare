@@ -25,7 +25,7 @@
 	
 	<select id="logincheck" parameterType="ivo" resultType="int">
 		select count(*) from member
-		where id = #{inputid} and pw = #{inputpw}
+		where id = #{inputid} and pw = #{inputpw} and isshow = 'Y'
 	</select>
 	
 	<select id="getThumb" parameterType="string" resultType="string">
@@ -51,7 +51,7 @@
 		from (select board.bno , title , bdate d , (select id from member where mno = bmno) id , savename ,
 		(select tname from thumb where thumb.tmno = (select mno from member where mno = bmno)) tname
 		from board , boardpart
-		where board.bno = boardpart.bno
+		where board.bno = boardpart.bno and isshow = 'Y'
 		order by bno desc , bpno)
 		where rownum = 1
 	</select>
@@ -61,7 +61,7 @@
 		(select bno , tname , title , id
 		from board , thumb , member
 		where bmno = mno and board.tno = thumb.tno and
-		bdate between sysdate-7 and sysdate
+		bdate between sysdate-7 and sysdate and board.isshow = 'Y'
 		order by lcount desc)
 		where rownum = 1
 	</select>
@@ -71,13 +71,13 @@
 		(select bno , tname , title , id
 		from board , thumb , member
 		where bmno = mno and board.tno = thumb.tno and
-		bdate between sysdate-30 and sysdate
+		bdate between sysdate-30 and sysdate and board.isshow = 'Y'
 		order by lcount desc)
 		where rownum = 1
 	</select>
 	
 	<select id="getmemberinfo" parameterType="string" resultType="mvo">
-		select * from member where id = 'test'
+		select * from member where id = 'test' and isshow = 'Y'
 	</select>
 	
 	<select id="submitcondate" parameterType="string">
@@ -103,5 +103,9 @@
 	
 	<select id="updatepw" parameterType="mvo">
 		UPDATE member set pw = #{pw} where id = #{id}
+	</select>
+	
+	<select id="secession" parameterType="string">
+		update member set isshow = 'N' where id = #{sid}
 	</select>
 </mapper>
