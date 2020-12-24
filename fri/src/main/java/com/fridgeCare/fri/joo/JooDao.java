@@ -7,9 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fridgeCare.fri.joo.vo.JRecipeVO;
-import com.fridgeCare.fri.joo.vo.JTumbVO;
-import com.fridgeCare.fri.joo.vo.JooVO;
+import com.fridgeCare.fri.joo.vo.*;
 
 public class JooDao {
 	@Autowired
@@ -35,14 +33,28 @@ public class JooDao {
 		return sqlSession.insert("addRecipeDetail", jrVO);
 	}
 	
-	//3번 사진없는 상세 레시피
-	/*
-	 * public int addRecipeDetailNoImage(JRecipeVO jrVO) { return
-	 * sqlSession.insert("addRecipeDetailNoImage", jrVO); }
-	 */
-	
 	//썸네일가져오기
 	public String getThumb(int bno) {
 		return sqlSession.selectOne("jSQL.getThumb", bno);
+	}
+	
+	//고객센터 공지사항 가져오기
+	public List<JNoticeVO> getNotice(){
+		return sqlSession.selectList("jSQL.getNotice");
+	}
+	
+	//고객센터 자주질문 가져오기
+	public List<JNoticeVO> getFaq(){
+		return sqlSession.selectList("jSQL.getFaq");
+	}
+	
+	//고객센터 본문 가져오기
+	public JNoticeVO getNBody(JNoticeVO jnVO) {
+		return sqlSession.selectOne("jSQL.getNBody", jnVO);
+	}
+	
+	//고객센터 조회수 올리기
+	public int upNno(JNoticeVO jnVO) {
+		return sqlSession.update("jSQL.upNno", jnVO);
 	}
 }

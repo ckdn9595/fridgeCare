@@ -1,8 +1,8 @@
 package com.fridgeCare.fri.joo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fridgeCare.fri.joo.vo.JooVO;
-import com.fridgeCare.fri.joo.vo.JRecipeVO;
-import com.fridgeCare.fri.joo.vo.JTumbVO;
+import com.fridgeCare.fri.joo.vo.*;
 
 @Controller
 public class JooController {
@@ -45,4 +43,26 @@ public class JooController {
 		jSrvc.addAll(mv, jVO, jtVO);
 		return mv;
 	}
+	
+	@RequestMapping("/joo/notice.fri")
+	public ModelAndView veiwNotice(ModelAndView mv) {
+		List<JNoticeVO> list = jDao.getNotice();
+		mv.addObject("LIST", list);
+
+		List<JNoticeVO> flist = jDao.getFaq();
+		mv.addObject("FLIST", flist);
+		
+		mv.setViewName("joo/jooNotice");
+		return mv;
+	}
+	
+	@RequestMapping(value="/joo/noticeBody.fri", produces="application/json; charset=utf8")
+	@ResponseBody
+	public JNoticeVO addNBody(JNoticeVO jnVO) {
+		jnVO = jDao.getNBody(jnVO);
+		jDao.upNno(jnVO);
+		System.out.println(jnVO.getNbody() + " | " + jnVO.getNclick());
+		return jnVO;
+	}
+	
 }

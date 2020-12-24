@@ -408,3 +408,27 @@ span#wbtn {
 .mabottom{
 	margin-bottom: 5px;
 }
+
+/* joo css add */
+.hd {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	border-top: 2px solid lightgrey;
+	font-size: 12pt;
+	font-weight: bold;
+	color: grey;
+	background-color: #f1f1f1;
+	border-bottom: 1px solid lightgrey;
+}
+
+.btnfr {
+	padding: 5px 15px;
+}
+
+.nbtn, .fbtn {
+	display: inline-block;
+	width: 200px;
+	height: 60px;
+}

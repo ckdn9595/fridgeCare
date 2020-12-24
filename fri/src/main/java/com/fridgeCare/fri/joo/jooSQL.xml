@@ -59,19 +59,6 @@
 		)
 	</insert>
 	
-	<!-- 
-	<insert id="addRecipeDetailNoImage" parameterType="jrVO">
-		insert into
-		    boardpart(
-		    	bpno, body, bno
-		    )
-		values(
-		    (select NVL(MAX(bpno) + 1, 1001) from boardpart),
-		    #{body}, #{bno}
-		)
-	</insert>
-	 -->
-
 	<select id="getThumb" resultType="String" parameterType="int">
 		SELECT
 			tname
@@ -81,5 +68,53 @@
 			fisshow = 'Y'
 			AND tno = #{tno}
 	</select>
+	
+	<select id="getNotice" resultType="jnVO">
+		SELECT
+			nno, ntitle, nbody, ndate, nclick
+		FROM 
+			notice
+		WHERE
+			nisshow = 'Y'
+			AND ncode = 1
+	</select>
+	
+	<select id="getFaq" resultType="jnVO">
+		SELECT
+			nno, ntitle, ndate, nclick
+		FROM 
+			notice
+		WHERE
+			nisshow = 'Y'
+			AND ncode = 2
+	</select>
+	
+	<select id="getNBody" resultType="jnVO" parameterType="jnVO">
+		SELECT
+			nno, nbody
+		FROM 
+			notice
+		WHERE
+			nisshow = 'Y'
+			AND nno = #{nno}
+	</select>
+	
+	<update id="upNno" parameterType="jnVO">
+		<selectKey keyProperty="nclick" resultType="int" order="AFTER">
+			SELECT
+				nclick
+			FROM
+				notice
+			WHERE
+				nno = #{nno}
+		</selectKey>
+		
+		UPDATE
+		    notice
+		SET
+		    nclick = nclick + 1
+		where
+		    nno = #{nno}
+	</update>
 	
 </mapper>
