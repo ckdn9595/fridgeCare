@@ -2,12 +2,9 @@ package com.fridgeCare.fri.hh;
 
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.HashMap;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -202,7 +199,7 @@ public class HController {
 				System.out.println("submit condate fail");
 			}
 			if(idcookie == null) {
-				rv.setUrl("/fri/hh/main.fri");
+				rv.setUrl("/fri/hh/main.fri?removerid");
 			}
 		}
 		mv.setView(rv);

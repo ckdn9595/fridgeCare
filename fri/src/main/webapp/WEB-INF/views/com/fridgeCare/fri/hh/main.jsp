@@ -84,6 +84,7 @@ body{
     <div class="w3-col m3" style="max-width:1400px; min-width:240px">
       <!-- Profile -->
       <c:if test="${not empty SID}">
+      	<span class="w3-hide" id="saverid">${param.setrid}</span>
 	      <div class="w3-card w3-round w3-white">
 	        <div class="w3-container">
 	         <h4 class="w3-center">My Profile</h4>
@@ -102,14 +103,9 @@ body{
 	        <form class="w3-container w3-padding" method="get" action="/fri/hh/logincheck.fri" id="loginform">
 	        <div class="w3-padding">
 	        	<div class="inline dimension3">ID</div>
-	        	<input name="inputid" class="dimension2" value="${cookie.RID.value}">
+	        	<input name="inputid" class="dimension2" id="inputid">
 	        	<span class="pt8 w3-margin-left">ID 기억</span>
-	        	<c:if test="${empty cookie.RID}">
-		        	<input type="checkbox" class="w3-check" name="idcookie">
-	        	</c:if>
-	        	<c:if test="${not empty cookie.RID}">
-		        	<input type="checkbox" class="w3-check" name="idcookie" checked>
-	        	</c:if>
+		        <input type="checkbox" class="w3-check" name="idcookie" id="inputsetrid">
 	        </div>
 	        <div class="w3-padding">
 	        	<div class="inline dimension3">PW</div>
