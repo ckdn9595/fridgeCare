@@ -10,19 +10,6 @@ $(function(){
 		case 'secession':alert('탈퇴 성공');
 		break;
 	}
-	$('#loginbtn').click(function(){
-		var inputid = $('input[name="inputid"]').val();
-		if(inputid == ''){
-			return;
-		}
-		$('#loginform').submit();
-	});
-	$('#logoutbtn').click(function(){
-		$(location).attr('href' , '/fri/hh/logout.fri');
-	});
-	$('#myinfobtn').click(function(){
-		$(location).attr('href' , '/fri/hh/myinfo.fri');
-	});
 	$('#luvoform').click(function(){
 		$(this).submit();
 	});
