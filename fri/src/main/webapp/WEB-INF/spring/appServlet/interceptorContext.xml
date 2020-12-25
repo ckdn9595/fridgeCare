@@ -28,12 +28,18 @@
 			<exclude-mapping path="/hh/mailtest.fri"/>
 			<exclude-mapping path="/hh/transtest.fri"/>
 			<exclude-mapping path="/hh/sendpwfindmail.fri"/>
+			<exclude-mapping path="/hh/pwfindproc.fri"/>
+			<exclude-mapping path="/hh/pwchange.fri"/>
+			<exclude-mapping path="/hh/pwchangeproc.fri"/>
 			
 			<exclude-mapping path="/juhyun/recipe/resipiPage.fri"/>
 			<exclude-mapping path="/juhyun/recipe/resipiReply.fri"/>
 			<exclude-mapping path="/juhyun/recipe/resipiLikeCount.fri"/>
 			<exclude-mapping path="/juhyun/partner/partner.fri"/>
 			<exclude-mapping path="/juhyun/partner/partnerCnt.fri"/>
+			
+			<exclude-mapping path="/hyunuk/search.fri"/>
+			<exclude-mapping path="/hyunuk/selected.fri"/>
 			<beans:ref bean="LoginCheck"/>
 		</interceptor>
 	</interceptors>

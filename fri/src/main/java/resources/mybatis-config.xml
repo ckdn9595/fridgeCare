@@ -26,11 +26,17 @@
 		<typeAlias alias="rVO" type="com.fridgeCare.fri.juhyun.vo.ResipiVO"/>
 		<typeAlias alias="pVO" type="com.fridgeCare.fri.juhyun.vo.PartnerVO"/>
 		<typeAlias alias="page" type="com.fridgeCare.fri.juhyun.PageUtil"/>
+		<typeAlias alias="aVO" type="com.fridgeCare.fri.juhyun.vo.AdminVO"/>
 		
 		<typeAlias alias="jvo" type="com.fridgeCare.fri.joo.vo.JooVO"/>
 	    <typeAlias alias="jfvo" type="com.fridgeCare.fri.joo.vo.JFileVO"/>
 	    <typeAlias alias="jrvo" type="com.fridgeCare.fri.joo.vo.JRecipeVO"/>
 	    <typeAlias alias="jtvo" type="com.fridgeCare.fri.joo.vo.JTumbVO"/>
+	    <typeAlias alias="jnvo" type="com.fridgeCare.fri.joo.vo.JNoticeVO"/>
+	    
+	    <typeAlias alias="inVO" type="com.fridgeCare.fri.hyunuk.vo.IngredVO"/>
+     	<typeAlias alias="sVO" type="com.fridgeCare.fri.hyunuk.vo.SearchVO"/>
+     	<typeAlias alias="gVO" type="com.fridgeCare.fri.hyunuk.vo.GetVO"/>
 	</typeAliases>
 
 	<!-- 매퍼로 등록된 xml들은 위에 등록된 타입들의 변수명을 인식할수 있게 된다 -->
@@ -39,8 +45,11 @@
 		
 		<mapper resource="com/fridgeCare/fri/juhyun/rSQL.xml"/>
 		<mapper resource="com/fridgeCare/fri/juhyun/pSQL.xml"/>
+		<mapper resource="com/fridgeCare/fri/juhyun/aSQL.xml"/>
 		
 		<mapper resource="com/fridgeCare/fri/joo/jooSQL.xml"/>
+		
+		<mapper resource="com/fridgeCare/fri/hyunuk/SearchSQL.xml"/>
 	</mappers>
 	
 </configuration>

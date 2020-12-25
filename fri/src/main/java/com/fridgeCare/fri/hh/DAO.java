@@ -60,4 +60,13 @@ public class DAO {
 	public int newAN(int AN) {
 		return sqlSession.update("updateAN", AN);
 	}
+	public int pwfindproc(String AN) {
+		return sqlSession.selectOne("pwfindproc", AN);
+	}
+	public int pwchangeproc(MemberVO mvo) {
+		return sqlSession.update("updatepw", mvo);
+	}
+	public int secession(String sid) {
+		return sqlSession.update("secession", sid);
+	}
 }

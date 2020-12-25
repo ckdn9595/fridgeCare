@@ -2,18 +2,12 @@ package com.fridgeCare.fri.hh;
 
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Properties;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -43,17 +37,22 @@ public class HController {
 	@Autowired
 	DAO hdao;
 	@RequestMapping("/main.fri")
-	public String getMain(HttpSession s) {
+	public String getMain(HttpSession s , HttpServletRequest request) {
 		String sid = (String) s.getAttribute("SID");
 		LatelyUploadVO luvo = hdao.getLUVO();
 		SideRankVO srvo = hdao.getWR();
-		if(luvo.getTname() == null) {
-			luvo.setTname("noimage.jpg");
+		try {
+			if(luvo.getTname() == null) {
+				luvo.setTname("noimage.jpg");
+			}
+			if(luvo.getSavename() == null) {
+				luvo.setSavename("noimage.jpg");
+			}
+			s.setAttribute("LUVO", luvo);
+		}catch(NullPointerException e) {
+//			e.printStackTrace();
+			System.out.println("no any board or boardpart");
 		}
-		if(luvo.getSavename() == null) {
-			luvo.setSavename("noimage.jpg");
-		}
-		s.setAttribute("LUVO", luvo);
 		s.setAttribute("WVO", srvo);
 		srvo = hdao.getMR();
 		s.setAttribute("MVO", srvo);
@@ -126,7 +125,7 @@ public class HController {
 			rv.setUrl("/fri/hh/joinpage.fri");
 		}else {
 			s.setAttribute("SID", ivo.getInputid());
-			logger.info("new member " + ivo.getInputid() + "has join");
+			logger.info("new member " + ivo.getInputid() + " has join");
 		}
 		if(!inputavt.getOriginalFilename().equals("")) {
 			Fileuploader uploader = new Fileuploader(inputavt);
@@ -191,8 +190,8 @@ public class HController {
 		return mv;
 	}
 	@RequestMapping("/logincheck.fri")
-	public ModelAndView logincheck(ModelAndView mv , RedirectView rv , HttpSession s , InputVO ivo) {
-		rv.setUrl("/fri/");
+	public ModelAndView logincheck(ModelAndView mv , RedirectView rv , HttpSession s , InputVO ivo , String idcookie) {
+		rv.setUrl("/fri/hh/main.fri?setrid=" + ivo.getInputid());
 		cnt = hdao.logincheck(ivo);
 		if(cnt == 0) {
 			rv.setUrl("/fri/hh/main.fri?fail");
@@ -201,6 +200,9 @@ public class HController {
 			cnt = hdao.submitCondate(ivo.getInputid());
 			if(cnt == 0) {
 				System.out.println("submit condate fail");
+			}
+			if(idcookie == null) {
+				rv.setUrl("/fri/hh/main.fri");
 			}
 		}
 		mv.setView(rv);
@@ -238,38 +240,6 @@ public class HController {
 		}
 		return "hh/main";
 	}
-	@RequestMapping("/mailtest.fri")
-	@ResponseBody
-	public String mailtest(String ajaxdata) {
-		String view = "{\"result\" : \"NO\"}";
-		System.out.println(ajaxdata);
-		String hanhoon12 = "hanhoon12@naver.com";
-		HSD hsd = new HSD();
-		String naverpw = hanhoon12.substring(7) + "q" + hsd.data1 + Integer.toString(5+7);
-		Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smtp.naver.com");
-		prop.put("mail.smtp.port", 587);
-		prop.put("mail.smtp.auth", "true");
-		Session session = Session.getDefaultInstance(prop, new Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(hanhoon12, naverpw);
-			}
-		});
-		MimeMessage message = new MimeMessage(session);
-		try {
-			message.setFrom(new InternetAddress(hanhoon12));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("hanpawu@gmail.com"));
-			message.setSubject("test title");
-			message.setText("test body");
-			Transport.send(message);
-			System.out.println("Let's check");
-		} catch (AddressException e) {
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-		return view;
-	}
 	@RequestMapping("transtest.fri")
 	@Transactional
 	public ModelAndView transtest(ModelAndView mv , RedirectView rv , HttpSession s) {
@@ -284,7 +254,7 @@ public class HController {
 	}
 	@RequestMapping(value="/sendpwfindmail.fri" , produces="application/json;charset=utf8")
 	@ResponseBody
-	public String sendPWfindmail(String id , String mail) {
+	public String sendPWfindmail(String id , String mail , HttpSession s) {
 		String view = "{\"result\" : \"OK\"}";
 		InputVO ivo = new InputVO();
 		ivo.setInputid(id);
@@ -299,22 +269,55 @@ public class HController {
 				view = "{\"result\" : \"잠시후 다시 시도해라\"}";
 				System.out.println("error occur");
 			}else {
+				s.setAttribute("changer", id);
 				Navermail nm = new Navermail();
-				nm.send("hanpawu@gmail.com", AN);
+				nm.send(mail, AN);
 			}
 		}
 		return view;
 	}
-	//pwfindproc 만들어야됨
-}
-
-class HSD{
-	String data1 = "f";
-	public HSD() {
-		if(data1.equals("z")) {
-			System.out.println("unknown print");
-		}else {
-			data1 = "w";
+	@RequestMapping("/pwfindproc.fri")
+	@ResponseBody
+	public String pwfindproc(String AN) {
+		String view = "{\"result\" : \"OK\"}";
+		cnt = hdao.pwfindproc(AN);
+		if(cnt == 0) {
+			view = "{\"result\" : \"NO\"}";
 		}
+		return view;
+	}
+	@RequestMapping("/pwchange.fri")
+	public String pwchange(HttpSession s) {
+		return "hh/pwchange";
+	}
+	@RequestMapping("/pwchangeproc.fri")
+	public ModelAndView pwchangeproc(ModelAndView mv , RedirectView rv , HttpSession s , String inputpw) {
+		rv.setUrl("/fri/hh/main.fri?pwchange");
+		String changer = (String) s.getAttribute("changer");
+		MemberVO mvo = new MemberVO();
+		mvo.setId(changer);
+		mvo.setPw(inputpw);
+		cnt = hdao.pwchangeproc(mvo);
+		if(cnt == 0) {
+			rv.setUrl("/fri/hh/pwfind.fri?fail");
+		}else {
+			logger.info(changer + " has change pw to " + inputpw);
+		}
+		mv.setView(rv);
+		return mv;
+	}
+	@RequestMapping("/secession") // fri 안붙여도 잘 되네 개꿀
+	public ModelAndView secession(ModelAndView mv , RedirectView rv , HttpSession s) {
+		rv.setUrl("/fri/hh/main.fri?secession");
+		String sid = (String) s.getAttribute("SID");
+		cnt = hdao.secession(sid);
+		if(cnt == 0) {
+			rv.setUrl("/fri/hh/myinfo.fri?secessionfail");
+		}else {
+			s.removeAttribute("SID");
+			logger.info(sid + "has leave fri");
+		}
+		mv.setView(rv);
+		return mv;
 	}
 }
