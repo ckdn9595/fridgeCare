@@ -47,8 +47,8 @@ public class Fileuploader {
 	}
 	public File export_avt(File f , String id) {
 //		String ext = f.getName().substring(f.getName().lastIndexOf('.'));
-//		exportpath = "C:\\Users\\hanho\\git\\fridgeCare\\fri\\src\\main\\webapp\\resources\\img\\avatar\\" + id + "_avt_" + f.getName();
-		exportpath = "C:\\Users\\class02\\git\\fridgeCare\\fri\\src\\main\\webapp\\resources\\img\\avatar\\" + id + "_avt_" + f.getName();
+		exportpath = "C:\\Users\\hanho\\git\\fridgeCare\\fri\\src\\main\\webapp\\resources\\img\\avatar\\" + id + "_avt_" + f.getName();
+//		exportpath = "C:\\Users\\class02\\git\\fridgeCare\\fri\\src\\main\\webapp\\resources\\img\\avatar\\" + id + "_avt_" + f.getName();
 		File n = new File(exportpath);
 		try {
 			input = new FileInputStream(f);
