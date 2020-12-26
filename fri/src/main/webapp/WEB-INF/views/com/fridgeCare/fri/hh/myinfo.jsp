@@ -90,7 +90,6 @@ img{
       <div class="w3-round">
 		<div class="w3-blue w3-round-large w3-center dimension7 w3-padding w3-margin-top">My refri</div>
 		<form action="/fri/search.fri" method="get">
-			<!-- <input type="hidden" name="catagory" value="한"> -->
 			<input class="w3-gray w3-round-large w3-center dimension3 w3-padding-small inline w3-button w3-hover-cyan change05bgc" type="submit" value="레시피 찾기">
 		</form>
 		<c:if test="${not empty SID}">

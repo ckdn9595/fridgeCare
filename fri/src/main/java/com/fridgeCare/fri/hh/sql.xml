@@ -77,7 +77,7 @@
 	</select>
 	
 	<select id="getmemberinfo" parameterType="string" resultType="mvo">
-		select * from member where id = 'test' and isshow = 'Y'
+		select * from member where id = #{sid} and isshow = 'Y'
 	</select>
 	
 	<select id="submitcondate" parameterType="string">
