@@ -108,4 +108,13 @@
 	<select id="secession" parameterType="string">
 		update member set isshow = 'N' where id = #{sid}
 	</select>
+	
+	<select id="confirmpartner" resultType="int" parameterType="string">
+		select count(*) from board
+		where bmno = (select mno from member where id = #{sid})
+	</select>
+	
+	<select id="updategrade" parameterType="string">
+		update member set grade = 2 where id = #{sid}
+	</select>
 </mapper>

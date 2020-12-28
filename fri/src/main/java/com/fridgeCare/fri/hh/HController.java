@@ -317,4 +317,31 @@ public class HController {
 		mv.setView(rv);
 		return mv;
 	}
+	@RequestMapping("/partner.fri")
+	@ResponseBody
+	public String partnercall(HttpSession s) {
+		String view = "{\"result\" : \"OK\"}";
+		String sid = (String) s.getAttribute("SID");
+		cnt = hdao.getboardwritecount(sid);
+		if(cnt < 1) {
+			view = "{\"result\" : \"NO\"}";
+		}
+		return view;
+	}
+	@RequestMapping("/partnerproc")
+	@ResponseBody
+	public String partnerproc(HttpSession s) {
+		String view = "{\"result\" : \"OK\"}";
+		String sid = (String) s.getAttribute("SID");
+		cnt = hdao.getboardwritecount(sid);
+		if(cnt < 1) {
+			view = "{\"result\" : \"NO\"}";
+		}else {
+			cnt = hdao.partnerproc(sid);
+			if(cnt == 0) {
+				view = "{\"result\" : \"NO\"}";
+			}
+		}
+		return view;
+	}
 }

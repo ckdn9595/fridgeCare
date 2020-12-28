@@ -69,4 +69,10 @@ public class DAO {
 	public int secession(String sid) {
 		return sqlSession.update("secession", sid);
 	}
+	public int getboardwritecount(String sid) {
+		return sqlSession.selectOne("confirmpartner", sid);
+	}
+	public int partnerproc(String sid) {
+		return sqlSession.update("updategrade", sid);
+	}
 }
