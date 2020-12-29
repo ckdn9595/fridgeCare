@@ -48,6 +48,11 @@ public class JooDao {
 		return sqlSession.selectList("jSQL.getFaq");
 	}
 	
+	//고객센터 큐엔에이 가져오기
+	public List<JNoticeVO> getQna(){
+		return sqlSession.selectList("jSQL.getQna");
+	}
+	
 	//고객센터 본문 가져오기
 	public JNoticeVO getNBody(JNoticeVO jnVO) {
 		return sqlSession.selectOne("jSQL.getNBody", jnVO);
@@ -56,5 +61,10 @@ public class JooDao {
 	//고객센터 조회수 올리기
 	public int upNno(JNoticeVO jnVO) {
 		return sqlSession.update("jSQL.upNno", jnVO);
+	}
+	
+	//큐엔에이 답변달기
+	public int insComm(JNoticeVO jnVO) {
+		return sqlSession.insert("jSQL.insComm", jnVO);
 	}
 }

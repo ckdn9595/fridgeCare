@@ -45,12 +45,15 @@ public class JooController {
 	}
 	
 	@RequestMapping("/joo/notice.fri")
-	public ModelAndView veiwNotice(ModelAndView mv) {
+	public ModelAndView veiwNotice(ModelAndView mv, JNoticeVO jnVO) {
 		List<JNoticeVO> list = jDao.getNotice();
 		mv.addObject("LIST", list);
 
 		List<JNoticeVO> flist = jDao.getFaq();
 		mv.addObject("FLIST", flist);
+		
+		List<JNoticeVO> qlist = jDao.getQna();
+		mv.addObject("QLIST", qlist);
 		
 		mv.setViewName("joo/jooNotice");
 		return mv;
@@ -59,10 +62,17 @@ public class JooController {
 	@RequestMapping(value="/joo/noticeBody.fri", produces="application/json; charset=utf8")
 	@ResponseBody
 	public JNoticeVO addNBody(JNoticeVO jnVO) {
-		jnVO = jDao.getNBody(jnVO);
 		jDao.upNno(jnVO);
+		jnVO = jDao.getNBody(jnVO);
 		System.out.println(jnVO.getNbody() + " | " + jnVO.getNclick());
 		return jnVO;
 	}
 	
+	@RequestMapping("/joo/noticeAnswerProc.fri")
+	public ModelAndView insComm(ModelAndView mv, JNoticeVO jnVO) {
+		int cnt = jDao.insComm(jnVO);
+		System.out.println("cnt : " + cnt);
+		mv.setViewName("redirect:/joo/notice.fri");
+		return mv;
+	}
 }

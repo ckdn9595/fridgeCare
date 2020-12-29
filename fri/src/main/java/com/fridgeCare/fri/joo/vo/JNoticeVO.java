@@ -6,8 +6,9 @@ import java.util.*;
 
 public class JNoticeVO {
 	private int nno, ncode, nupno, nclick;
-	private String ntitle, nbody, nisshow, sdate;
+	private String ntitle, nbody, nisshow, sdate, subbody;
 	private Date ndate;
+	
 	public int getNno() {
 		return nno;
 	}
@@ -59,6 +60,12 @@ public class JNoticeVO {
 	}
 	public void setSdate(String sdate) {
 		this.sdate = sdate;
+	}
+	public String getSubbody() {
+		return subbody;
+	}
+	public void setSubbody(String subbody) {
+		this.subbody = subbody;
 	}
 	public Date getNdate() {
 		return ndate;
