@@ -145,7 +145,7 @@ span.activepage{
 			<div class="w3-col m11 w3-border-bottom w3-button w3-margin-left w3-margin-top w3-margin-bottom btn">
 				<div class="w3-col w3-border">
 					<div class="w3-col m3">
-						<img style="width: 100%" src="/fri${board.bdir}">
+						<img style="width: 100%" src="/fri/img/thumb/${board.bdir}">
 					</div>
 					<div class="w3-col m9">
 						<div class="w3-col" style="height: 71px;">
@@ -155,7 +155,7 @@ span.activepage{
 						</div>
 						<div class="w3-col" style="height: 71px;">
 							<div class="w3-col m1"><p></p></div>
-							<img class="w3-col m2 w3-margin-left w3-round-xxlarge w3-border-right" style="width: 10%; height: 80%" src="${board.mdir}">
+							<img class="w3-col m2 w3-margin-left w3-round-xxlarge w3-border-right" style="width: 10%; height: 80%" src="/fri/img/avatar/${board.mdir}">
 							<h4 class="w3-col m3 w3-margin-left">작성자 : ${board.id}</h4>
 							<h4 class="w3-col m3 w3-right">추천수 : ${board.lcount}</h4>
 						</div>

@@ -12,7 +12,7 @@
 		            rownum rno, b.*
 		        FROM
 		            (SELECT 
-		                title, bdate, lcount, cnt, id, m.dir mdir, b.dir bdir, bno 
+		                title, bdate, lcount, cnt, id, m.tname mdir, b.tname bdir, bno 
 		            FROM 
 		                board, member, thumb m , thumb b 
 		            WHERE 
@@ -35,7 +35,7 @@
 		    board, member
 		WHERE 
 		    bmno = mno 
-		    AND grade = 1
+		    AND grade = 2
 	</select>
 	
 	<update id="addCnt">
