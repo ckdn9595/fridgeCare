@@ -15,7 +15,7 @@ public class MailSenderService {
 	// 인증메일 보내기
 	public void sendAuthMail(String mail, String id) {
 		StringBuffer htmlContent = new StringBuffer();
-		htmlContent.append("안녕하세요 " + id +" 회원님 /n");
+		htmlContent.append("안녕하세요 " + id +" 회원님 <br>");
 		htmlContent.append("현재 " + id + " 회원님은 최종 로그인 시간으로부터 1년의 시간이 경과하여 <br>");
 		htmlContent.append("냉장고를 부탁해 사이트의 개인정보 보호 기간이 만료하고 있음을 알려드리며 <br>");
 		htmlContent.append("1주일 안으로 로그인하지 않을시<br>");
