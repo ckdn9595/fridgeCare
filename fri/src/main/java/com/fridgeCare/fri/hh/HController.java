@@ -60,10 +60,10 @@ public class HController {
 			}else {
 				s.setAttribute("AVT", tname);
 			}
-		}
-		MemberVO mvo = hdao.getmvo(sid);
-		if(mvo.getGrade() == 2) {
-			s.setAttribute("partner", true);
+			MemberVO mvo = hdao.getmvo(sid);
+			if(mvo.getGrade() == 2) {
+				s.setAttribute("partner", true);
+			}
 		}
 		return "hh/main";
 	}
