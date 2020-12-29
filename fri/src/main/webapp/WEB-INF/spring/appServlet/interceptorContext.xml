@@ -12,6 +12,7 @@
 		https://www.springframework.org/schema/context/spring-context-4.3.xsd">
 		
 	<beans:bean id="LoginCheck" class="com.fridgeCare.fri.interceptor.LoginCheck"/>
+	<beans:bean id="cencerCheck" class="com.fridgeCare.fri.interceptor.CencerCheck" />
 	<interceptors>
 		<interceptor>
 			<mapping path="/**/*.fri"/>
@@ -33,14 +34,32 @@
 			<exclude-mapping path="/hh/pwchangeproc.fri"/>
 			
 			<exclude-mapping path="/juhyun/recipe/resipiPage.fri"/>
-			<exclude-mapping path="/juhyun/recipe/resipiReply.fri"/>
-			<exclude-mapping path="/juhyun/recipe/resipiLikeCount.fri"/>
-			<exclude-mapping path="/juhyun/partner/partner.fri"/>
-			<exclude-mapping path="/juhyun/partner/partnerCnt.fri"/>
+	        <exclude-mapping path="/juhyun/recipe/resipiReply.fri"/>
+	        <exclude-mapping path="/juhyun/recipe/resipiLikeCount.fri"/>
+	        <exclude-mapping path="/juhyun/partner/partner.fri"/>
+	        <exclude-mapping path="/juhyun/partner/partnerCnt.fri"/>
+	        <exclude-mapping path="/juhyun/admin/admin.fri"/>
+	        <exclude-mapping path="/juhyun/admin/delete.fri"/>
+	        <exclude-mapping path="/juhyun/admin/deletePage.fri"/>
+	        <exclude-mapping path="/juhyun/admin/deletePageProc.fri"/>
+	        <exclude-mapping path="/juhyun/admin/addNotice.fri"/>
+	        <exclude-mapping path="/juhyun/admin/addNoticeProc.fri"/>
+	        <exclude-mapping path="/juhyun/admin/schedulergPage.fri"/>
+	        <exclude-mapping path="/juhyun/admin/wordCencerPage.fri"/>
+	        <exclude-mapping path="/juhyun/admin/addCencerProc.fri"/>
+
 			
 			<exclude-mapping path="/hyunuk/search.fri"/>
 			<exclude-mapping path="/hyunuk/selected.fri"/>
 			<beans:ref bean="LoginCheck"/>
 		</interceptor>
+		<interceptor>
+	         <mapping path="/juhyun/admin/addCencerProc.fri"/>
+	         <mapping path="/**/recipeAddProc.fri"/>
+	         <mapping path="/**/joinproc.fri"/>
+	         <mapping path="/**/resipiReply.fri"/>
+	         <beans:ref bean="cencerCheck" />
+  	    </interceptor>
+		
 	</interceptors>
 </beans:beans>
