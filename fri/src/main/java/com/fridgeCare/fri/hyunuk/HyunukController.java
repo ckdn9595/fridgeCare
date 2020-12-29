@@ -38,7 +38,7 @@ public class HyunukController {
 	// 선택된 값 요청
 	@RequestMapping(value="/selected.fri", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> SelectedIngred(ModelAndView mv, String[] Situat, String[] Category, String SelIng) {
+	public Map<String, Object> SelectedIngred(String[] Situat, String[] Category, String SelIng) {
 		
 		String situ = "";
 		String CAT = "";
@@ -80,7 +80,6 @@ public class HyunukController {
 		map.put("situ", situ);
 		map.put("SelIng", SelIng);
 		
-		// List<SearchVO> sLIST = sDao.getRecipelist(gVO);
 		List<SearchVO> sLIST = sDao.getRecipelist(map);
 		
 		System.out.println(sLIST.size());
@@ -90,7 +89,34 @@ public class HyunukController {
 		return map2;
 	}
 	
-	
+	/*
+	 * @RequestMapping(value="/titleSearch.fri", method = RequestMethod.POST) public
+	 * Map<String, Object> titleSearch(String getContext, int total){ Map<String,
+	 * Object> map3 = new HashMap<String, Object>(); String cont = "";
+	 * System.out.println("컨텍스트 : " + getContext);
+	 * 
+	 * SearchVO sVO = new SearchVO();
+	 * 
+	 * 
+	 * total = sDao.searchCNT(cont);
+	 * 
+	 * 
+	 * 
+	 * if(getContext == null) { cont += "%" + getContext + "%"; }
+	 * 
+	 * 
+	 * sVO.setSearch(cont); sVO.setTotal(total);
+	 * 
+	 * 
+	 * 
+	 * 
+	 * map3.put("search", getContext); map3.put("total", total);
+	 * 
+	 * List<SearchVO> tLIST = sDao.titleSearch(map3);
+	 * 
+	 * 
+	 * return map3; }
+	 */
 	
 	
 	

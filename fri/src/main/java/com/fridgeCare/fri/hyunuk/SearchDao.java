@@ -30,12 +30,16 @@ public class SearchDao {
 	}
 	
 	// 타이틀 검색
-	public List<SearchVO> titleSearch(SearchVO sVO) {
-		return sqlSession.selectList("sSQL.TitleSearch", sVO);
+	public List<SearchVO> titleSearch(Map<String, Object> map) {
+		return sqlSession.selectList("sSQL.TitleSearch", map);
 	}
 	
 	// 조회수 증가
 	public int increseCnt(int bno) {
 		return sqlSession.update("sSQL.increseCnt");
+	}
+	
+	public int searchCNT(String search) {
+		return sqlSession.selectOne("sSQL.searchCNT");
 	}
 }

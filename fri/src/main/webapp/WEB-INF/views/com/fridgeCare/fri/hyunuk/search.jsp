@@ -152,15 +152,15 @@ ul li {
 						<input name="utf8" type="hidden" value=""> <input
 							type="hidden" name="sort" value="">
 						<div id="ckbox" style="border: 0px solid;">
-							<div class="field1"
+							<!-- <div class="field1"
 								style="margin: 10px; vertical-align: middle; border: 1px solid; text-align: justify; text-align: center;">
 								<input type="text" class="search-ingre"
-									placeholder="음식명으로 검색해보세요!"
+									placeholder="음식,재료명으로 검색해보세요!"
 									style="border: 0px solid; display: inline-block; width: calc(100% - 80px); font-size: 30px; vertical-align: middle;">
-								<button style="">
-									<img src="/fri/img/cook/search.png">
+								<button id="tsbtn">
+									<img src="/fri/img/ingredient/search.png">
 								</button>
-							</div>
+							</div> -->
 							<div style="background-color: #fff; margin: 10px; padding: 10px;">
 								<h3 style="text-align: center;">상황에 맞는 음식</h3>
 								<form method="POST" action="/fri/hyunuk/checked.fri" id="sitbox" class="ckfrm">
