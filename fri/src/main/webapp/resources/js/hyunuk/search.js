@@ -86,7 +86,7 @@ $(document).ready(function(){
 			console.log(data.sLIST.length);
 			for(var i = 0; i < data.sLIST.length; i++){
 				arr[i] = data.sLIST[i];
-				setlist = setlist + "<div id=" + arr[i].bno +" style='width: 402px;height: 520px;border: 1px solid;float: left;margin: 20px;'><a href= '/fri/juhyun/recipe/resipiPage.fri?bno="+arr[i].bno +"'class='img_thumb' style='width: 400px; height: 400px;'><br><img src= "+arr[i].tdir + "><br><center><span>" + arr[i].title + "</span><br><span>" +'작성자 : ' + arr[i].id + "</span><br><span>" + arr[i].time +'분'+ "</span><br><span>"+'좋아요 : '+ arr[i].lcount + "</span></a></center></div>";
+				setlist = setlist + "<div id=" + arr[i].bno +" style='overflow:hidden; width: 402px;height: 520px;border: 1px solid;float: left;margin: 20px;'><a href= '/fri/juhyun/recipe/resipiPage.fri?bno="+arr[i].bno +"'class='img_thumb' style='width: 400px; height: 400px;'><br><img style=width:auto; height:400px; src= "+arr[i].tdir+"><br><center><span>" + arr[i].title + "</span><br><span>" +'작성자 : ' + arr[i].id + "</span><br><span>" + arr[i].time +'분'+ "</span><br><span>"+'좋아요 : '+ arr[i].lcount + "</span></a></center></div>";
 				$('.sort_area').html(setlist);
 			}
 			/*
