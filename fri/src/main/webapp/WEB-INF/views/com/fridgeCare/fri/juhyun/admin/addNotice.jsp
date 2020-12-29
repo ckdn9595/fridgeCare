@@ -166,7 +166,7 @@ span.activepage{
     	</div>
     </form>
     
-    <form method="POST" action="/fri/juhyun/admin/addFnAProc.fri" class="w3-col m9 w3-hide" id="frm3">
+    <form method="POST" action="/fri/juhyun/admin/addFAQProc.fri" class="w3-col m9 w3-hide" id="frm3">
     	<div class="w3-col w3-center">
 	    	<div class="w3-col m3 w3-margin">FAQ 제목 </div>
 	    	<input class="w3-col m7 w3-gray w3-margin" id="title" name="title">

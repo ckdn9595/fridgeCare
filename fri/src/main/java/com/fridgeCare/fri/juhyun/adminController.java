@@ -44,7 +44,29 @@ public class adminController {
 			System.out.println("등록 완료");
 		}
 		
-		mv.setViewName("juhyun/admin/addNotice");
+		mv.setViewName("juhyun/admin/admin");
+		return mv;
+	}
+	@RequestMapping("/addQnAProc.fri")
+	public ModelAndView addQnAProc(ModelAndView mv, AdminVO aVO) {
+		System.out.println("QnA 등록 컨트롤러 실행");
+		if((aVO.getTitle() != null) || (aVO.getBody() != null)) {
+			aDao.addNotice(aVO);
+			System.out.println("등록 완료");
+		}
+		
+		mv.setViewName("juhyun/admin/admin");
+		return mv;
+	}
+	@RequestMapping("/addFAQProc.fri")
+	public ModelAndView addFAQProc(ModelAndView mv, AdminVO aVO) {
+		System.out.println("FAQ 등록 컨트롤러 실행");
+		if((aVO.getTitle() != null) || (aVO.getBody() != null)) {
+			aDao.addNotice(aVO);
+			System.out.println("등록 완료");
+		}
+		
+		mv.setViewName("juhyun/admin/admin");
 		return mv;
 	}
 	

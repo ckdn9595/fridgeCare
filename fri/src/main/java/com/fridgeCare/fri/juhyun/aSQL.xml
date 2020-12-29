@@ -289,5 +289,13 @@
 			#{title}, #{body}, 2, #{upno} 
 		)
 	</insert>
+	<insert id="addFAQ">
+		INSERT INTO
+			notice(nno,ntitle,nbody,ncode)
+		VALUES(
+			(SELECT NVL(MAX(nno) + 1, 1001) FROM notice),
+			#{title}, #{body}, 3 
+		)
+	</insert>
 	
 </mapper>
