@@ -271,4 +271,31 @@
 	</delete>
 	
 	
+	
+	
+	<insert id="addNotice">
+		INSERT INTO
+			notice(nno,ntitle,nbody,ncode)
+		VALUES(
+			(SELECT NVL(MAX(nno) + 1, 1001) FROM notice),
+			#{title}, #{body}, 1
+		)
+	</insert>
+	<insert id="addQnA">
+		INSERT INTO
+			notice(nno,ntitle,nbody,ncode,upno)
+		VALUES(
+			(SELECT NVL(MAX(nno) + 1, 1001) FROM notice),
+			#{title}, #{body}, 2, #{upno} 
+		)
+	</insert>
+	<insert id="addFAQ">
+		INSERT INTO
+			notice(nno,ntitle,nbody,ncode)
+		VALUES(
+			(SELECT NVL(MAX(nno) + 1, 1001) FROM notice),
+			#{title}, #{body}, 3 
+		)
+	</insert>
+	
 </mapper>

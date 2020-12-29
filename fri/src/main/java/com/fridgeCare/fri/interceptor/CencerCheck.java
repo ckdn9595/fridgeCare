@@ -50,7 +50,7 @@ public class CencerCheck implements HandlerInterceptor {
 			// 계정 생성 컨트롤러
 
 		
-			boolean bool = searchId(req.getParameter("id"));
+			boolean bool = searchId(req.getParameter("inputid"));
 			if(!bool) {
 				resp.sendRedirect("/fri/hh/main.fri");
 			}else {
