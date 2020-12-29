@@ -48,7 +48,7 @@
 	
 	<select id="getLUVO" resultType="luvo">
 		select *
-		from (select board.bno , title , bdate d , (select id from member where mno = bmno) id , savename ,
+		from (select board.bno , title , bdate d , (select id from member where mno = bmno) id , (select tname from thumb where tno = board.tno) savename ,
 		(select tname from thumb where thumb.tmno = (select mno from member where mno = bmno)) tname
 		from board , boardpart
 		where board.bno = boardpart.bno and isshow = 'Y'
