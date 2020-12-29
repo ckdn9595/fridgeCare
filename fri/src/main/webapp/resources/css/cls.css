@@ -231,6 +231,10 @@
 	width: 250px;
 }
 
+.w700 {
+	width: 700px;
+}
+
 .infoAvtBox {
 	width: 100%;
 	height: auto;
@@ -306,6 +310,9 @@ span#wbtn {
 
 .h90 {
 	height: 90px;
+}
+.h15{
+	height: 15px;
 }
 
 .pb3 {
