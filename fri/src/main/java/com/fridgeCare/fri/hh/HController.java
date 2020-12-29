@@ -61,6 +61,10 @@ public class HController {
 				s.setAttribute("AVT", tname);
 			}
 		}
+		MemberVO mvo = hdao.getmvo(sid);
+		if(mvo.getGrade() == 2) {
+			s.setAttribute("partner", true);
+		}
 		return "hh/main";
 	}
 	@RequestMapping("/joinpage.fri")
