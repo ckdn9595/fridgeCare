@@ -1,5 +1,4 @@
-요청설계는 건드리지 마시오
-만약 건드려도 절대 커밋하지 마시오
+통합 요청설계입니다 요청설계 커밋하지 말고 톡으로 보내주거나 본인전용 요청설계 따로 만들어서 커밋 해주세요~
 
 ------------------------------------------------------------
 * 메인 페이지 요청
@@ -7,4 +6,28 @@
 파라미터 : 
 컨트롤러 : com.fridgeCare.fri.hh.HController
 뷰	  : /WEB-INF/views/com/fridgeCare/fri/hh/main.jsp
+------------------------------------------------------------
+* 회원가입 페이지 요청
+요청내용 : /fri/joinpage.fri
+파라미터 : 
+컨트롤러 : com.fridgeCare.fri.hh.HController
+뷰	  : /WEB-INF/views/com/fridgeCare/fri/hh/joinpage.jsp
+------------------------------------------------------------
+* 비밀번호찾기 페이지 요청
+요청내용 : /fri/pwfind.fri
+파라미터 : 
+컨트롤러 : com.fridgeCare.fri.hh.HController
+뷰	  : /WEB-INF/views/com/fridgeCare/fri/hh/pwfind.jsp
+------------------------------------------------------------
+* 내 정보 보기 요청
+요청내용 : /fri/myinfo.fri
+파라미터 : 
+컨트롤러 : com.fridgeCare.fri.hh.HController
+뷰	  : /WEB-INF/views/com/fridgeCare/fri/hh/myinfo.jsp
+------------------------------------------------------------
+* 아이디 중복검사 요청
+요청내용 : /fri/idCheck.fri
+파라미터 : (String id)
+컨트롤러 : com.fridgeCare.fri.hh.HController
+뷰	  : 비동기통신
 ------------------------------------------------------------
