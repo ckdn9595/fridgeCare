@@ -97,23 +97,56 @@ public class AdminService {
 	
 	@Transactional
 	public boolean cencerAll() {
-		try {
-			List<AdminVO> list = aDao.getCencerList();
-			/*
-			 * List<AdminVO> board = aDao.getCencerBoard(); List<AdminVO> boardpart =
-			 * aDao.getCencerBoardPart(); List<AdminVO> reply = aDao.getCencerReply();
-			 */
+		List<AdminVO> list = aDao.getCencerList();
+		/*
+		 * List<AdminVO> board = aDao.getCencerBoard(); List<AdminVO> boardpart =
+		 * aDao.getCencerBoardPart(); List<AdminVO> reply = aDao.getCencerReply();
+		 */
+		
+		System.out.println("모든 검열단어로 게시글 검색중...");
+		
+		for(int j = 0 ; j < list.size(); j++ ) {
+			//int cnt = aDao.getCencerCnt(list.get(i).getBody());
+			List<Integer> blist = aDao.getCencerBoard(list.get(j).getBody());
 			
-			for(int i = 0 ; i < list.size(); i++ ) {
-				//int cnt = aDao.getCencerCnt(list.get(i).getBody());
+			for(int i = 0; i < blist.size(); i++) {
+				System.out.println("검열된 board : " + blist.get(i));
+				
+				int mno = aDao.getBoardMno(blist.get(i));
+				
+				aDao.deleteUserLike(mno);
+				aDao.deleteBoardPart(blist.get(i));
+				aDao.deleteBoardReply(blist.get(i));
+				int tno = aDao.getBnoThumb(blist.get(i));
+				aDao.deleteBoardBno(blist.get(i));
+				aDao.deleteBoardThumb(tno);
 			}
-			System.out.println("모든 게시글 검열 성공");
-			return true;
-		} catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("모든 게시글 검열 실패");
-			return false;
+			List<Integer> bplist = aDao.getCencerBoardPart(list.get(j).getBody());
+			for(int i = 0 ; i < bplist.size(); i++) {
+				System.out.println("검열된 boardpart : " + bplist.get(i));
+				
+				aDao.deleteCencerBoardPart(bplist.get(i));
+			}
+			
+			System.out.println("검열단어로 댓글 검색중...");
+			List<Integer> rlist = aDao.getCencerReply(list.get(j).getBody());
+			for(int i = 0 ; i < rlist.size(); i++) {
+				System.out.println("검열된 reply : " + rlist.get(i));
+				
+				aDao.deleteCencerReply(rlist.get(i));
+			}
+			
+			System.out.println("검열단어로 회원ID 검색중...");
+			List<AdminVO> mlist = aDao.getCencerMember(list.get(j).getBody());
+			for(int i = 0; i < mlist.size(); i++) {
+				System.out.println("검열된 id : " + mlist.get(i));
+				deleteMemb(mlist.get(i));
+			}
+			
+			System.out.println("해당 단어 검열 성공");
 		}
+		System.out.println("모든 게시글 검열 성공");
+		return true;
 	}
 	
 	@Transactional
@@ -177,6 +210,27 @@ public class AdminService {
 			
 			return true;
 		}
+		
+	}
+	
+	@Transactional
+	public boolean cencerBody(String body) {
+		boolean bool = false;
+		
+		List<AdminVO> list = aDao.getCencerList();
+		System.out.println(body);
+		
+		for(int i = 0; i < list.size(); i++) {
+			bool = body.contains(list.get(i).getBody());
+			if(bool) {
+				System.out.println(body + "는 사용 불가한 단어가 포함되어있습니다." + " 검열 단어 :" + list.get(i).getBody());
+				return false;
+			}else {
+				System.out.println(body + "가 통과한 검열 단어 : " + list.get(i).getBody());
+			}
+		}
+		System.out.println("해당 내용은 사용 가능합니다.");
+		return true;
 	}
 	
 	/*
