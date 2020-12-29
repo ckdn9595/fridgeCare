@@ -255,7 +255,7 @@ ul li {
 									조건에 맞는 레시피가 <strong><span id="total"></span></strong>개 있습니다.
 								</h2>
 								<div class="sort_area">
-									<div id="${resipe.bno}"style="width: 400px;height: 500px;border: 1px solid;float: left;margin:20px;"">
+									<%-- <div id="${resipe.bno}"style="width: 400px;height: 500px;border: 1px solid;float: left;margin:20px;"">
 										<a class="img_thumb" style="width: 400px; height: 400px;">
 											<img src="${resipe.tdir}">
 											<span>${resipe.title}</span>
@@ -263,7 +263,7 @@ ul li {
 											<span>${resipe.time}</span>
 											<span>${resipe.lcount}</span>
 										</a>
-									</div>
+									</div> --%>
 								</div>
 							</div>
 						</div>
@@ -290,6 +290,5 @@ ul li {
 				target="_blank">w3.css</a>
 		</p>
 	</footer>
-
 </body>
 </html>

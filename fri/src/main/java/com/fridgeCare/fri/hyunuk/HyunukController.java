@@ -70,11 +70,6 @@ public class HyunukController {
 		gVO.setSitu(situ);
 		gVO.setSeling(SelIng);
 		
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
-		System.out.println(gVO.getCat());
-		System.out.println(gVO.getSitu());
-		System.out.println(gVO.getSeling());
-		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("CAT", CAT);
 		map.put("situ", situ);
