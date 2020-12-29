@@ -30,10 +30,21 @@ public class adminController {
 	
 	
 	
+	@RequestMapping("/addNotice.fri")
+	public ModelAndView addNotice(ModelAndView mv) {
+		mv.setViewName("juhyun/admin/addNotice");
+		return mv;
+	}
 	
-	@RequestMapping("/waitingPage.fri")
-	public ModelAndView waitingPage(ModelAndView mv) {
-		mv.setViewName("juhyun/admin/waitingPage");
+	@RequestMapping("/addNoticeProc.fri")
+	public ModelAndView addNoticeProc(ModelAndView mv, AdminVO aVO) {
+		System.out.println("공지사항 등록 컨트롤러 실행");
+		if((aVO.getTitle() != null) || (aVO.getBody() != null)) {
+			aDao.addNotice(aVO);
+			System.out.println("등록 완료");
+		}
+		
+		mv.setViewName("juhyun/admin/addNotice");
 		return mv;
 	}
 	

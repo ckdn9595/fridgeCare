@@ -139,13 +139,10 @@ span.activepage{
 		</form>
     
     	<div class="w3-col m5 w3-margin">
-	    	<div class="w3-col m5 w3-center w3-red w3-button w3-round-large" style="margin-left: 100px;" id="wbtn">삭제 요청 확인란</div>
+	    	<div class="w3-col m5 w3-center w3-red w3-button w3-round-large" style="margin-left: 100px;" id="wbtn">공지사항 등록</div>
     	</div>
     	<div class="w3-col m5 w3-margin">
 	    	<div class="w3-col m5 w3-center w3-blue w3-button w3-round-large" style="margin-left: 100px;" id="cbtn">게시글 검열</div>
-    	</div>
-    	<div class="w3-col m5 w3-margin">
-	    	<div class="w3-col m5 w3-center w3-purple w3-button w3-round-large" style="margin-left: 100px;" id="dbtn">삭제 예정 메일 전송</div>
     	</div>
     	<div class="w3-col m5 w3-margin">
 	    	<div class="w3-col m5 w3-center w3-purple w3-button w3-round-large" style="margin-left: 100px;" id="cdbtn">특정 회원글 삭제</div>

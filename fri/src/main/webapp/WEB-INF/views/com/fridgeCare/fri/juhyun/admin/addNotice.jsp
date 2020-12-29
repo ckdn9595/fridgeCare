@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="/fri/css/my.css">
 <link rel="stylesheet" type="text/css" href="/fri/css/w3.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="/fri/js/juhyun/partnerBoard.js"></script>
+<script type="text/javascript" src="/fri/js/juhyun/addNoticeProc.js"></script>
 
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
@@ -134,10 +134,52 @@ span.activepage{
     <!-- End Left Column -->
     </div>
     <!-- Middle Column --> <!-- 작업할 곳 -->
-    <div class="w3-col m9">
+    <div class="w3-col m3 w3-button w3-border" id="noticebtn">공지사항</div>
+    <div class="w3-col m3 w3-button w3-border" id="qnabtn">QnA</div>
+    <div class="w3-col m3 w3-button w3-border" id="fnqbtn">FAQ</div>
+    <form method="POST" action="/fri/juhyun/admin/addNoticeProc.fri" class="w3-col m9 w3-hide" id="frm1">
+    	<div class="w3-col w3-center">
+	    	<div class="w3-col m3 w3-margin">공지사항 제목 </div>
+	    	<input class="w3-col m7 w3-gray w3-margin" id="title" name="title">
+    	</div>
+    	<div class="w3-col w3-center w3-border">
+	    	<div class="w3-col w3-margin">공지 내용 </div>
+	    	<div class="w3-col m1"><p></p></div>
+	    	<input class="w3-col m10" style="height: 400px;" id="body" name="body">
+	    	<div class="w3-col m5"><p></p></div>
+	    	<div class="w3-col m2 w3-button w3-border w3-red w3-hover-orange w3-border-black w3-round-xxlarge w3-margin" id="wbtn1">등록</div> 
+    	</div>
+    </form>
     
+    <form method="POST" action="/fri/juhyun/admin/addQnAProc.fri" class="w3-col m9 w3-hide" id="frm2">
+    	<div class="w3-col w3-center">
+	    	<div class="w3-col w3-margin">QnA 질문 </div>
+	    	<div class="w3-col m2 w3-margin-left"><p></p></div>
+	    	<input class="w3-col m7 w3-gray w3-margin" style="height: 400px;" id="title" name="title">
+    	</div>
+    	<div class="w3-col w3-center w3-border">
+	    	<div class="w3-col w3-margin">답변 </div>
+	    	<div class="w3-col m1"><p></p></div>
+	    	<input class="w3-col m10" style="height: 400px;" id="body" name="body">
+	    	<div class="w3-col m5"><p></p></div>
+	    	<div class="w3-col m2 w3-button w3-border w3-red w3-hover-orange w3-border-black w3-round-xxlarge w3-margin" id="wbtn2">등록</div> 
+    	</div>
+    </form>
+    
+    <form method="POST" action="/fri/juhyun/admin/addFnAProc.fri" class="w3-col m9 w3-hide" id="frm3">
+    	<div class="w3-col w3-center">
+	    	<div class="w3-col m3 w3-margin">FAQ 제목 </div>
+	    	<input class="w3-col m7 w3-gray w3-margin" id="title" name="title">
+    	</div>
+    	<div class="w3-col w3-center w3-border">
+	    	<div class="w3-col w3-margin">내용 </div>
+	    	<div class="w3-col m1"><p></p></div>
+	    	<input class="w3-col m10" style="height: 400px;" id="body" name="body">
+	    	<div class="w3-col m5"><p></p></div>
+	    	<div class="w3-col m2 w3-button w3-border w3-red w3-hover-orange w3-border-black w3-round-xxlarge w3-margin" id="wbtn3">등록</div> 
+    	</div>
     <!-- End Middle Column -->
-    </div>
+    </form>
     
     
   <!-- End Grid -->
