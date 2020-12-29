@@ -35,35 +35,36 @@ public class CencerCheck implements HandlerInterceptor {
 		}else if(now_address.equals("/fri/joo/recipeAddProc.fri")){
 			//보드와 보드파트 생성 컨트롤러
 			
-		/*
-			int cnt = searchWord(req.getParameter("body"));
-			if(cnt == 0) {
-				resp.sendRedirect("/fri/juhyun/admin/wordCencerPage.fri");
+		
+			boolean bool1 = searchTitle(req.getParameter("title"));
+			boolean bool2 = searchBoardPart(req.getParameter("body"));
+			if(!bool1 || !bool2) {
+				resp.sendRedirect("/fri/hh/main.fri");
 			}else {
 				return true;
 			}
-		 */
+		 
 			
 			
 		}else if(now_address.equals("/fri/hh/joinproc.fri")){
 			// 계정 생성 컨트롤러
 
-		/*
-			int cnt = searchWord(req.getParameter("body"));
-			if(cnt == 0) {
-				resp.sendRedirect("/fri/juhyun/admin/wordCencerPage.fri");
+		
+			boolean bool = searchTitle(req.getParameter("body"));
+			if(!bool) {
+				resp.sendRedirect("/fri/hh/main.fri");
 			}else {
 				return true;
 			}
-		 */
+		 
 			
 			
 		}else if(now_address.equals("/fri/juhyun/resipiReply.fri")) {
 			// 댓글 생성 컨트롤러
 
-			boolean bool = searchWord(req.getParameter("body"));
+			boolean bool = searchReply(req.getParameter("reply"));
 			if(bool == false) {
-				resp.sendRedirect("/fri/juhyun/admin/wordCencerPage.fri");
+				resp.sendRedirect("/fri/hh/main.fri");
 			}else {
 				return true;
 			}
@@ -95,27 +96,27 @@ public class CencerCheck implements HandlerInterceptor {
 		return bool;
 	}
 	// 게시글 제목에 대한 인터셉터 처리 함수
-	public int searchTitle(String title) {
-		int cnt = 0;
+	public boolean searchTitle(String title) {
+		boolean bool = aSrvc.cencerBody(title);
 		
-		return cnt;
+		return bool;
 	}
 	// 게시글 내용에 대한 인터셉터 처리 함수
-	public int searchBoardPart(String body) {
-		int cnt = 0;
+	public boolean searchBoardPart(String body) {
+		boolean bool = aSrvc.cencerBody(body);
 		
-		return cnt;
+		return bool;
 	}
 	// 댓글 내용에 대한 인터셉터 처리 함수
-	public int searchReply(String body) {
-		int cnt = 0;
+	public boolean searchReply(String reply) {
+		boolean bool = aSrvc.cencerBody(reply);
 		
-		return cnt;
+		return bool;
 	}
 	// 회원가입 아이디에 대한 인터셉터 처리 함수
-	public int searchId(String id) {
-		int cnt = 0;
+	public boolean searchId(String id) {
+		boolean bool = aSrvc.cencerBody(id);
 		
-		return cnt;
+		return bool;	
 	}
 }

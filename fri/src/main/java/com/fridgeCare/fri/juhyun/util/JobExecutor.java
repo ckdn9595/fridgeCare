@@ -25,7 +25,7 @@ public class JobExecutor{
 	@Autowired
 	AdminService aSrvc;
 	
-	@Scheduled(cron="0 19 14 * * ?")
+	@Scheduled(cron="0 20 10 * * ?")
 	@Transactional
 	public void jobScheduler(){
 		// 메일을 보낼 사람들의 아이디 메일을 리스트에 담는다
@@ -79,6 +79,11 @@ public class JobExecutor{
 			// delete 테이블 메일 보낸 시간이 7일이상인 데이터 이즈쇼 N으로 변경
 			System.out.println("이즈쇼 변경중");
 			aDao.setIsshow(delList.get(i).getId());
+		}
+		
+		boolean bool = aSrvc.cencerAll();
+		if(bool) {
+			System.out.println(" 스케쥴러 종료.");
 		}
 		
 	}
