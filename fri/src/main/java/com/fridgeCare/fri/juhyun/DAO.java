@@ -189,11 +189,12 @@ public class DAO {
 		return sqlSession.delete("aSQL.deleteCencerReply", reno);
 	}
 	
+	
 	public int addNotice(AdminVO aVO) {
 		return sqlSession.insert("aSQL.addNotice", aVO);
 	}
-	public int addFnQ(AdminVO aVO) {
-		return sqlSession.insert("aSQL.addFnQ", aVO);
+	public int addFAQ(AdminVO aVO) {
+		return sqlSession.insert("aSQL.addFAQ", aVO);
 	}
 	public int addQnA(AdminVO aVO) {
 		return sqlSession.insert("aSQL.addQnA", aVO);

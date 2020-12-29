@@ -51,7 +51,7 @@ public class adminController {
 	public ModelAndView addQnAProc(ModelAndView mv, AdminVO aVO) {
 		System.out.println("QnA 등록 컨트롤러 실행");
 		if((aVO.getTitle() != null) || (aVO.getBody() != null)) {
-			aDao.addNotice(aVO);
+			aDao.addQnA(aVO);
 			System.out.println("등록 완료");
 		}
 		
@@ -62,7 +62,7 @@ public class adminController {
 	public ModelAndView addFAQProc(ModelAndView mv, AdminVO aVO) {
 		System.out.println("FAQ 등록 컨트롤러 실행");
 		if((aVO.getTitle() != null) || (aVO.getBody() != null)) {
-			aDao.addNotice(aVO);
+			aDao.addFAQ(aVO);
 			System.out.println("등록 완료");
 		}
 		
