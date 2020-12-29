@@ -34,9 +34,9 @@
 	</select>
 	
 	<!-- 타이틀 검색 -->
-	<select id="titleSearch" resultType="sVO" parameterType="sVO">
+	<select id="titleSearch" resultType="sVO" parameterType="java.util.Map">
 		SELECT
-		    b.bno, b.title, m.id, b.time, b.lcount, (t.dir || t.tname) tdir
+		    b.bno bno, b.title title, m.id id, b.time time, (t.dir || t.tname) tdir
 		FROM
 		    BOARD b, MEMBER m, THUMB t
 		WHERE 
@@ -53,6 +53,10 @@
 	<!-- 재료조회 -->
 	<select id="getingredient" parameterType="inVO">
 		SELECT * FROM ingredient;
+	</select>
+	
+	<select id="searchCNT" resultType="int" parameterType="gVO">
+		SELECT count(*) FROM board WHERE title LIKE #{search}
 	</select>
 	
 </mapper>

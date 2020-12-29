@@ -58,6 +58,8 @@ $(document).ready(function(){
     });
 	
 	
+	
+	
 	/* 버튼 누르면 모든 데이터 가져오는 함수*/
 	$('#sbtn').click(function(){
 		var getIng = $('.sList').not('.w3-hide').children('span').get();
@@ -108,22 +110,6 @@ $(document).ready(function(){
 		alert(Situat);
 		
 		var situdat = {"Situat" : Situat}; 
-		
-		/*$ .ajax( {
-			url : "/fri/hyunuk/situat.fri",
-			type : "POST",
-			data : situdat,
-			traditional : true,
-			dataType : "JSON",
-		}).done(function(data) {
-		   if (data) {
-		      alert("성공하셨습니다.");
-		   } else {
-		      console.log("실패하셨습니다.");
-		   }
-		}).fail(function(err) {
-		   console.log(err);
-		});*/
 	});
 	
 	$('.chkcategory').change(function CategoryArr(){
@@ -136,13 +122,16 @@ $(document).ready(function(){
 		alert(Category);
 		
 		var CATdata = {"Category" : Category}; 
-		/*
+	});
+	
+	$('#tsbtn').click(function(){
+		var getContext = $('.search-ingre').text();
+		
 		$ .ajax( {
-			url : "/fri/hyunuk/category.fri",
+			url : "/fri/hyunuk/titleSearch.fri",
 			type : "POST",
-			data : CATdata,
+			data : getContext,
 			traditional : true,
-			dataType : "JSON",
 		}).done(function(data) {
 		   if (data) {
 		      alert("성공하셨습니다.");
@@ -151,6 +140,6 @@ $(document).ready(function(){
 		   }
 		}).fail(function(err) {
 		   console.log(err);
-		});*/
+		});
 	});
 });

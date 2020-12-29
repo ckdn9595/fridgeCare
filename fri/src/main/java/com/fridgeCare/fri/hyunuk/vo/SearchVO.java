@@ -5,7 +5,13 @@ import com.fridgeCare.fri.juhyun.PageUtil;
 
 public class SearchVO {
 	private int ino, lcount, bno, time, total;
-	private String ingred, iname, iiname, category, tdir, title, situat, id; 
+	private String ingred, iname, iiname, category, tdir, title, situat, id, search; 
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
 	public String getId() {
 		return id;
 	}

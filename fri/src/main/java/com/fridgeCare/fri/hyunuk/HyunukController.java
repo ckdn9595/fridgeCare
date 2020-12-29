@@ -1,18 +1,16 @@
 package com.fridgeCare.fri.hyunuk;
 
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fridgeCare.fri.hyunuk.vo.GetVO;
@@ -40,7 +38,7 @@ public class HyunukController {
 	// 선택된 값 요청
 	@RequestMapping(value="/selected.fri", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> SelectedIngred(ModelAndView mv, String[] Situat, String[] Category, String SelIng) {
+	public Map<String, Object> SelectedIngred(String[] Situat, String[] Category, String SelIng) {
 		
 		String situ = "";
 		String CAT = "";
@@ -82,7 +80,6 @@ public class HyunukController {
 		map.put("situ", situ);
 		map.put("SelIng", SelIng);
 		
-		// List<SearchVO> sLIST = sDao.getRecipelist(gVO);
 		List<SearchVO> sLIST = sDao.getRecipelist(map);
 		
 		System.out.println(sLIST.size());
@@ -91,5 +88,36 @@ public class HyunukController {
 		map2.put("sLIST",sLIST);
 		return map2;
 	}
+	
+	/*
+	 * @RequestMapping(value="/titleSearch.fri", method = RequestMethod.POST) public
+	 * Map<String, Object> titleSearch(String getContext, int total){ Map<String,
+	 * Object> map3 = new HashMap<String, Object>(); String cont = "";
+	 * System.out.println("컨텍스트 : " + getContext);
+	 * 
+	 * SearchVO sVO = new SearchVO();
+	 * 
+	 * 
+	 * total = sDao.searchCNT(cont);
+	 * 
+	 * 
+	 * 
+	 * if(getContext == null) { cont += "%" + getContext + "%"; }
+	 * 
+	 * 
+	 * sVO.setSearch(cont); sVO.setTotal(total);
+	 * 
+	 * 
+	 * 
+	 * 
+	 * map3.put("search", getContext); map3.put("total", total);
+	 * 
+	 * List<SearchVO> tLIST = sDao.titleSearch(map3);
+	 * 
+	 * 
+	 * return map3; }
+	 */
+	
+	
 	
 }
