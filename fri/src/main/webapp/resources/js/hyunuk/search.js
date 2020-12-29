@@ -54,7 +54,6 @@ $(document).ready(function(){
         for(var i = 0; i < notdata.length; i++){
             totaldata += notdata[i].innerHTML + '|';
         }
-        alert(totaldata);
     });
 	
 	
@@ -68,7 +67,7 @@ $(document).ready(function(){
 		for(var i = 0; i < getIng.length; i++){
 			SelIng += getIng[i].innerHTML + '|';
 		} 
-		alert(SelIng);
+		$('.sort_area').empty();
 				
 		$ .ajax( {
 			url : "/fri/hyunuk/selected.fri",
@@ -81,6 +80,7 @@ $(document).ready(function(){
 			arr = [];
 			var total = data.sLIST.length;
 			
+			
 			$('#total').text(total);
 			console.log('total@@@@@@@@@@@@@@@ : '+total);
 			console.log(data.sLIST.length);
@@ -89,8 +89,12 @@ $(document).ready(function(){
 				setlist = setlist + "<div id=" + arr[i].bno +" style='width: 402px;height: 520px;border: 1px solid;float: left;margin: 20px;'><a href= '/fri/juhyun/recipe/resipiPage.fri?bno="+arr[i].bno +"'class='img_thumb' style='width: 400px; height: 400px;'><br><img src= "+arr[i].tdir + "><br><center><span>" + arr[i].title + "</span><br><span>" +'작성자 : ' + arr[i].id + "</span><br><span>" + arr[i].time +'분'+ "</span><br><span>"+'좋아요 : '+ arr[i].lcount + "</span></a></center></div>";
 				$('.sort_area').html(setlist);
 			}
-			
-				
+			/*
+				if(total == 0){
+				var emptypage = emptypage + "<h2><a href=/fri/joo/recipeAdd.fri>레시피가 없습니다.<br>새로운 레시피를 추가해주세요!</a></h2>"
+				$('.sort_area').html(emptypage);
+			}*/
+					
 			console.log(arr[0].bno);
 			console.log(arr[0]);						
 			
@@ -107,7 +111,7 @@ $(document).ready(function(){
 	    	Situat.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
 	    });
 
-		alert(Situat);
+		/*alert(Situat);*/
 		
 		var situdat = {"Situat" : Situat}; 
 	});
@@ -119,12 +123,12 @@ $(document).ready(function(){
 	    	Category.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
 	    });
 
-		alert(Category);
+		/*alert(Category);*/
 		
 		var CATdata = {"Category" : Category}; 
 	});
 	
-	$('#tsbtn').click(function(){
+/*	$('#tsbtn').click(function(){
 		var getContext = $('.search-ingre').text();
 		
 		$ .ajax( {
@@ -141,5 +145,5 @@ $(document).ready(function(){
 		}).fail(function(err) {
 		   console.log(err);
 		});
-	});
+	});*/
 });
