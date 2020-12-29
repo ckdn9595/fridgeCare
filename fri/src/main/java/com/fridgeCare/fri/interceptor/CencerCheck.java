@@ -50,7 +50,7 @@ public class CencerCheck implements HandlerInterceptor {
 			// 계정 생성 컨트롤러
 
 		
-			boolean bool = searchTitle(req.getParameter("body"));
+			boolean bool = searchId(req.getParameter("id"));
 			if(!bool) {
 				resp.sendRedirect("/fri/hh/main.fri");
 			}else {
@@ -59,10 +59,10 @@ public class CencerCheck implements HandlerInterceptor {
 		 
 			
 			
-		}else if(now_address.equals("/fri/juhyun/resipiReply.fri")) {
+		}else if(now_address.equals("/fri/juhyun/recipe/resipiReply.fri")) {
 			// 댓글 생성 컨트롤러
-
-			boolean bool = searchReply(req.getParameter("reply"));
+			System.out.println("댓글 생성 인터셉터 실행");
+			boolean bool = searchReply(req.getParameter("body"));
 			if(bool == false) {
 				resp.sendRedirect("/fri/hh/main.fri");
 			}else {
@@ -71,6 +71,7 @@ public class CencerCheck implements HandlerInterceptor {
 			
 			
 		}else {
+			System.out.println("인터셉터에 걸리지 않음");
 			resp.sendRedirect("/fri/hh/main.fri");
 		}
 		
@@ -92,29 +93,34 @@ public class CencerCheck implements HandlerInterceptor {
 	
 	//<mapping path="/**/addCencerProc.fri"/> 요청에대한 인터셉터 처리함수
 	public boolean searchWord(String body) {
+		System.out.println("검열단어 실행");
 		boolean bool = aSrvc.cencerAll(body);
 		return bool;
 	}
 	// 게시글 제목에 대한 인터셉터 처리 함수
 	public boolean searchTitle(String title) {
+		System.out.println("게시글 실행");
 		boolean bool = aSrvc.cencerBody(title);
 		
 		return bool;
 	}
 	// 게시글 내용에 대한 인터셉터 처리 함수
 	public boolean searchBoardPart(String body) {
+		System.out.println("게시내용 실행");
 		boolean bool = aSrvc.cencerBody(body);
 		
 		return bool;
 	}
 	// 댓글 내용에 대한 인터셉터 처리 함수
 	public boolean searchReply(String reply) {
+		System.out.println("reply 실행");
 		boolean bool = aSrvc.cencerBody(reply);
 		
 		return bool;
 	}
 	// 회원가입 아이디에 대한 인터셉터 처리 함수
 	public boolean searchId(String id) {
+		System.out.println("id 실행");
 		boolean bool = aSrvc.cencerBody(id);
 		
 		return bool;	

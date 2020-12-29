@@ -218,17 +218,19 @@ public class AdminService {
 		boolean bool = false;
 		
 		List<AdminVO> list = aDao.getCencerList();
+		System.out.println(body);
+		
 		for(int i = 0; i < list.size(); i++) {
 			bool = body.contains(list.get(i).getBody());
-			if(!bool) {
+			if(bool) {
 				System.out.println(body + "는 사용 불가한 단어가 포함되어있습니다." + " 검열 단어 :" + list.get(i).getBody());
-				return bool;
+				return false;
 			}else {
 				System.out.println(body + "가 통과한 검열 단어 : " + list.get(i).getBody());
 			}
 		}
 		System.out.println("해당 내용은 사용 가능합니다.");
-		return bool;
+		return true;
 	}
 	
 	/*
